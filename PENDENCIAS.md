@@ -1,0 +1,94 @@
+# Informações oficiais pendentes de confirmação
+
+Esta lista reúne tudo que precisa ser fornecido ou validado por quem de
+direito antes desta página deixar de ser um protótipo e passar a apresentar
+apenas informação oficial. Nada nesta lista foi inventado — onde a
+informação não estava disponível nos documentos de referência, o campo
+correspondente na página mostra "Não informado", "A confirmar" ou
+"Link a inserir".
+
+## Identidade visual
+- [x] Logotipo oficial do IRM — já inserido (`assets/img/logo-irm-branca-horizontal.png`
+      e `assets/img/logo-governo-rj.png`), obtido em www.rj.gov.br/irm em 31/07/2026.
+- [ ] Confirmar com o IRM se este é o arquivo/versão mais atual da marca, e se
+      existe um arquivo vetorial (.svg/.eps) de maior qualidade a fornecer.
+- [ ] Manual de identidade visual/marca, se existir, para ajustar cores,
+      tipografia e espaçamentos ao padrão oficial com mais precisão.
+- [x] Imagem para a seção de abertura — já inserida uma fotografia real do
+      rio Iguaçu (`assets/img/rio-iguacu-nascente.jpg`, Gerson Tavares, CC BY 2.0,
+      via Wikimedia Commons). É uma imagem ilustrativa do rio, não de uma obra
+      específica; substituir por foto institucional oficial do IRM, se houver.
+
+## Endereços e links institucionais
+- [x] URL do site institucional do IRM confirmada: https://www.rj.gov.br/irm
+      (já preenchida em `identidade.siteInstitucionalUrl` e
+      `rodape.linkSitePrincipal` em `js/dados.js`).
+- [ ] URL da política de privacidade do IRM (`rodape.linkPrivacidade`).
+- [ ] URL da página de acessibilidade do IRM (`rodape.linkAcessibilidade`).
+- [ ] URL canônica definitiva desta página, para a tag `<link rel="canonical">`
+      em `index.html`, quando esta página tiver um endereço público definitivo.
+
+## Município e território
+- [ ] Lista oficial e definitiva dos municípios contemplados nesta fase do
+      Projeto Iguaçu (atualmente há 3 municípios demonstrativos em
+      `js/dados.js`, bloco 7).
+- [x] Mapa de localização geral da Baixada Fluminense já inserido
+      (`assets/img/mapa-baixada-fluminense.png`, Alvoradaking, CC BY-SA 4.0,
+      via Wikimedia Commons) — é apenas um mapa de referência da região, não
+      um mapa oficial das intervenções.
+- [ ] Mapa oficial do território com a localização de cada intervenção, ou a
+      camada georreferenciada do SIGA Águas, quando estiver disponível
+      publicamente.
+
+## Intervenções (obras)
+Todas as 7 intervenções cadastradas em `js/dados.js` (bloco 8) são
+**demonstrativas** (`demonstrativo: true`) e precisam ser substituídas pelos
+dados reais enviados pelos órgãos executores por meio do Formulário de
+Atualização de Status do GT, incluindo:
+- [ ] Nome do projeto, objeto, programa e processo SEI de cada obra;
+- [ ] Empresa contratada, número e valor do contrato;
+- [ ] Datas de início e término de vigência e prazo contratual;
+- [ ] Percentual de execução física e financeira;
+- [ ] Latitude e longitude de cada intervenção;
+- [ ] Motivo de eventual atraso ou paralisação;
+- [ ] Link para o documento público correspondente a cada obra.
+
+## Indicadores
+- [ ] Investimento total previsto (`indicadores.investimentoPrevisto`).
+- [ ] População estimada beneficiada (`indicadores.populacaoBeneficiadaEstimada`).
+
+## Documentos
+Os seguintes documentos estão referenciados na página (bloco 10 de
+`js/dados.js`), mas **sem link**, por não haver URL oficial disponível nos
+materiais de referência consultados:
+- [ ] Portaria IRM nº 195/2025;
+- [ ] Plano Diretor da Bacia Iguaçu/Sarapuí (SEA/SERLA, 2007);
+- [ ] Nota técnica INEA (2025);
+- [ ] Matérias jornalísticas citadas como fonte (RioOnWatch, Diário do Rio,
+      Diário do Estado);
+- [ ] Apresentação institucional do GT Projeto Iguaçu (25/06/2026), caso vá
+      ser disponibilizada publicamente.
+
+> A URL do SIGA Águas já está confirmada e preenchida:
+> https://sigaaguas.org.br/sigaweb/apps/baia-de-guanabara
+
+## Créditos e licenças das imagens já inseridas
+As imagens abaixo foram obtidas de fontes públicas e têm uso livre **desde
+que mantido o crédito** (a página já exibe o crédito automaticamente onde
+aplicável). Se forem substituídas por material oficial do IRM, os créditos
+podem ser removidos.
+
+| Arquivo | Fonte | Licença |
+|---|---|---|
+| `logo-irm-branca-horizontal.png`, `logo-governo-rj.png` | www.rj.gov.br/irm (site oficial) | Marca institucional do Governo do RJ/IRM |
+| `rio-iguacu-nascente.jpg` | Gerson Tavares, Wikimedia Commons | CC BY 2.0 |
+| `mapa-baixada-fluminense.png` | Alvoradaking, Wikimedia Commons | CC BY-SA 4.0 |
+
+## Outras validações institucionais
+- [ ] Confirmar se o nome correto da diretoria responsável é "Diretoria de
+      Saneamento Metropolitano Integrado (DIRSMI)" ou "Diretoria de
+      Saneamento Básico Integrado" — os dois nomes aparecem em contextos
+      diferentes na apresentação institucional de referência.
+- [ ] Confirmar se os contatos (Maria Clara Freitas Zopellari, Debora Toci
+      Puccini e o e-mail geral `saneamento@irm.rj.gov.br`) podem ser
+      publicados nesta página pública.
