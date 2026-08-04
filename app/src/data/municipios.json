@@ -1,0 +1,26 @@
+[
+  {
+    "id": "m1",
+    "nome": "Duque de Caxias",
+    "lat": -22.7858,
+    "lng": -43.3117,
+    "fonteCoordenadas": "IBGE (centroide municipal)",
+    "demonstrativo": true
+  },
+  {
+    "id": "m2",
+    "nome": "Nova Iguaçu",
+    "lat": -22.7556,
+    "lng": -43.4603,
+    "fonteCoordenadas": "IBGE (centroide municipal)",
+    "demonstrativo": true
+  },
+  {
+    "id": "m3",
+    "nome": "Belford Roxo",
+    "lat": -22.7649,
+    "lng": -43.3999,
+    "fonteCoordenadas": "IBGE (centroide municipal)",
+    "demonstrativo": true
+  }
+]

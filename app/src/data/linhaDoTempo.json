@@ -1,0 +1,119 @@
+[
+  {
+    "id": "t1",
+    "data": "1996",
+    "titulo": "Primeira proposta técnica",
+    "descricao": "Primeira proposta de intervenção nas bacias, elaborada pela COPPE/UFRJ com recursos do Banco Mundial.",
+    "categoria": "Estudos e planejamento",
+    "fonte": "COPPE/UFRJ (1996)",
+    "confirmado": true
+  },
+  {
+    "id": "t2",
+    "data": "2005–2006",
+    "titulo": "Retomada dos estudos",
+    "descricao": "A COPPE/UFRJ retoma os estudos técnicos em cooperação com o governo do estado do Rio de Janeiro.",
+    "categoria": "Estudos e planejamento",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t3",
+    "data": "2007",
+    "titulo": "Plano Diretor da Bacia Iguaçu/Sarapuí",
+    "descricao": "SEA e SERLA formalizam o Plano Diretor da Bacia Iguaçu/Sarapuí, prevendo 25 intervenções em 6 municípios.",
+    "categoria": "Etapas anteriores",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t4",
+    "data": "2007–2014",
+    "titulo": "Execução parcial via PAC",
+    "descricao": "Execução parcial das intervenções por meio do PAC federal — cerca de R$ 270 milhões na primeira etapa e aproximadamente R$ 450 milhões investidos no período, entre dragagens, pôlderes, desassoreamento e moradias planejadas.",
+    "categoria": "Etapas anteriores",
+    "fonte": "INEA/PAC (2007–2014)",
+    "confirmado": true
+  },
+  {
+    "id": "t5",
+    "data": "2014",
+    "titulo": "Interrupção das obras",
+    "descricao": "Obras interrompidas em decorrência da crise fiscal do estado, falhas de manutenção e irregularidades apontadas pelos tribunais de contas.",
+    "categoria": "Etapas anteriores",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t6",
+    "data": "Fevereiro de 2024",
+    "titulo": "Transbordamento do Rio Botas reacende a discussão",
+    "descricao": "Novo transbordamento do rio Botas reacende a discussão pública. A Casa Civil apresenta à União um projeto orçado em R$ 733 milhões.",
+    "categoria": "Retomada institucional",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t7",
+    "data": "Abril de 2025",
+    "titulo": "Reunião MPRJ, INEA e IRM",
+    "descricao": "Em reunião conjunta, o Ministério Público propõe três medidas: mapeamento das intervenções, criação de um Grupo de Trabalho e desenvolvimento de uma plataforma digital de transparência.",
+    "categoria": "Formação do Grupo de Trabalho",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t8",
+    "data": "2025",
+    "titulo": "Projeto Iguaçu entra no Novo PAC",
+    "descricao": "O projeto passa a integrar o Novo PAC, com documentação em tramitação junto à Caixa Econômica Federal.",
+    "categoria": "Contratações",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t9",
+    "data": "Dezembro de 2025",
+    "titulo": "Aprovação pela Caixa",
+    "descricao": "A Caixa Econômica Federal conclui a aprovação e o INEA prepara o edital de licitação.",
+    "categoria": "Licitações",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t10",
+    "data": "06/02/2026",
+    "titulo": "Abertura do processo licitatório",
+    "descricao": "A Caixa retira a cláusula suspensiva e o processo licitatório é aberto no SEI pelo INEA.",
+    "categoria": "Licitações",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t11",
+    "data": "10/02/2026",
+    "titulo": "Reserva orçamentária",
+    "descricao": "Emissão de reserva orçamentária de R$ 147 milhões para o projeto executivo e as obras.",
+    "categoria": "Licitações",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t12",
+    "data": "12/02/2026",
+    "titulo": "Cronograma definido em reunião do GT",
+    "descricao": "Reunião do GT com o MPRJ define prazo de 18 meses para o projeto, sendo os 3 meses iniciais dedicados ao projeto executivo. Definição da licitação esperada para junho de 2026.",
+    "categoria": "Formação do Grupo de Trabalho",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": true
+  },
+  {
+    "id": "t13",
+    "data": "Previsão: 4º trimestre de 2026",
+    "titulo": "Início físico das obras (previsão)",
+    "descricao": "Data em validação — início físico das obras estimado pelo INEA, sujeito à conclusão do processo licitatório e do projeto executivo.",
+    "categoria": "Atualizações futuras",
+    "fonte": "Apresentação institucional GT Projeto Iguaçu — IRM (25/06/2026)",
+    "confirmado": false
+  }
+]

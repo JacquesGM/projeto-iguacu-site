@@ -1,0 +1,46 @@
+{
+  "origemDados": "Os dados sobre cada intervenção são preenchidos pelos próprios órgãos executores (como o INEA) e pelas prefeituras, por meio de um Formulário de Atualização de Status com 15 campos padronizados, agrupados em quatro blocos: Identificação, Execução, Vigência e Localização.",
+  "responsaveisFornecimento": "Órgãos executores das obras e prefeituras dos municípios contemplados, conforme fluxo definido pelo Grupo de Trabalho (GT) Projeto Iguaçu.",
+  "consolidacaoIRM": "O Instituto Rio Metrópole (IRM), na coordenação do GT, checa e consolida os dados recebidos antes da publicação nesta página.",
+  "dataReferencia": "30/06/2026",
+  "periodicidade": "Ciclo bimestral: cerca de 14 dias para os órgãos enviarem as informações do período de referência encerrado, seguidos de cerca de 14 dias para a consolidação pelo IRM antes da reunião seguinte do GT.",
+  "glossario": [
+    { "termo": "IRM", "significado": "Instituto Rio Metrópole — autarquia estadual responsável pela gestão metropolitana da Região Metropolitana do Rio de Janeiro (RMRJ) e pela coordenação do GT Projeto Iguaçu." },
+    { "termo": "GT", "significado": "Grupo de Trabalho — neste caso, o GT Projeto Iguaçu, criado pela Portaria IRM nº 195/2025 para reunir, checar e divulgar informações sobre as intervenções." },
+    { "termo": "INEA", "significado": "Instituto Estadual do Ambiente — órgão do governo do Rio de Janeiro responsável pela execução técnica das obras do Projeto Iguaçu." },
+    { "termo": "MPRJ", "significado": "Ministério Público do Estado do Rio de Janeiro." },
+    { "termo": "PAC / Novo PAC", "significado": "Programa de Aceleração do Crescimento — programa federal de investimento em infraestrutura que financia parte das intervenções." },
+    { "termo": "PEDUI", "significado": "Plano Estratégico de Desenvolvimento Urbano Integrado da Região Metropolitana do Rio de Janeiro, ratificado pela Lei Estadual nº 11.021/2025." },
+    { "termo": "DIRSMI", "significado": "Diretoria de Saneamento Metropolitano Integrado — diretoria do IRM responsável pelos temas de saneamento e drenagem, incluindo o Projeto Iguaçu." },
+    { "termo": "RMRJ", "significado": "Região Metropolitana do Rio de Janeiro — os 22 municípios sob gestão metropolitana do IRM." },
+    { "termo": "SEA / SERLA", "significado": "Secretaria de Estado do Ambiente e Fundação Superintendência Estadual de Rios e Lagoas — órgãos estaduais responsáveis pelo Plano Diretor da Bacia Iguaçu/Sarapuí de 2007 (a SERLA foi posteriormente sucedida pelo INEA)." },
+    { "termo": "CBH Baía de Guanabara", "significado": "Comitê de Bacia Hidrográfica da Região Hidrográfica da Baía de Guanabara — parceiro do IRM na integração de dados do Projeto Iguaçu ao SIGA Águas." },
+    { "termo": "AGEVAP", "significado": "Entidade de apoio à gestão de recursos hídricos que mantém, em conjunto com o CBH Baía de Guanabara, a plataforma SIGA Águas." },
+    { "termo": "SIGA Águas", "significado": "Sistema com acervo de mapas e camadas de dados georreferenciados sobre recursos hídricos, mantido pela AGEVAP e pelos comitês de bacia." },
+    { "termo": "SEI", "significado": "Sistema Eletrônico de Informações — sistema usado pelo governo do Rio de Janeiro para tramitar processos administrativos, como o processo licitatório das obras." },
+    { "termo": "Execução física", "significado": "Percentual da obra que já foi de fato construído/realizado no local." },
+    { "termo": "Execução financeira", "significado": "Percentual do valor do contrato que já foi efetivamente pago à empresa executora." },
+    { "termo": "Valor previsto, contratado, empenhado e pago", "significado": "Quatro momentos diferentes de um mesmo valor: previsto é a estimativa inicial; contratado é o valor firmado em contrato; empenhado é o valor reservado no orçamento público; pago é o valor já desembolsado. Esta versão da página registra, para cada intervenção, apenas o valor contratado — os demais serão incorporados conforme os órgãos executores passarem a informá-los." }
+  ],
+  "significadoSituacoes": [
+    { "situacao": "Em planejamento", "significado": "A intervenção está em fase de estudos, projeto básico ou projeto executivo, sem processo licitatório aberto." },
+    { "situacao": "Em licitação", "significado": "O processo licitatório para contratação da obra está em andamento." },
+    { "situacao": "Em execução", "significado": "A obra está contratada e em execução física." },
+    { "situacao": "Concluída", "significado": "A obra foi finalizada." },
+    { "situacao": "Atrasada", "significado": "A obra está em execução, mas fora do cronograma previsto; o motivo, quando informado, é apresentado no detalhe da intervenção." },
+    { "situacao": "Paralisada", "significado": "A execução da obra foi interrompida; o motivo, quando informado, é apresentado no detalhe da intervenção." },
+    { "situacao": "Aguardando informação", "significado": "O órgão responsável ainda não enviou os dados desta intervenção ao GT." },
+    { "situacao": "Aguardando validação", "significado": "As informações foram recebidas do órgão responsável, mas ainda não foram checadas e consolidadas pelo IRM." }
+  ],
+  "criteriosIndicadores": "Os indicadores numéricos de contagem (municípios, intervenções por fase e situação) são calculados automaticamente a partir dos registros de intervenções cadastrados. Indicadores financeiros e populacionais dependem de consolidação adicional e são apresentados como \"A confirmar\" até validação.",
+  "limitacoes": "Esta é uma versão de protótipo (beta). Os dados de intervenções específicas (empresa contratada, valores de contrato, percentuais de execução, datas) são demonstrativos e não representam informação oficial até que sejam substituídos pelos dados reais enviados pelos órgãos executores.",
+  "canalContato": "Dúvidas, correções ou solicitações de informação podem ser encaminhadas à Diretoria de Saneamento Básico Integrado do IRM pelo e-mail saneamento@irm.rj.gov.br.",
+  "avisoConsolidacao": "As informações divulgadas nesta página são consolidadas pelo Instituto Rio Metrópole a partir dos dados encaminhados pelos órgãos responsáveis. Informações ainda não validadas são identificadas expressamente.",
+  "estadosQualidade": [
+    { "estado": "Atualizado", "significado": "Dado revisado e confirmado dentro do ciclo de referência vigente." },
+    { "estado": "Aguardando validação", "significado": "Dado recebido, ainda em checagem pelo IRM." },
+    { "estado": "Desatualizado", "significado": "Dado mais antigo que o ciclo de referência vigente, pendente de novo envio." },
+    { "estado": "Não informado", "significado": "Campo sem informação enviada pelo órgão responsável." },
+    { "estado": "Em correção", "significado": "Inconsistência identificada e em processo de correção junto ao órgão responsável." }
+  ]
+}

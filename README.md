@@ -4,6 +4,13 @@ Página institucional estática para apresentar publicamente o acompanhamento
 do Projeto Iguaçu pelo Instituto Rio Metrópole (IRM). Feita em HTML, CSS e
 JavaScript puro — sem banco de dados, sem login, sem servidor próprio.
 
+> **Nova versão em desenvolvimento**: a pasta [`app/`](app/) contém uma
+> reconstrução completa desta página como webapp React + TypeScript + Vite +
+> Tailwind (mesma stack e mesmo nível de recurso do PMetGIRS —
+> `Residuos/app`), com gráficos, exportação de dados em CSV/PDF, VLibras e
+> testes automatizados. Este protótipo estático continua aqui como registro;
+> veja `app/README.md` para instruções de execução da nova versão.
+
 ## Estrutura de diretórios
 
 ```

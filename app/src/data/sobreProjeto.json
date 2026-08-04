@@ -1,0 +1,30 @@
+{
+  "oQueE": "O Projeto Iguaçu é o conjunto de estudos, planos e obras voltados ao controle de inundações e à recuperação ambiental das bacias dos rios Iguaçu, Botas e Sarapuí, na Baixada Fluminense. Inclui dragagem, construção de pôlderes e comportas, macrodrenagem, reflorestamento de nascentes e mata ciliar, urbanização de áreas ribeirinhas e reassentamento de famílias em áreas de risco.",
+  "problemaPublico": "Historicamente, a região sofre com alagamentos e transbordamentos recorrentes dos rios Iguaçu, Botas e Sarapuí, agravados pelo assoreamento dos leitos, pela ocupação de áreas de várzea e pela descontinuidade de obras de macrodrenagem ao longo das últimas décadas.",
+  "objetivos": [
+    "Mitigar inundações em áreas urbanizadas por meio de infraestrutura de macrodrenagem.",
+    "Recuperar e proteger nascentes, mata ciliar e áreas de preservação das bacias.",
+    "Promover reassentamento digno de famílias em áreas de risco, quando aplicável.",
+    "Garantir transparência e integração das informações entre os órgãos envolvidos."
+  ],
+  "papelIRM": "O Instituto Rio Metrópole atua no acompanhamento, articulação, consolidação e divulgação das informações sobre o Projeto Iguaçu, coordenando o Grupo de Trabalho (GT) criado para essa finalidade. O IRM não é o órgão executor das obras — essa responsabilidade é dos órgãos e empresas contratantes indicados em cada intervenção.",
+  "baseLegal": [
+    "Lei Complementar Estadual nº 184/2018 — institui a governança da Região Metropolitana do Rio de Janeiro (RMRJ) e define, no art. 3º, a drenagem e o manejo de águas pluviais urbanas como função pública de interesse comum.",
+    "Decreto Estadual nº 46.893/2019 — regulamento do IRM; o art. 24 atribui à Diretoria de Saneamento Metropolitano Integrado (DIRSMI) a competência de planejar, coordenar e supervisionar intervenções territoriais de saneamento, incluindo drenagem e manejo de águas pluviais.",
+    "Lei Estadual nº 11.021/2025 — ratifica o Plano Estratégico de Desenvolvimento Urbano Integrado (PEDUI), que orienta o desenvolvimento da RMRJ até 2040 e inclui, no Programa Habitar a Metrópole (ação HM 10), a mitigação de inundações por meio de macrodrenagem.",
+    "Portaria IRM nº 195/2025 — formaliza a criação do Grupo de Trabalho (GT) Projeto Iguaçu, com o IRM como coordenador."
+  ],
+  "orgaosParticipantes": [
+    "Instituto Rio Metrópole (IRM) — coordenação do GT",
+    "Instituto Estadual do Ambiente (INEA) — órgão executor",
+    "Ministério Público do Estado do Rio de Janeiro (MPRJ)",
+    "Comitês de Bacia Hidrográfica (incluindo o CBH Baía de Guanabara)",
+    "Prefeituras dos municípios contemplados",
+    "Secretarias estaduais relacionadas à execução das obras"
+  ],
+  "municipiosContempladosTexto": "A lista oficial e definitiva de municípios contemplados nesta fase do Projeto Iguaçu está em consolidação pelo GT. A relação abaixo, na seção de Intervenções, é demonstrativa e serve para testar a estrutura da página.",
+  "blocoPapelIRM": {
+    "titulo": "Papel do Instituto Rio Metrópole",
+    "texto": "O IRM atua no acompanhamento, articulação, consolidação e divulgação das informações sobre o Projeto Iguaçu, sem assumir as responsabilidades técnicas, contratuais ou executivas dos órgãos e empresas responsáveis por cada obra."
+  }
+}
