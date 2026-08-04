@@ -8,7 +8,6 @@ import { DownloadButton } from '../components/ui/DownloadButton';
 import type { DownloadColumn } from '../lib/download';
 import { InterventionsTable } from '../components/sections/InterventionsTable';
 import { PageLoading } from '../components/layout/PageLoading';
-import mapaBaixada from '../assets/mapa-baixada-fluminense.png';
 
 // Import dinâmico: Leaflet só é baixado quando esta seção entra em vista/renderiza,
 // evitando engordar o bundle principal (mesma lógica do mapa do PMetGIRS).
@@ -69,13 +68,6 @@ export function Intervencoes() {
             <MunicipiosMap />
           </Suspense>
         </div>
-
-        <figure className="mt-6 overflow-hidden rounded-xl border border-neutral-200 lg:max-w-md">
-          <img src={mapaBaixada} alt={territorio.imagemAlt} className="w-full" loading="lazy" />
-          <figcaption className="border-t border-neutral-200 bg-neutral-50 p-3 text-xs text-neutral-500">
-            {territorio.legenda}
-          </figcaption>
-        </figure>
       </div>
     </Section>
   );

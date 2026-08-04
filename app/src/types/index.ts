@@ -178,7 +178,5 @@ export interface Rodape {
 }
 
 export interface Territorio {
-  imagemAlt: string;
-  legenda: string;
   descricaoTextual: string;
 }
