@@ -25,10 +25,10 @@ const cartoesPrincipais = [
 ];
 
 const cartoesSituacao: { situacao: SituacaoIntervencao; rotulo: string }[] = [
-  { situacao: 'Em planejamento', rotulo: 'Em planejamento' },
-  { situacao: 'Em licitação', rotulo: 'Em licitação' },
-  { situacao: 'Em execução', rotulo: 'Em execução' },
-  { situacao: 'Concluída', rotulo: 'Concluídas' },
+  { situacao: 'Fase de Projeto', rotulo: 'Em fase de projeto' },
+  { situacao: 'Em Execução', rotulo: 'Em execução' },
+  { situacao: 'Concluído', rotulo: 'Concluídas' },
+  { situacao: 'Suspenso', rotulo: 'Suspensas' },
 ];
 
 const cartoesFinais = [

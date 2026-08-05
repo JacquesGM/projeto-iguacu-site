@@ -4,11 +4,11 @@ import type { Intervencao, Municipio } from '../../types';
 
 const municipios = municipiosData as Municipio[];
 
-// Paleta validada com scripts/validate_palette.js (dataviz skill) — todos os
-// checks passam: banda de luminosidade, piso de croma, separação CVD e piso
-// de visão normal. Cores institucionais azul/verde do site + um roxo mais
-// claro que o da etiqueta "Em licitação" (para não colidir visualmente).
-const CORES_MUNICIPIO = ['#2f7fb8', '#2f9e75', '#7c4dbd'];
+// Paleta validada com scripts/validate_palette.js (dataviz skill). Passa em
+// todos os checks exceto o piso de croma do cinza (#5a6b78) — usado de
+// propósito para "Vários municípios" como neutro semântico (mesma exceção já
+// aceita no SituacaoBadge), sempre com o nome do município no eixo ao lado.
+const CORES_MUNICIPIO = ['#2f7fb8', '#2f9e75', '#7c4dbd', '#c2703d', '#5a6b78'];
 
 export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Intervencao[] }) {
   const total = intervencoes.length;
@@ -52,7 +52,7 @@ export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Int
         </ResponsiveContainer>
       </div>
       <p className="mt-2 text-xs text-neutral-500">
-        Municípios demonstrativos (ver Transparência). Total: {total} intervenções.
+        Fonte: extração BI/INFOVIA do IRM. Total: {total} intervenções.
       </p>
     </div>
   );

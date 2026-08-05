@@ -12,8 +12,11 @@ function Linha({ rotulo, children }: { rotulo: string; children: React.ReactNode
   );
 }
 
-function valorOuTexto(valor: number | string): string {
-  return typeof valor === 'number' ? `${valor}%` : valor;
+const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+function textoOu(valor: string | number | null): string {
+  if (valor === null || valor === '') return 'Não informado';
+  return String(valor);
 }
 
 export function InterventionModal({
@@ -96,26 +99,31 @@ export function InterventionModal({
         </div>
 
         <dl className="mt-4">
-          <Linha rotulo="Descrição">{intervencao.descricao}</Linha>
+          <Linha rotulo="Tipo">{intervencao.tipo}</Linha>
           <Linha rotulo="Município">{municipioNome}</Linha>
-          <Linha rotulo="Rio">{intervencao.rio}</Linha>
-          <Linha rotulo="Localização">{intervencao.localizacaoTexto}</Linha>
+          <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
+          <Linha rotulo="Coordenadas">
+            {intervencao.latitude !== null && intervencao.longitude !== null
+              ? `${intervencao.latitude}, ${intervencao.longitude}`
+              : 'Não informado'}
+          </Linha>
           <Linha rotulo="Órgão responsável">{intervencao.orgaoResponsavel}</Linha>
-          <Linha rotulo="Empresa contratada">{intervencao.empresaContratada}</Linha>
-          <Linha rotulo="Contrato">{intervencao.contrato}</Linha>
-          <Linha rotulo="Valor contratado">{intervencao.valorContrato}</Linha>
-          <Linha rotulo="Fonte do recurso">{intervencao.fonteRecurso}</Linha>
-          <Linha rotulo="Fase">{intervencao.fase}</Linha>
+          <Linha rotulo="Empresa contratada">{textoOu(intervencao.empresaContratada)}</Linha>
+          <Linha rotulo="Processo">{textoOu(intervencao.processoSEI)}</Linha>
+          <Linha rotulo="Programa / fonte do recurso">{textoOu(intervencao.programa)}</Linha>
+          <Linha rotulo="Valor do contrato">
+            {intervencao.valorContrato !== null ? moeda.format(intervencao.valorContrato) : 'Não informado'}
+          </Linha>
           <Linha rotulo="Situação">
             <SituacaoBadge situacao={intervencao.situacao} />
           </Linha>
-          <Linha rotulo="Execução física">{valorOuTexto(intervencao.execucaoFisica)}</Linha>
-          <Linha rotulo="Execução financeira">{valorOuTexto(intervencao.execucaoFinanceira)}</Linha>
-          <Linha rotulo="Data de início prevista/vigência">{intervencao.dataInicioVigencia}</Linha>
-          <Linha rotulo="Data prevista de conclusão">{intervencao.dataPrevista}</Linha>
-          <Linha rotulo="Data atualizada de conclusão">{intervencao.dataAtualizada}</Linha>
-          <Linha rotulo="Motivo de atraso/paralisação">{intervencao.motivoAtrasoParalisacao}</Linha>
-          <Linha rotulo="Próximo marco">{intervencao.proximoMarco}</Linha>
+          <Linha rotulo="Prazo do contrato">
+            {intervencao.prazoContratoDias !== null ? `${intervencao.prazoContratoDias} dias` : 'Não informado'}
+          </Linha>
+          <Linha rotulo="Início de vigência">{textoOu(intervencao.dataInicioVigencia)}</Linha>
+          <Linha rotulo="Término de vigência">{textoOu(intervencao.dataTerminoVigencia)}</Linha>
+          <Linha rotulo="Motivo de atraso/paralisação">{textoOu(intervencao.motivoAtrasoParalisacao)}</Linha>
+          <Linha rotulo="Próximo marco">{textoOu(intervencao.proximoMarco)}</Linha>
           <Linha rotulo="Data da informação">{intervencao.dataInformacao}</Linha>
           <Linha rotulo="Fonte">{intervencao.fonte}</Linha>
           <Linha rotulo="Link para documento público">

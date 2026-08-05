@@ -26,7 +26,7 @@ describe('integridade dos dados', () => {
     }
   });
 
-  it('toda situacao usada em intervencoes.json é uma das 8 situações válidas', () => {
+  it('toda situacao usada em intervencoes.json é uma das 4 situações válidas', () => {
     for (const item of intervencoes) {
       expect(SITUACOES_VALIDAS, `situação "${item.situacao}" em "${item.id}" é inválida`).toContain(item.situacao);
     }
@@ -40,12 +40,20 @@ describe('integridade dos dados', () => {
     expect(idsUnicos(municipios)).toBe(true);
   });
 
-  it('lat/lng de municipios.json estão dentro da faixa do estado do Rio de Janeiro', () => {
-    for (const m of municipios) {
-      expect(m.lat, `latitude fora da faixa esperada em "${m.id}"`).toBeGreaterThan(-23.5);
-      expect(m.lat).toBeLessThan(-20.5);
-      expect(m.lng, `longitude fora da faixa esperada em "${m.id}"`).toBeGreaterThan(-44.9);
-      expect(m.lng).toBeLessThan(-40.9);
+  it('lat/lng de intervencoes.json, quando informadas, estão dentro da faixa do estado do Rio de Janeiro', () => {
+    for (const item of intervencoes) {
+      if (item.latitude === null || item.longitude === null) continue;
+      expect(item.latitude, `latitude fora da faixa esperada em "${item.id}"`).toBeGreaterThan(-23.5);
+      expect(item.latitude).toBeLessThan(-20.5);
+      expect(item.longitude, `longitude fora da faixa esperada em "${item.id}"`).toBeGreaterThan(-44.9);
+      expect(item.longitude).toBeLessThan(-40.9);
+    }
+  });
+
+  it('valorContrato de intervencoes.json, quando informado, é positivo', () => {
+    for (const item of intervencoes) {
+      if (item.valorContrato === null) continue;
+      expect(item.valorContrato, `valorContrato inválido em "${item.id}"`).toBeGreaterThan(0);
     }
   });
 

@@ -5,7 +5,6 @@ import municipiosData from '../../data/municipios.json';
 import type { Intervencao, Municipio } from '../../types';
 import { SituacaoBadge, SITUACOES_VALIDAS } from '../ui/SituacaoBadge';
 import { EmptyState } from '../ui/EmptyState';
-import { uniqueOptions } from '../../lib/filters';
 import { InterventionModal } from './InterventionModal';
 
 const intervencoes = intervencoesData as Intervencao[];
@@ -13,11 +12,13 @@ const municipios = municipiosData as Municipio[];
 
 const ALL = 'todos';
 
+const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+
 function nomeMunicipio(id: string): string {
   return municipios.find((m) => m.id === id)?.nome ?? 'Não informado';
 }
 
-type CampoOrdenacao = 'nomeProjeto' | 'municipio' | 'tipo' | 'orgaoResponsavel' | 'fase' | 'situacao' | 'percentualExecucao' | 'ultimaAtualizacao';
+type CampoOrdenacao = 'nomeProjeto' | 'municipio' | 'tipo' | 'orgaoResponsavel' | 'situacao' | 'valorContrato' | 'ultimaAtualizacao';
 
 function dataParaOrdenacao(valor: unknown): number {
   if (typeof valor !== 'string') return 0;
@@ -28,9 +29,7 @@ function dataParaOrdenacao(valor: unknown): number {
 
 function valorParaOrdenacao(item: Intervencao, campo: CampoOrdenacao): string | number {
   if (campo === 'municipio') return nomeMunicipio(item.municipioId).toLowerCase();
-  if (campo === 'percentualExecucao') {
-    return typeof item.percentualExecucao === 'number' ? item.percentualExecucao : -1;
-  }
+  if (campo === 'valorContrato') return item.valorContrato ?? -1;
   if (campo === 'ultimaAtualizacao') return dataParaOrdenacao(item.ultimaAtualizacao);
   const valor = item[campo];
   return typeof valor === 'string' ? valor.toLowerCase() : String(valor ?? '');
@@ -41,16 +40,14 @@ const colunas: { campo: CampoOrdenacao; rotulo: string }[] = [
   { campo: 'municipio', rotulo: 'Município' },
   { campo: 'tipo', rotulo: 'Tipo' },
   { campo: 'orgaoResponsavel', rotulo: 'Órgão responsável' },
-  { campo: 'fase', rotulo: 'Fase' },
   { campo: 'situacao', rotulo: 'Situação' },
-  { campo: 'percentualExecucao', rotulo: '% execução' },
+  { campo: 'valorContrato', rotulo: 'Valor do contrato' },
   { campo: 'ultimaAtualizacao', rotulo: 'Última atualização' },
 ];
 
 export function InterventionsTable() {
   const [busca, setBusca] = useState('');
   const [municipioFiltro, setMunicipioFiltro] = useState(ALL);
-  const [faseFiltro, setFaseFiltro] = useState(ALL);
   const [situacaoFiltro, setSituacaoFiltro] = useState(ALL);
   const [ordenacao, setOrdenacao] = useState<{ campo: CampoOrdenacao | null; direcao: 'asc' | 'desc' }>({
     campo: null,
@@ -58,13 +55,10 @@ export function InterventionsTable() {
   });
   const [selecionada, setSelecionada] = useState<Intervencao | null>(null);
 
-  const faseOptions = useMemo(() => uniqueOptions(intervencoes, (i) => i.fase), []);
-
   const filtradas = useMemo(() => {
     const buscaLower = busca.trim().toLowerCase();
     return intervencoes.filter((i) => {
       if (municipioFiltro !== ALL && i.municipioId !== municipioFiltro) return false;
-      if (faseFiltro !== ALL && i.fase !== faseFiltro) return false;
       if (situacaoFiltro !== ALL && i.situacao !== situacaoFiltro) return false;
       if (buscaLower) {
         const alvo = [i.nomeProjeto, i.rio, i.orgaoResponsavel, i.tipo, nomeMunicipio(i.municipioId)]
@@ -74,7 +68,7 @@ export function InterventionsTable() {
       }
       return true;
     });
-  }, [busca, municipioFiltro, faseFiltro, situacaoFiltro]);
+  }, [busca, municipioFiltro, situacaoFiltro]);
 
   const ordenadas = useMemo(() => {
     if (!ordenacao.campo) return filtradas;
@@ -98,16 +92,15 @@ export function InterventionsTable() {
   function limparFiltros() {
     setBusca('');
     setMunicipioFiltro(ALL);
-    setFaseFiltro(ALL);
     setSituacaoFiltro(ALL);
   }
 
-  const percentualTexto = (v: number | string) => (v === '' ? 'Não informado' : typeof v === 'number' ? `${v}%` : v);
+  const valorTexto = (v: number | null) => (v === null ? 'Não informado' : moeda.format(v));
 
   return (
     <div>
       <form
-        className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+        className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
         role="search"
         aria-label="Pesquisar e filtrar intervenções"
         onSubmit={(e) => e.preventDefault()}
@@ -133,21 +126,6 @@ export function InterventionsTable() {
             {municipios.map((m) => (
               <option key={m.id} value={m.id}>
                 {m.nome}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="text-sm">
-          <span className="mb-1 block font-medium text-neutral-700">Fase</span>
-          <select
-            value={faseFiltro}
-            onChange={(e) => setFaseFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
-          >
-            <option value={ALL}>Todas</option>
-            {faseOptions.map((f) => (
-              <option key={f} value={f}>
-                {f}
               </option>
             ))}
           </select>
@@ -223,11 +201,10 @@ export function InterventionsTable() {
                     <td className="px-4 py-3">{nomeMunicipio(item.municipioId)}</td>
                     <td className="px-4 py-3">{item.tipo}</td>
                     <td className="px-4 py-3">{item.orgaoResponsavel}</td>
-                    <td className="px-4 py-3">{item.fase}</td>
                     <td className="px-4 py-3">
                       <SituacaoBadge situacao={item.situacao} />
                     </td>
-                    <td className="px-4 py-3">{percentualTexto(item.percentualExecucao)}</td>
+                    <td className="px-4 py-3">{valorTexto(item.valorContrato)}</td>
                     <td className="px-4 py-3">{item.ultimaAtualizacao}</td>
                     <td className="px-4 py-3">
                       <button
@@ -256,8 +233,8 @@ export function InterventionsTable() {
                     <dd className="text-right font-medium text-neutral-900">{nomeMunicipio(item.municipioId)}</dd>
                   </div>
                   <div className="flex items-start justify-between gap-3">
-                    <dt className="text-neutral-500">Fase</dt>
-                    <dd className="text-right font-medium text-neutral-900">{item.fase}</dd>
+                    <dt className="text-neutral-500">Tipo</dt>
+                    <dd className="text-right font-medium text-neutral-900">{item.tipo}</dd>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <dt className="text-neutral-500">Situação</dt>
@@ -266,8 +243,8 @@ export function InterventionsTable() {
                     </dd>
                   </div>
                   <div className="flex items-start justify-between gap-3">
-                    <dt className="text-neutral-500">% execução</dt>
-                    <dd className="text-right font-medium text-neutral-900">{percentualTexto(item.percentualExecucao)}</dd>
+                    <dt className="text-neutral-500">Valor do contrato</dt>
+                    <dd className="text-right font-medium text-neutral-900">{valorTexto(item.valorContrato)}</dd>
                   </div>
                 </dl>
                 <button

@@ -1,12 +1,7 @@
-export type SituacaoIntervencao =
-  | 'Em planejamento'
-  | 'Em licitação'
-  | 'Em execução'
-  | 'Concluída'
-  | 'Atrasada'
-  | 'Paralisada'
-  | 'Aguardando informação'
-  | 'Aguardando validação';
+// Vocabulário real, extraído da extração BI/INFOVIA do IRM (Dados_BI.xlsx) —
+// substitui os 8 valores hipotéticos do prompt original, que nunca tiveram
+// dado real correspondente.
+export type SituacaoIntervencao = 'Em Execução' | 'Concluído' | 'Suspenso' | 'Fase de Projeto';
 
 export interface Meta {
   ultimaAtualizacao: string;
@@ -67,42 +62,34 @@ export interface Indicadores {
 export interface Municipio {
   id: string;
   nome: string;
-  lat: number;
-  lng: number;
-  fonteCoordenadas: string;
   demonstrativo?: boolean;
 }
 
+// Campos alinhados 1:1 com a extração BI/INFOVIA (Dados_BI.xlsx, aba "Projetos
+// Iguaçu - Projetos"). Campos sem correspondência na planilha (percentual de
+// execução física/financeira, motivo de atraso, próximo marco) ficam null —
+// a fonte real não os informa, e nada aqui é inventado para preenchê-los.
 export interface Intervencao {
   id: string;
   nomeProjeto: string;
   objeto: string;
   tipo: string;
-  programa: string;
+  programa: string | null;
   orgaoResponsavel: string;
   rio: string;
   municipioId: string;
-  processoSEI: string;
-  fase: string;
+  processoSEI: string | null;
   situacao: SituacaoIntervencao;
-  percentualExecucao: number | string;
-  execucaoFisica: number | string;
-  execucaoFinanceira: number | string;
-  empresaContratada: string;
-  contrato: string;
-  valorContrato: string;
-  fonteRecurso: string;
-  dataInicioVigencia: string;
-  prazoContratoDias: string;
-  dataTerminoVigencia: string;
-  dataPrevista: string;
-  dataAtualizada: string;
-  motivoAtrasoParalisacao: string;
-  proximoMarco: string;
-  latitude: string;
-  longitude: string;
+  valorContrato: number | null;
+  empresaContratada: string | null;
+  prazoContratoDias: number | null;
+  dataInicioVigencia: string | null;
+  dataTerminoVigencia: string | null;
+  latitude: number | null;
+  longitude: number | null;
   localizacaoTexto: string;
-  descricao: string;
+  motivoAtrasoParalisacao: string | null;
+  proximoMarco: string | null;
   dataInformacao: string;
   fonte: string;
   linkDocumento: string;

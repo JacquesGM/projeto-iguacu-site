@@ -7,6 +7,19 @@ informação não estava disponível nos documentos de referência, o campo
 correspondente na página mostra "Não informado", "A confirmar" ou
 "Link a inserir".
 
+> **Atualização (dados reais recebidos)**: com o recebimento de
+> `Docs/Dados_BI.xlsx` (extração BI/INFOVIA do IRM, referência de
+> 23/07/2026), a versão em `app/` já substituiu as 8 intervenções
+> demonstrativas por **11 intervenções reais** (nome, órgão, empresa,
+> processo SEI, valor de contrato, situação, datas de vigência e
+> coordenadas). Isso resolve a maior parte da seção "Intervenções (obras)"
+> abaixo e parte de "Indicadores" — ver `app/src/data/intervencoes.json`.
+> Seguem pendentes: percentual de execução física/financeira, motivo de
+> atraso/paralisação e próximo marco (não constam na extração recebida);
+> população estimada beneficiada; e a divergência de valor/situação entre
+> INEA e SEAS para o projeto guarda-chuva do Rio Iguaçu, sinalizada na
+> página em vez de resolvida silenciosamente.
+
 ## Identidade visual
 - [x] Logotipo oficial do IRM — já inserido (`assets/img/logo-irm-branca-horizontal.png`
       e `assets/img/logo-governo-rj.png`), obtido em www.rj.gov.br/irm em 31/07/2026.
@@ -30,8 +43,11 @@ correspondente na página mostra "Não informado", "A confirmar" ou
 
 ## Município e território
 - [ ] Lista oficial e definitiva dos municípios contemplados nesta fase do
-      Projeto Iguaçu (atualmente há 3 municípios demonstrativos em
-      `js/dados.js`, bloco 7).
+      Projeto Iguaçu (o protótipo estático mantém 3 municípios demonstrativos
+      em `js/dados.js`, bloco 7; a versão `app/` já mostra Duque de Caxias,
+      Belford Roxo e Nilópolis com intervenção real registrada — Nova Iguaçu
+      segue sem intervenção na extração recebida, apesar de dar nome ao
+      projeto).
 - [x] Mapa de localização geral da Baixada Fluminense já inserido
       (`assets/img/mapa-baixada-fluminense.png`, Alvoradaking, CC BY-SA 4.0,
       via Wikimedia Commons) — é apenas um mapa de referência da região, não
@@ -41,20 +57,25 @@ correspondente na página mostra "Não informado", "A confirmar" ou
       publicamente.
 
 ## Intervenções (obras)
-Todas as 7 intervenções cadastradas em `js/dados.js` (bloco 8) são
-**demonstrativas** (`demonstrativo: true`) e precisam ser substituídas pelos
-dados reais enviados pelos órgãos executores por meio do Formulário de
-Atualização de Status do GT, incluindo:
-- [ ] Nome do projeto, objeto, programa e processo SEI de cada obra;
-- [ ] Empresa contratada, número e valor do contrato;
-- [ ] Datas de início e término de vigência e prazo contratual;
-- [ ] Percentual de execução física e financeira;
-- [ ] Latitude e longitude de cada intervenção;
-- [ ] Motivo de eventual atraso ou paralisação;
+As 8 intervenções em `js/dados.js` (bloco 8, protótipo estático) continuam
+**demonstrativas** (`demonstrativo: true`) — não foram alteradas. Na versão
+`app/`, foram substituídas por 11 intervenções reais (`intervencoes.json`):
+- [x] Nome do projeto (objeto), tipo, programa e processo SEI de cada obra;
+- [x] Empresa contratada e valor do contrato;
+- [x] Datas de início e término de vigência e prazo contratual (quando
+      informadas na extração — vários registros têm essas datas em branco
+      na própria fonte, mantidas como "Não informado");
+- [ ] Percentual de execução física e financeira — não consta na extração
+      BI/INFOVIA recebida.
+- [x] Latitude e longitude de cada intervenção.
+- [ ] Motivo de eventual atraso ou paralisação — não consta na extração.
 - [ ] Link para o documento público correspondente a cada obra.
 
 ## Indicadores
-- [ ] Investimento total previsto (`indicadores.investimentoPrevisto`).
+- [x] Investimento total previsto — na versão `app/`, calculado como a soma
+      dos 9 contratos não disputados (R$ 350,1 milhões); o projeto
+      guarda-chuva do Rio Iguaçu fica de fora da soma por ter valor
+      divergente entre fontes (ver seção Intervenções).
 - [ ] População estimada beneficiada (`indicadores.populacaoBeneficiadaEstimada`).
 
 ## Documentos
