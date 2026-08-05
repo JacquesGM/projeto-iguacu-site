@@ -21,6 +21,13 @@ jobs:
           cache: npm
           cache-dependency-path: app/package-lock.json
 
+      # Alinha a versão do npm com a usada para gerar o package-lock.json
+      # localmente (npm 10, do Node 20 da imagem do runner, resolve
+      # dependências opcionais do esbuild de forma diferente do npm 11 e
+      # rejeita o lock como "fora de sincronia" — não é o lock que está
+      # errado, é a versão do npm).
+      - run: npm install -g npm@11
+
       - run: npm ci
 
       - name: Checagem de tipos (tsc)
