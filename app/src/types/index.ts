@@ -52,11 +52,17 @@ export interface SituacaoAtual {
   situacaoGeral: string;
 }
 
+export interface DetalheIndicador {
+  titulo: string;
+  texto: string;
+  fonte: string;
+}
+
 export interface Indicadores {
   investimentoPrevisto: string;
   populacaoBeneficiadaEstimada: string;
   dataUltimaAtualizacao: string;
-  observacao: string;
+  detalhamento: Record<string, DetalheIndicador>;
 }
 
 export interface Municipio {

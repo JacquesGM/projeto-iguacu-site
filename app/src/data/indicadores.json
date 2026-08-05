@@ -2,5 +2,51 @@
   "investimentoPrevisto": "R$ 350,1 milhões",
   "populacaoBeneficiadaEstimada": "≈ 2,5 milhões de habitantes",
   "dataUltimaAtualizacao": "23/07/2026",
-  "observacao": "Os indicadores apresentados consideram as informações encaminhadas pelos órgãos responsáveis e validadas até a data de referência indicada nesta página. O investimento previsto é uma soma calculada nesta página a partir dos contratos confirmados de 9 intervenções — o IRM não divulgou esse total pronto — e não inclui o projeto guarda-chuva de controle de inundações do Rio Iguaçu, cujo valor diverge entre INEA (R$ 160 mi) e SEAS (R$ 733,2 mi, ver Intervenções). A população estimada beneficiada é uma estimativa do COPPE/UFRJ para o escopo histórico e completo do Projeto Iguaçu (7 municípios: Nilópolis, Mesquita, São João de Meriti, Belford Roxo, Nova Iguaçu, Duque de Caxias e o bairro Bangu/RJ) — não é uma estimativa oficial do IRM/INEA para as 3 intervenções com contrato já registrado nesta fase, nem foi recalculada por esta página. Ver Documentos para a fonte."
+  "detalhamento": {
+    "municipios": {
+      "titulo": "Municípios contemplados",
+      "texto": "Esta contagem inclui Duque de Caxias, Belford Roxo, Nilópolis, um registro de \"Vários municípios\" e Nova Iguaçu. Das 11 intervenções com contrato já registrado nesta fase, nenhuma está localizada em Nova Iguaçu — o município aparece por integrar o escopo histórico do Projeto Iguaçu, mas ainda não tem contrato confirmado nesta extração de dados. O escopo histórico completo do projeto é mais amplo: 7 municípios, incluindo também Mesquita, São João de Meriti e o bairro de Bangu/RJ (ver População estimada beneficiada).",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "intervencoes": {
+      "titulo": "Intervenções cadastradas",
+      "texto": "11 intervenções com contrato já registrado, extraídas diretamente da planilha de acompanhamento do IRM. O número reflete apenas contratos já formalizados nesta fase e não inclui o projeto guarda-chuva de controle de inundações do Rio Iguaçu (INEA/SEAS), tratado à parte por ter valores divergentes entre os dois órgãos (ver Intervenções).",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "situacaoFaseDeProjeto": {
+      "titulo": "Em fase de projeto",
+      "texto": "Intervenções que, na data de referência, ainda estavam em fase de projeto ou diagnóstico, sem execução de obra iniciada.",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "situacaoEmExecucao": {
+      "titulo": "Em execução",
+      "texto": "Intervenções com obra em andamento na data de referência. O percentual físico/financeiro de execução não constava na planilha-fonte, por isso não é exibido nesta página.",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "situacaoConcluido": {
+      "titulo": "Concluídas",
+      "texto": "Intervenções com obra finalizada conforme a situação informada pelo IRM na data de referência.",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "situacaoSuspenso": {
+      "titulo": "Suspensas",
+      "texto": "Intervenções paralisadas na data de referência. O motivo específico da paralisação não constava na planilha-fonte — por isso aparece como \"Não informado\" nos detalhes de cada intervenção (ver Intervenções).",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "investimentoPrevisto": {
+      "titulo": "Investimento previsto",
+      "texto": "Soma calculada nesta página a partir dos contratos confirmados das 11 intervenções cadastradas — o IRM não divulgou esse total pronto. Não inclui o projeto guarda-chuva de controle de inundações do Rio Iguaçu, cujo valor diverge entre INEA (R$ 160 milhões) e SEAS (R$ 733,2 milhões; ver Intervenções).",
+      "fonte": "Calculado a partir da extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
+    },
+    "populacaoBeneficiadaEstimada": {
+      "titulo": "População estimada beneficiada",
+      "texto": "Estimativa do COPPE/UFRJ (autor do estudo original de 1996) para o escopo histórico e completo do Projeto Iguaçu — 7 municípios: Nilópolis, Mesquita, São João de Meriti, Belford Roxo, Nova Iguaçu, Duque de Caxias e o bairro de Bangu/RJ. Não é uma estimativa oficial do IRM/INEA para as 11 intervenções com contrato já registrado nesta fase, nem foi recalculada por esta página.",
+      "fonte": "COPPE/UFRJ — Segurança Hídrica RJ (ver Documentos)."
+    },
+    "dataUltimaAtualizacao": {
+      "titulo": "Data da última atualização",
+      "texto": "Data de referência da extração de dados BI/INFOVIA usada para montar esta página — até quando os dados de contrato, situação e valores estavam atualizados na fonte. Não é a data de publicação desta página nem a data da última obra concluída.",
+      "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx)."
+    }
+  }
 }
