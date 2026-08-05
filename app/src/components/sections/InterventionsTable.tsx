@@ -45,10 +45,13 @@ const colunas: { campo: CampoOrdenacao; rotulo: string }[] = [
   { campo: 'ultimaAtualizacao', rotulo: 'Última atualização' },
 ];
 
+const orgaos = [...new Set(intervencoes.map((i) => i.orgaoResponsavel))].sort();
+
 export function InterventionsTable() {
   const [busca, setBusca] = useState('');
   const [municipioFiltro, setMunicipioFiltro] = useState(ALL);
   const [situacaoFiltro, setSituacaoFiltro] = useState(ALL);
+  const [orgaoFiltro, setOrgaoFiltro] = useState(ALL);
   const [ordenacao, setOrdenacao] = useState<{ campo: CampoOrdenacao | null; direcao: 'asc' | 'desc' }>({
     campo: null,
     direcao: 'asc',
@@ -60,6 +63,7 @@ export function InterventionsTable() {
     return intervencoes.filter((i) => {
       if (municipioFiltro !== ALL && i.municipioId !== municipioFiltro) return false;
       if (situacaoFiltro !== ALL && i.situacao !== situacaoFiltro) return false;
+      if (orgaoFiltro !== ALL && i.orgaoResponsavel !== orgaoFiltro) return false;
       if (buscaLower) {
         const alvo = [i.nomeProjeto, i.rio, i.orgaoResponsavel, i.tipo, nomeMunicipio(i.municipioId)]
           .join(' ')
@@ -68,7 +72,7 @@ export function InterventionsTable() {
       }
       return true;
     });
-  }, [busca, municipioFiltro, situacaoFiltro]);
+  }, [busca, municipioFiltro, situacaoFiltro, orgaoFiltro]);
 
   const ordenadas = useMemo(() => {
     if (!ordenacao.campo) return filtradas;
@@ -93,6 +97,7 @@ export function InterventionsTable() {
     setBusca('');
     setMunicipioFiltro(ALL);
     setSituacaoFiltro(ALL);
+    setOrgaoFiltro(ALL);
   }
 
   const valorTexto = (v: number | null) => (v === null ? 'Não informado' : moeda.format(v));
@@ -100,7 +105,7 @@ export function InterventionsTable() {
   return (
     <div>
       <form
-        className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+        className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
         role="search"
         aria-label="Pesquisar e filtrar intervenções"
         onSubmit={(e) => e.preventDefault()}
@@ -141,6 +146,21 @@ export function InterventionsTable() {
             {SITUACOES_VALIDAS.map((s) => (
               <option key={s} value={s}>
                 {s}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="text-sm">
+          <span className="mb-1 block font-medium text-neutral-700">Órgão executor</span>
+          <select
+            value={orgaoFiltro}
+            onChange={(e) => setOrgaoFiltro(e.target.value)}
+            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+          >
+            <option value={ALL}>Todos</option>
+            {orgaos.map((o) => (
+              <option key={o} value={o}>
+                {o}
               </option>
             ))}
           </select>

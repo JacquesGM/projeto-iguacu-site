@@ -82,7 +82,15 @@ export function Transparencia() {
       </div>
 
       <div className="mt-10">
-        <p className="text-lg font-semibold text-neutral-900">Últimas atualizações desta página</p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-lg font-semibold text-neutral-900">Últimas atualizações desta página</p>
+          <a
+            href={`${import.meta.env.BASE_URL}rss.xml`}
+            className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
+          >
+            Assinar por RSS
+          </a>
+        </div>
         <ul className="mt-3 space-y-3">
           {changelog.map((item) => (
             <li key={`${item.data}-${item.descricao}`} className="flex gap-3 text-sm">

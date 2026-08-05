@@ -109,6 +109,15 @@
   },
   {
     "id": "t13",
+    "data": "23/07/2026",
+    "titulo": "Situação real das intervenções já contratadas",
+    "descricao": "A extração de dados BI/INFOVIA do IRM registra, entre as 11 intervenções com contrato já firmado (distintas da nova licitação relatada pelo GT), 4 em execução, 3 concluídas, 2 suspensas e 2 em fase de projeto. Ver Indicadores e Intervenções para o detalhe de cada uma.",
+    "categoria": "Situação real das intervenções",
+    "fonte": "Extração de dados BI/INFOVIA do IRM (Dados_BI.xlsx), dados de referência de 23/07/2026",
+    "confirmado": true
+  },
+  {
+    "id": "t14",
     "data": "Previsão: 4º trimestre de 2026",
     "titulo": "Início físico das obras (previsão)",
     "descricao": "Data em validação — início físico das obras estimado pelo INEA, sujeito à conclusão do processo licitatório e do projeto executivo.",
