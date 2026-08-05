@@ -78,5 +78,15 @@
     "descricao": "Sistema com acervo de mapas e camadas de dados georreferenciados da Região Hidrográfica V (Baía de Guanabara). O IRM e o CBH Baía de Guanabara vão integrar dados do Projeto Iguaçu a esta plataforma.",
     "formato": "Plataforma web (SIG)",
     "url": "https://sigaaguas.org.br/sigaweb/apps/baia-de-guanabara"
+  },
+  {
+    "id": "d9",
+    "titulo": "Segurança Hídrica RJ — Prevenção e Mitigação de Inundação",
+    "tipo": "Referência técnica externa",
+    "data": "Não informado",
+    "orgao": "COPPE/UFRJ",
+    "descricao": "Página do grupo técnico COPPE/UFRJ (autor do estudo original de 1996) sobre o Projeto Iguaçu; fonte da estimativa de cerca de 2,5 milhões de habitantes beneficiados nos 7 municípios historicamente associados ao projeto, usada no indicador de população estimada beneficiada.",
+    "formato": "Página web",
+    "url": "https://coppesinea.wixsite.com/seguranca-hidrica-rj/projetosinundacao"
   }
 ]
