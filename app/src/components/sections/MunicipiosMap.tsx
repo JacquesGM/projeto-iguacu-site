@@ -13,7 +13,6 @@ const intervencoes = intervencoesData as Intervencao[];
 
 const CORES_MUNICIPIO: Record<string, string> = {
   m1: '#2f7fb8',
-  m2: '#2f9e75',
   m3: '#7c4dbd',
   m4: '#c2703d',
   varios: '#5a6b78',

@@ -76,15 +76,6 @@ describe('integridade dos dados', () => {
     }
   });
 
-  it('linkDocumento de intervencoes.json é vazio ou começa com http', () => {
-    for (const item of intervencoes) {
-      expect(
-        item.linkDocumento === '' || item.linkDocumento.startsWith('http'),
-        `linkDocumento inválido em "${item.id}"`,
-      ).toBe(true);
-    }
-  });
-
   it('e-mails de contatos.json têm formato válido', () => {
     for (const contato of contatos) {
       expect(contato.email, `e-mail inválido para "${contato.nome}"`).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);

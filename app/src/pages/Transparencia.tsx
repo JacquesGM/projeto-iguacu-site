@@ -71,15 +71,6 @@ export function Transparencia() {
       </div>
 
       <div className="mt-10">
-        <p className="text-lg font-semibold text-neutral-900">Estados de qualidade da informação</p>
-        <dl className="mt-3">
-          {transparencia.estadosQualidade.map((item) => (
-            <Definicao key={item.estado} termo={item.estado} significado={item.significado} />
-          ))}
-        </dl>
-      </div>
-
-      <div className="mt-10">
         <p className="text-lg font-semibold text-neutral-900">Glossário de siglas e termos técnicos</p>
         <dl className="mt-3">
           {transparencia.glossario.map((item) => (

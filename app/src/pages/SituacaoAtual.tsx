@@ -49,11 +49,6 @@ export function SituacaoAtual() {
           ))}
         </ul>
       </Card>
-
-      <p className="mt-6 text-sm text-neutral-500">
-        Legenda de situações: Em planejamento · Em licitação · Em execução · Concluída · Atrasada ·
-        Paralisada · Aguardando informação · Aguardando validação.
-      </p>
     </Section>
   );
 }

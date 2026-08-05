@@ -43,7 +43,7 @@ export function Documentos() {
               <span className="text-xs font-semibold uppercase tracking-wide text-brand-blue-600">{doc.tipo}</span>
               <p className="mt-1 font-semibold text-neutral-900">{doc.titulo}</p>
               <p className="mt-1 text-xs text-neutral-500">
-                {doc.orgao} · {doc.data} · {doc.formato}
+                {[doc.orgao, doc.data, doc.formato].filter(Boolean).join(' · ')}
               </p>
               <p className="mt-2 text-sm text-neutral-600">{doc.descricao}</p>
               <div className="mt-4">

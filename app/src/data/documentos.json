@@ -1,45 +1,5 @@
 [
   {
-    "id": "d1",
-    "titulo": "Portaria IRM nº 195/2025",
-    "tipo": "Ato normativo",
-    "data": "2025",
-    "orgao": "Instituto Rio Metrópole (IRM)",
-    "descricao": "Formaliza a criação do Grupo de Trabalho (GT) Projeto Iguaçu, com o IRM como coordenador.",
-    "formato": "PDF",
-    "url": ""
-  },
-  {
-    "id": "d2",
-    "titulo": "Apresentação institucional — GT Projeto Iguaçu",
-    "tipo": "Apresentação",
-    "data": "25/06/2026",
-    "orgao": "Instituto Rio Metrópole (IRM)",
-    "descricao": "Apresentação da reunião de retomada dos trabalhos do Grupo de Trabalho Projeto Iguaçu.",
-    "formato": "PPTX",
-    "url": ""
-  },
-  {
-    "id": "d3",
-    "titulo": "Plano Diretor da Bacia Iguaçu/Sarapuí",
-    "tipo": "Relatório técnico",
-    "data": "2007",
-    "orgao": "SEA / SERLA",
-    "descricao": "Plano Diretor formalizado em 2007, com previsão de 25 intervenções em 6 municípios da bacia.",
-    "formato": "Não informado",
-    "url": ""
-  },
-  {
-    "id": "d4",
-    "titulo": "Nota técnica sobre o Projeto Iguaçu",
-    "tipo": "Relatório técnico",
-    "data": "2025",
-    "orgao": "INEA",
-    "descricao": "Nota técnica do INEA referente ao andamento do Projeto Iguaçu.",
-    "formato": "PDF",
-    "url": ""
-  },
-  {
     "id": "d5",
     "titulo": "Cobertura jornalística — RioOnWatch",
     "tipo": "Notícia",
@@ -73,7 +33,6 @@
     "id": "d8",
     "titulo": "SIGA Águas — Baía de Guanabara",
     "tipo": "Sistema público relacionado",
-    "data": "Não informado",
     "orgao": "AGEVAP / CBH Baía de Guanabara",
     "descricao": "Sistema com acervo de mapas e camadas de dados georreferenciados da Região Hidrográfica V (Baía de Guanabara). O IRM e o CBH Baía de Guanabara vão integrar dados do Projeto Iguaçu a esta plataforma.",
     "formato": "Plataforma web (SIG)",
@@ -83,7 +42,6 @@
     "id": "d9",
     "titulo": "Segurança Hídrica RJ — Prevenção e Mitigação de Inundação",
     "tipo": "Referência técnica externa",
-    "data": "Não informado",
     "orgao": "COPPE/UFRJ",
     "descricao": "Página do grupo técnico COPPE/UFRJ (autor do estudo original de 1996) sobre o Projeto Iguaçu; fonte da estimativa de cerca de 2,5 milhões de habitantes beneficiados nos 7 municípios historicamente associados ao projeto, usada no indicador de população estimada beneficiada.",
     "formato": "Página web",

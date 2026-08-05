@@ -1,8 +1,8 @@
 {
-  "origemDados": "Os dados sobre cada intervenção são preenchidos pelos próprios órgãos executores (como o INEA) e pelas prefeituras, por meio de um Formulário de Atualização de Status com 15 campos padronizados, agrupados em quatro blocos: Identificação, Execução, Vigência e Localização.",
+  "origemDados": "Os dados de cada intervenção são preenchidos pelos próprios órgãos executores (como o INEA) e pelas prefeituras dos municípios contemplados, e consolidados pelo Instituto Rio Metrópole a partir da extração de dados BI/INFOVIA do sistema interno do IRM.",
   "responsaveisFornecimento": "Órgãos executores das obras e prefeituras dos municípios contemplados, conforme fluxo definido pelo Grupo de Trabalho (GT) Projeto Iguaçu.",
   "consolidacaoIRM": "O Instituto Rio Metrópole (IRM), na coordenação do GT, checa e consolida os dados recebidos antes da publicação nesta página.",
-  "dataReferencia": "30/06/2026",
+  "dataReferencia": "23/07/2026",
   "periodicidade": "Ciclo bimestral: cerca de 14 dias para os órgãos enviarem as informações do período de referência encerrado, seguidos de cerca de 14 dias para a consolidação pelo IRM antes da reunião seguinte do GT.",
   "glossario": [
     { "termo": "IRM", "significado": "Instituto Rio Metrópole — autarquia estadual responsável pela gestão metropolitana da Região Metropolitana do Rio de Janeiro (RMRJ) e pela coordenação do GT Projeto Iguaçu." },
@@ -18,29 +18,15 @@
     { "termo": "AGEVAP", "significado": "Entidade de apoio à gestão de recursos hídricos que mantém, em conjunto com o CBH Baía de Guanabara, a plataforma SIGA Águas." },
     { "termo": "SIGA Águas", "significado": "Sistema com acervo de mapas e camadas de dados georreferenciados sobre recursos hídricos, mantido pela AGEVAP e pelos comitês de bacia." },
     { "termo": "SEI", "significado": "Sistema Eletrônico de Informações — sistema usado pelo governo do Rio de Janeiro para tramitar processos administrativos, como o processo licitatório das obras." },
-    { "termo": "Execução física", "significado": "Percentual da obra que já foi de fato construído/realizado no local." },
-    { "termo": "Execução financeira", "significado": "Percentual do valor do contrato que já foi efetivamente pago à empresa executora." },
-    { "termo": "Valor previsto, contratado, empenhado e pago", "significado": "Quatro momentos diferentes de um mesmo valor: previsto é a estimativa inicial; contratado é o valor firmado em contrato; empenhado é o valor reservado no orçamento público; pago é o valor já desembolsado. Esta versão da página registra, para cada intervenção, apenas o valor contratado — os demais serão incorporados conforme os órgãos executores passarem a informá-los." }
+    { "termo": "Valor do contrato", "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada intervenção, apenas o valor contratado — outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los." }
   ],
   "significadoSituacoes": [
-    { "situacao": "Em planejamento", "significado": "A intervenção está em fase de estudos, projeto básico ou projeto executivo, sem processo licitatório aberto." },
-    { "situacao": "Em licitação", "significado": "O processo licitatório para contratação da obra está em andamento." },
-    { "situacao": "Em execução", "significado": "A obra está contratada e em execução física." },
-    { "situacao": "Concluída", "significado": "A obra foi finalizada." },
-    { "situacao": "Atrasada", "significado": "A obra está em execução, mas fora do cronograma previsto; o motivo, quando informado, é apresentado no detalhe da intervenção." },
-    { "situacao": "Paralisada", "significado": "A execução da obra foi interrompida; o motivo, quando informado, é apresentado no detalhe da intervenção." },
-    { "situacao": "Aguardando informação", "significado": "O órgão responsável ainda não enviou os dados desta intervenção ao GT." },
-    { "situacao": "Aguardando validação", "significado": "As informações foram recebidas do órgão responsável, mas ainda não foram checadas e consolidadas pelo IRM." }
+    { "situacao": "Fase de Projeto", "significado": "A intervenção está em fase de projeto ou diagnóstico, sem execução de obra iniciada." },
+    { "situacao": "Em Execução", "significado": "A obra está contratada e em execução física." },
+    { "situacao": "Concluído", "significado": "A obra foi finalizada." },
+    { "situacao": "Suspenso", "significado": "A execução da obra foi interrompida." }
   ],
-  "criteriosIndicadores": "Os indicadores numéricos de contagem (municípios, intervenções por fase e situação) são calculados automaticamente a partir dos registros de intervenções cadastrados. Indicadores financeiros e populacionais dependem de consolidação adicional e são apresentados como \"A confirmar\" até validação.",
-  "limitacoes": "Esta é uma versão de protótipo (beta). Os dados de intervenções específicas (empresa contratada, valores de contrato, percentuais de execução, datas) são demonstrativos e não representam informação oficial até que sejam substituídos pelos dados reais enviados pelos órgãos executores.",
+  "limitacoes": "Esta é uma versão beta. O percentual físico/financeiro de execução de cada intervenção e o motivo de eventuais paralisações não constavam na extração de dados usada nesta página, por isso não são exibidos. O projeto guarda-chuva de controle de inundações do Rio Iguaçu (INEA/SEAS) é tratado à parte por ter valores divergentes entre os dois órgãos (ver Intervenções).",
   "canalContato": "Dúvidas, correções ou solicitações de informação podem ser encaminhadas à Diretoria de Saneamento Básico Integrado do IRM pelo e-mail saneamento@irm.rj.gov.br.",
-  "avisoConsolidacao": "As informações divulgadas nesta página são consolidadas pelo Instituto Rio Metrópole a partir dos dados encaminhados pelos órgãos responsáveis. Informações ainda não validadas são identificadas expressamente.",
-  "estadosQualidade": [
-    { "estado": "Atualizado", "significado": "Dado revisado e confirmado dentro do ciclo de referência vigente." },
-    { "estado": "Aguardando validação", "significado": "Dado recebido, ainda em checagem pelo IRM." },
-    { "estado": "Desatualizado", "significado": "Dado mais antigo que o ciclo de referência vigente, pendente de novo envio." },
-    { "estado": "Não informado", "significado": "Campo sem informação enviada pelo órgão responsável." },
-    { "estado": "Em correção", "significado": "Inconsistência identificada e em processo de correção junto ao órgão responsável." }
-  ]
+  "avisoConsolidacao": "As informações divulgadas nesta página são consolidadas pelo Instituto Rio Metrópole a partir dos dados encaminhados pelos órgãos responsáveis. Informações ainda não validadas são identificadas expressamente."
 }

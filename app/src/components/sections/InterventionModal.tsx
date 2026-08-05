@@ -72,8 +72,6 @@ export function InterventionModal({
 
   if (!intervencao) return null;
 
-  const linkLimpo = intervencao.linkDocumento.trim();
-
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
@@ -127,29 +125,8 @@ export function InterventionModal({
           </Linha>
           <Linha rotulo="Início de vigência">{textoOu(intervencao.dataInicioVigencia)}</Linha>
           <Linha rotulo="Término de vigência">{textoOu(intervencao.dataTerminoVigencia)}</Linha>
-          <Linha rotulo="Motivo de atraso/paralisação">{textoOu(intervencao.motivoAtrasoParalisacao)}</Linha>
-          <Linha rotulo="Próximo marco">{textoOu(intervencao.proximoMarco)}</Linha>
           <Linha rotulo="Data da informação">{intervencao.dataInformacao}</Linha>
           <Linha rotulo="Fonte">{intervencao.fonte}</Linha>
-          <Linha rotulo="Link para documento público">
-            {linkLimpo === '' ? (
-              'Link a inserir'
-            ) : (
-              <a
-                href={linkLimpo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-blue-600 hover:underline"
-              >
-                Acessar documento
-              </a>
-            )}
-          </Linha>
-          {intervencao.demonstrativo && (
-            <Linha rotulo="Aviso">
-              <span className="text-status-orange">Registro demonstrativo — não representa informação oficial.</span>
-            </Linha>
-          )}
         </dl>
       </div>
     </div>

@@ -5,7 +5,7 @@
   "detalhamento": {
     "municipios": {
       "titulo": "Municípios contemplados",
-      "texto": "Esta contagem inclui Duque de Caxias, Belford Roxo, Nilópolis, um registro de \"Vários municípios\" e Nova Iguaçu. Das 11 intervenções com contrato já registrado nesta fase, nenhuma está localizada em Nova Iguaçu — o município aparece por integrar o escopo histórico do Projeto Iguaçu, mas ainda não tem contrato confirmado nesta extração de dados. O escopo histórico completo do projeto é mais amplo: 7 municípios, incluindo também Mesquita, São João de Meriti e o bairro de Bangu/RJ (ver População estimada beneficiada).",
+      "texto": "Esta contagem inclui Duque de Caxias, Belford Roxo e Nilópolis, além de um registro de \"Vários municípios\" — os 4 municípios com pelo menos uma intervenção com contrato já registrado nesta fase. O escopo histórico completo do Projeto Iguaçu é mais amplo: 7 municípios, incluindo também Nova Iguaçu, Mesquita, São João de Meriti e o bairro de Bangu/RJ (ver População estimada beneficiada).",
       "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
     },
     "intervencoes": {
@@ -30,7 +30,7 @@
     },
     "situacaoSuspenso": {
       "titulo": "Suspensas",
-      "texto": "Intervenções paralisadas na data de referência. O motivo específico da paralisação não constava na planilha-fonte — por isso aparece como \"Não informado\" nos detalhes de cada intervenção (ver Intervenções).",
+      "texto": "Intervenções paralisadas na data de referência. O motivo específico da paralisação não constava na planilha-fonte do IRM.",
       "fonte": "Extração de dados BI/INFOVIA do Instituto Rio Metrópole (Dados_BI.xlsx), dados de referência de 23/07/2026."
     },
     "investimentoPrevisto": {

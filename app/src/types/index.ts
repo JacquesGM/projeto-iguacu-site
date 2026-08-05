@@ -68,7 +68,6 @@ export interface Indicadores {
 export interface Municipio {
   id: string;
   nome: string;
-  demonstrativo?: boolean;
 }
 
 // Campos alinhados 1:1 com a extração BI/INFOVIA (Dados_BI.xlsx, aba "Projetos
@@ -94,13 +93,9 @@ export interface Intervencao {
   latitude: number | null;
   longitude: number | null;
   localizacaoTexto: string;
-  motivoAtrasoParalisacao: string | null;
-  proximoMarco: string | null;
   dataInformacao: string;
   fonte: string;
-  linkDocumento: string;
   ultimaAtualizacao: string;
-  demonstrativo?: boolean;
 }
 
 export interface MarcoLinhaDoTempo {
@@ -117,7 +112,7 @@ export interface Documento {
   id: string;
   titulo: string;
   tipo: string;
-  data: string;
+  data?: string;
   orgao: string;
   descricao: string;
   formato: string;
@@ -134,11 +129,6 @@ export interface SituacaoSignificado {
   significado: string;
 }
 
-export interface EstadoQualidade {
-  estado: string;
-  significado: string;
-}
-
 export interface Transparencia {
   origemDados: string;
   responsaveisFornecimento: string;
@@ -147,11 +137,9 @@ export interface Transparencia {
   periodicidade: string;
   glossario: GlossarioItem[];
   significadoSituacoes: SituacaoSignificado[];
-  criteriosIndicadores: string;
   limitacoes: string;
   canalContato: string;
   avisoConsolidacao: string;
-  estadosQualidade: EstadoQualidade[];
 }
 
 export interface Contato {
