@@ -7,13 +7,15 @@
   "glossario": [
     { "termo": "IRM", "significado": "Instituto Rio Metrópole — autarquia estadual responsável pela gestão metropolitana da Região Metropolitana do Rio de Janeiro (RMRJ) e pela coordenação do GT Projeto Iguaçu." },
     { "termo": "GT", "significado": "Grupo de Trabalho — neste caso, o GT Projeto Iguaçu, criado pela Portaria IRM nº 195/2025 para reunir, checar e divulgar informações sobre as intervenções." },
-    { "termo": "INEA", "significado": "Instituto Estadual do Ambiente — órgão do governo do Rio de Janeiro responsável pela execução técnica das obras do Projeto Iguaçu." },
+    { "termo": "INEA", "significado": "Instituto Estadual do Ambiente — órgão do governo do Rio de Janeiro responsável pela execução técnica da maior parte das obras do Projeto Iguaçu." },
+    { "termo": "SEAS", "significado": "Secretaria de Estado do Ambiente e Sustentabilidade — órgão do governo do Rio de Janeiro, também responsável por parte das intervenções (não confundir com a SEA, secretaria antecessora citada no Plano Diretor de 2007)." },
+    { "termo": "SEIOP", "significado": "Secretaria de Estado de Infraestrutura e Obras Públicas — órgão do governo do Rio de Janeiro responsável pela execução técnica de parte das intervenções do Projeto Iguaçu." },
     { "termo": "MPRJ", "significado": "Ministério Público do Estado do Rio de Janeiro." },
     { "termo": "PAC / Novo PAC", "significado": "Programa de Aceleração do Crescimento — programa federal de investimento em infraestrutura que financia parte das intervenções." },
     { "termo": "PEDUI", "significado": "Plano Estratégico de Desenvolvimento Urbano Integrado da Região Metropolitana do Rio de Janeiro, ratificado pela Lei Estadual nº 11.021/2025." },
     { "termo": "DIRSMI", "significado": "Diretoria de Saneamento Metropolitano Integrado — diretoria do IRM responsável pelos temas de saneamento e drenagem, incluindo o Projeto Iguaçu." },
     { "termo": "RMRJ", "significado": "Região Metropolitana do Rio de Janeiro — os 22 municípios sob gestão metropolitana do IRM." },
-    { "termo": "SEA / SERLA", "significado": "Secretaria de Estado do Ambiente e Fundação Superintendência Estadual de Rios e Lagoas — órgãos estaduais responsáveis pelo Plano Diretor da Bacia Iguaçu/Sarapuí de 2007 (a SERLA foi posteriormente sucedida pelo INEA)." },
+    { "termo": "SEA / SERLA", "significado": "Secretaria de Estado do Ambiente e Fundação Superintendência Estadual de Rios e Lagoas — órgãos estaduais responsáveis pelo Plano Diretor da Bacia Iguaçu/Sarapuí de 2007 (a SERLA foi posteriormente sucedida pelo INEA; a SEA deu origem à atual SEAS)." },
     { "termo": "CBH Baía de Guanabara", "significado": "Comitê de Bacia Hidrográfica da Região Hidrográfica da Baía de Guanabara — parceiro do IRM na integração de dados do Projeto Iguaçu ao SIGA Águas." },
     { "termo": "AGEVAP", "significado": "Entidade de apoio à gestão de recursos hídricos que mantém, em conjunto com o CBH Baía de Guanabara, a plataforma SIGA Águas." },
     { "termo": "SIGA Águas", "significado": "Sistema com acervo de mapas e camadas de dados georreferenciados sobre recursos hídricos, mantido pela AGEVAP e pelos comitês de bacia." },
@@ -27,6 +29,6 @@
     { "situacao": "Suspenso", "significado": "A execução da obra foi interrompida." }
   ],
   "limitacoes": "Esta é uma versão beta. O percentual físico/financeiro de execução de cada intervenção e o motivo de eventuais paralisações não constavam na extração de dados usada nesta página, por isso não são exibidos. O projeto guarda-chuva de controle de inundações do Rio Iguaçu (INEA/SEAS) é tratado à parte por ter valores divergentes entre os dois órgãos (ver Intervenções).",
-  "canalContato": "Dúvidas, correções ou solicitações de informação podem ser encaminhadas à Diretoria de Saneamento Básico Integrado do IRM pelo e-mail saneamento@irm.rj.gov.br.",
+  "canalContato": "Dúvidas, correções ou solicitações de informação podem ser encaminhadas à Diretoria de Saneamento Metropolitano Integrado (DIRSMI) do IRM pelo e-mail saneamento@irm.rj.gov.br.",
   "avisoConsolidacao": "As informações divulgadas nesta página são consolidadas pelo Instituto Rio Metrópole a partir dos dados encaminhados pelos órgãos responsáveis. Informações ainda não validadas são identificadas expressamente."
 }

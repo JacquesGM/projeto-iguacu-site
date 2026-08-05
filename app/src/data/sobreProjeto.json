@@ -17,10 +17,11 @@
   "orgaosParticipantes": [
     "Instituto Rio Metrópole (IRM) — coordenação do GT",
     "Instituto Estadual do Ambiente (INEA) — órgão executor",
+    "Secretaria de Estado do Ambiente e Sustentabilidade (SEAS) — órgão executor",
+    "Secretaria de Estado de Infraestrutura e Obras Públicas (SEIOP) — órgão executor",
     "Ministério Público do Estado do Rio de Janeiro (MPRJ)",
     "Comitês de Bacia Hidrográfica (incluindo o CBH Baía de Guanabara)",
-    "Prefeituras dos municípios contemplados",
-    "Secretarias estaduais relacionadas à execução das obras"
+    "Prefeituras dos municípios contemplados"
   ],
   "municipiosContempladosTexto": "Os municípios com intervenção já contratada nesta fase estão listados em Indicadores e Intervenções; o escopo histórico completo do Projeto Iguaçu abrange 7 municípios da Baixada Fluminense.",
   "blocoPapelIRM": {
