@@ -162,7 +162,11 @@ export function Indicadores() {
         </Card>
       </div>
 
-      <IndicatorDetailModal detalhe={detalheSelecionado} onClose={() => setChaveSelecionada(null)} />
+      <IndicatorDetailModal
+        detalhe={detalheSelecionado}
+        fontePadrao={indicadores.fontePadrao}
+        onClose={() => setChaveSelecionada(null)}
+      />
     </Section>
   );
 }

@@ -4,9 +4,11 @@ import type { DetalheIndicador } from '../../types';
 
 export function IndicatorDetailModal({
   detalhe,
+  fontePadrao,
   onClose,
 }: {
   detalhe: DetalheIndicador | null;
+  fontePadrao: string;
   onClose: () => void;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -78,10 +80,18 @@ export function IndicatorDetailModal({
         </div>
 
         <div className="overflow-y-auto p-6 pt-4">
-          <p className="text-sm text-neutral-700">{detalhe.texto}</p>
-          <p className="mt-4 text-xs text-neutral-500">
-            <span className="font-semibold text-neutral-600">Fonte: </span>
-            {detalhe.fonte}
+          <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">O que é</p>
+          <p className="mt-1 text-sm text-neutral-800">{detalhe.oQueE}</p>
+
+          {detalhe.ressalva && (
+            <>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-neutral-500">Ressalva</p>
+              <p className="mt-1 text-sm text-neutral-800">{detalhe.ressalva}</p>
+            </>
+          )}
+
+          <p className="mt-5 border-t border-neutral-100 pt-3 text-xs text-neutral-500">
+            Fonte: {detalhe.fonte ?? fontePadrao}
           </p>
         </div>
       </div>

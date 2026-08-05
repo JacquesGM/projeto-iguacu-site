@@ -54,14 +54,16 @@ export interface SituacaoAtual {
 
 export interface DetalheIndicador {
   titulo: string;
-  texto: string;
-  fonte: string;
+  oQueE: string;
+  ressalva?: string;
+  fonte?: string;
 }
 
 export interface Indicadores {
   investimentoPrevisto: string;
   populacaoBeneficiadaEstimada: string;
   dataUltimaAtualizacao: string;
+  fontePadrao: string;
   detalhamento: Record<string, DetalheIndicador>;
 }
 
