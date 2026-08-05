@@ -72,7 +72,8 @@ export function Intervencoes() {
               <p className="mt-1 text-sm text-amber-800">
                 Dois órgãos reportam o mesmo projeto de controle de inundações das bacias dos rios Iguaçu,
                 Botas e Sarapuí com valores, situação e responsável diferentes. Nenhuma das duas versões foi
-                escolhida como "a certa" — as duas aparecem abaixo, sem edição.
+                escolhida como "a certa" — as duas aparecem abaixo, sem edição. A extração de dados usada
+                nesta página não indica prazo nem responsável definido para a reconciliação dessas informações.
               </p>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {divergenciaRioIguacu.map((item) => (

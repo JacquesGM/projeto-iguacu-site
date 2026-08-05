@@ -1,11 +1,13 @@
 import transparenciaData from '../data/transparencia.json';
 import contatosData from '../data/contatos.json';
-import type { Contato, Transparencia as TransparenciaType } from '../types';
+import changelogData from '../data/changelog.json';
+import type { AtualizacaoChangelog, Contato, Transparencia as TransparenciaType } from '../types';
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
 
 const transparencia = transparenciaData as TransparenciaType;
 const contatos = contatosData as Contato[];
+const changelog = changelogData as AtualizacaoChangelog[];
 
 function Definicao({ termo, significado }: { termo: string; significado: string }) {
   return (
@@ -77,6 +79,18 @@ export function Transparencia() {
             <Definicao key={item.termo} termo={item.termo} significado={item.significado} />
           ))}
         </dl>
+      </div>
+
+      <div className="mt-10">
+        <p className="text-lg font-semibold text-neutral-900">Últimas atualizações desta página</p>
+        <ul className="mt-3 space-y-3">
+          {changelog.map((item) => (
+            <li key={`${item.data}-${item.descricao}`} className="flex gap-3 text-sm">
+              <span className="w-24 shrink-0 font-medium text-neutral-500">{item.data}</span>
+              <span className="text-neutral-700">{item.descricao}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-10">

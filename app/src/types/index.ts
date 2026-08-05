@@ -172,6 +172,11 @@ export interface Rodape {
   avisoAtualizacao: string;
 }
 
+export interface AtualizacaoChangelog {
+  data: string;
+  descricao: string;
+}
+
 export interface Territorio {
   descricaoTextual: string;
 }

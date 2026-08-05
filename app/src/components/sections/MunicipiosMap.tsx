@@ -50,7 +50,10 @@ export function MunicipiosMap() {
       </p>
 
       <div className="mt-4 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-        <div className="isolate h-[420px] overflow-hidden rounded-xl border border-neutral-200">
+        <div className="isolate relative h-[420px] overflow-hidden rounded-xl border border-neutral-200">
+          <span className="absolute bottom-2 left-2 z-[1000] rounded-md border border-neutral-300 bg-white/90 px-2 py-1 text-xs font-medium text-neutral-600 shadow-sm">
+            Contorno tracejado = área aproximada, não oficial
+          </span>
           <MapContainer
             center={center}
             zoom={10}
@@ -64,7 +67,7 @@ export function MunicipiosMap() {
             />
             {grupos.map((grupo) => {
               const cor = CORES_MUNICIPIO[grupo.municipio.id] ?? '#5a6b78';
-              const pathOptions = { color: cor, fillColor: cor, fillOpacity: 0.28, weight: 2 };
+              const pathOptions = { color: cor, fillColor: cor, fillOpacity: 0.28, weight: 2, dashArray: '6 4' };
               const distintos = uniquePoints(grupo.pontos);
               const contagem = textoContagem(grupo.intervencoesDoGrupo.length);
 
