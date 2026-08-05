@@ -29,12 +29,17 @@ export function InterventionModal({
   onClose: () => void;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const corpoRef = useRef<HTMLDListElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!intervencao) return;
     previousFocusRef.current = document.activeElement as HTMLElement;
-    dialogRef.current?.focus();
+    // scrollTop antes do focus(): o foco num elemento mais alto que a
+    // viewport faz o navegador rolar até o fim dele, escondendo o título no
+    // topo do modal. Zerar o scroll do corpo evita esse comportamento.
+    if (corpoRef.current) corpoRef.current.scrollTop = 0;
+    dialogRef.current?.focus({ preventScroll: true });
     document.body.style.overflow = 'hidden';
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -71,7 +76,7 @@ export function InterventionModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-4 sm:items-center"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -82,9 +87,9 @@ export function InterventionModal({
         aria-modal="true"
         aria-labelledby="modal-titulo"
         tabIndex={-1}
-        className="my-8 w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl outline-none sm:p-8"
+        className="flex max-h-[85vh] w-full max-w-2xl flex-col rounded-xl bg-white shadow-xl outline-none"
       >
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex shrink-0 items-start justify-between gap-4 border-b border-neutral-100 p-6 pb-4 sm:p-8 sm:pb-4">
           <h2 id="modal-titulo" className="text-lg font-bold text-neutral-900">
             {intervencao.nomeProjeto}
           </h2>
@@ -98,7 +103,7 @@ export function InterventionModal({
           </button>
         </div>
 
-        <dl className="mt-4">
+        <dl ref={corpoRef} className="overflow-y-auto p-6 pt-4 sm:p-8 sm:pt-4">
           <Linha rotulo="Tipo">{intervencao.tipo}</Linha>
           <Linha rotulo="Município">{municipioNome}</Linha>
           <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
