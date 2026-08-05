@@ -6,6 +6,7 @@ import { BackToTop } from './BackToTop';
 import { ScrollToTop } from './ScrollToTop';
 import { RouteTitle } from './RouteTitle';
 import { VLibrasWidget } from './VLibrasWidget';
+import { ErrorBoundary } from './ErrorBoundary';
 
 export function RootLayout() {
   return (
@@ -15,7 +16,9 @@ export function RootLayout() {
       <RouteTitle />
       <Header />
       <main id="conteudo-principal">
-        <Outlet />
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
       </main>
       <Footer />
       <BackToTop />
