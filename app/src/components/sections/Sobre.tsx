@@ -10,7 +10,6 @@ export function Sobre() {
     <Section
       id="sobre"
       title="Sobre o Projeto Iguaçu"
-      subtitle="O que é, qual problema enfrenta e quem participa — em linguagem acessível."
     >
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4 text-neutral-700">

@@ -13,13 +13,13 @@
     "orgaos": {
       "titulo": "Órgãos executores",
       "oQueE": "3 órgãos executam as 11 intervenções já contratadas: INEA, SEAS e SEIOP.",
-      "ressalva": "A execução técnica e contratual de cada obra é do órgão responsável — o IRM apenas consolida e divulga essas informações.",
+      "ressalva": "A execução técnica e contratual de cada obra é do órgão responsável. O IRM apenas consolida e divulga essas informações.",
       "rotuloLista": "Órgãos"
     },
     "intervencoes": {
       "titulo": "Intervenções cadastradas",
       "oQueE": "11 intervenções com contrato já registrado, extraídas da planilha do IRM.",
-      "ressalva": "Não inclui o projeto do Rio Iguaçu (INEA/SEAS), tratado à parte por ter valores divergentes — ver Intervenções.",
+      "ressalva": "Não inclui o projeto do Rio Iguaçu (INEA/SEAS), tratado à parte por ter valores divergentes (ver Intervenções).",
       "rotuloLista": "As 11 intervenções"
     },
     "situacaoFaseDeProjeto": {
@@ -47,7 +47,7 @@
     "investimentoPrevisto": {
       "titulo": "Investimento previsto",
       "oQueE": "Soma dos contratos das 11 intervenções já registradas.",
-      "ressalva": "Não inclui o projeto do Rio Iguaçu (valor ainda divergente entre INEA e SEAS — ver Intervenções).",
+      "ressalva": "Não inclui o projeto do Rio Iguaçu (valor ainda divergente entre INEA e SEAS, ver Intervenções).",
       "rotuloLista": "De onde vem a soma"
     },
     "populacaoBeneficiadaEstimada": {

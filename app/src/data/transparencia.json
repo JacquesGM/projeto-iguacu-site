@@ -20,7 +20,7 @@
     { "termo": "AGEVAP", "significado": "Entidade de apoio à gestão de recursos hídricos que mantém, em conjunto com o CBH Baía de Guanabara, a plataforma SIGA Águas." },
     { "termo": "SIGA Águas", "significado": "Sistema com acervo de mapas e camadas de dados georreferenciados sobre recursos hídricos, mantido pela AGEVAP e pelos comitês de bacia." },
     { "termo": "SEI", "significado": "Sistema Eletrônico de Informações — sistema usado pelo governo do Rio de Janeiro para tramitar processos administrativos, como o processo licitatório das obras." },
-    { "termo": "Valor do contrato", "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada intervenção, apenas o valor contratado — outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los." }
+    { "termo": "Valor do contrato", "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada intervenção, apenas o valor contratado. Outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los." }
   ],
   "significadoSituacoes": [
     { "situacao": "Fase de Projeto", "significado": "A intervenção está em fase de projeto ou diagnóstico, sem execução de obra iniciada." },
