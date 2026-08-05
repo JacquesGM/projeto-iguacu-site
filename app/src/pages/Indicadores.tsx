@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Banknote, CalendarClock, Info, ListChecks, MapPin, Users } from 'lucide-react';
+import { Banknote, Building2, CalendarClock, Info, ListChecks, MapPin, Users } from 'lucide-react';
 import intervencoesData from '../data/intervencoes.json';
 import municipiosData from '../data/municipios.json';
 import indicadoresData from '../data/indicadores.json';
@@ -15,6 +15,7 @@ import { Card } from '../components/ui/Card';
 import { situacaoColorHex, situacaoIcon } from '../components/ui/SituacaoBadge';
 import { SituacaoDistributionChart } from '../components/charts/SituacaoDistributionChart';
 import { MunicipioDistributionChart } from '../components/charts/MunicipioDistributionChart';
+import { OrgaoDistributionChart } from '../components/charts/OrgaoDistributionChart';
 import { DownloadButton } from '../components/ui/DownloadButton';
 import { IndicatorDetailModal } from '../components/sections/IndicatorDetailModal';
 import { InterventionModal } from '../components/sections/InterventionModal';
@@ -68,6 +69,13 @@ function itensParaChave(chave: string | null): ItemPopupIndicador[] {
           cor: CORES_MUNICIPIO[m.id],
         };
       });
+    case 'orgaos': {
+      const orgaos = [...new Set(intervencoes.map((i) => i.orgaoResponsavel))];
+      return orgaos.map((orgao) => {
+        const total = intervencoes.filter((i) => i.orgaoResponsavel === orgao).length;
+        return { id: orgao, titulo: orgao, subtitulo: `${total} intervenç${total === 1 ? 'ão' : 'ões'}` };
+      });
+    }
     case 'intervencoes':
       return itensIntervencoes(intervencoes);
     case 'situacaoFaseDeProjeto':
@@ -101,6 +109,13 @@ function itensParaChave(chave: string | null): ItemPopupIndicador[] {
 const cartoesPrincipais = [
   { chave: 'municipios', rotulo: 'Municípios contemplados', valor: String(municipios.length), Icon: MapPin, cor: '#0b4f8a' },
   { chave: 'intervencoes', rotulo: 'Intervenções cadastradas', valor: String(intervencoes.length), Icon: ListChecks, cor: '#0b4f8a' },
+  {
+    chave: 'orgaos',
+    rotulo: 'Órgãos executores',
+    valor: String(new Set(intervencoes.map((i) => i.orgaoResponsavel)).size),
+    Icon: Building2,
+    cor: '#0b4f8a',
+  },
 ];
 
 const cartoesSituacao: { chave: string; situacao: SituacaoIntervencao; rotulo: string }[] = [
@@ -132,6 +147,7 @@ const colunasIntervencoesResumo: DownloadColumn<Intervencao>[] = [
   { key: 'nomeProjeto', label: 'Intervenção' },
   { key: 'situacao', label: 'Situação' },
   { key: 'municipioId', label: 'Município', value: (row) => nomeMunicipio(row.municipioId) },
+  { key: 'orgaoResponsavel', label: 'Órgão responsável' },
 ];
 
 export function Indicadores() {
@@ -240,6 +256,9 @@ export function Indicadores() {
         </Card>
         <Card>
           <MunicipioDistributionChart intervencoes={intervencoes} />
+        </Card>
+        <Card>
+          <OrgaoDistributionChart intervencoes={intervencoes} />
         </Card>
       </div>
 

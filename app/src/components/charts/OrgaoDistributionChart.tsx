@@ -1,16 +1,19 @@
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import municipiosData from '../../data/municipios.json';
-import type { Intervencao, Municipio } from '../../types';
-import { CORES_MUNICIPIO } from '../../lib/coresMunicipio';
+import type { Intervencao } from '../../types';
 
-const municipios = municipiosData as Municipio[];
+// Mesma rampa validada (scripts/validate_palette.js) usada nos demais
+// gráficos categóricos desta página — ordem fixa, nunca ciclada.
+const CORES_ORGAO = ['#2f7fb8', '#2f9e75', '#7c4dbd', '#c2703d', '#5a6b78'];
 
-export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Intervencao[] }) {
+export function OrgaoDistributionChart({ intervencoes }: { intervencoes: Intervencao[] }) {
   const total = intervencoes.length;
-  const data = municipios.map((municipio) => ({
-    nome: municipio.nome,
-    count: intervencoes.filter((i) => i.municipioId === municipio.id).length,
-    color: CORES_MUNICIPIO[municipio.id] ?? '#5a6b78',
+  const orgaos = [...new Set(intervencoes.map((i) => i.orgaoResponsavel))].sort(
+    (a, b) => intervencoes.filter((i) => i.orgaoResponsavel === b).length - intervencoes.filter((i) => i.orgaoResponsavel === a).length,
+  );
+  const data = orgaos.map((orgao, index) => ({
+    nome: orgao,
+    count: intervencoes.filter((i) => i.orgaoResponsavel === orgao).length,
+    color: CORES_ORGAO[index % CORES_ORGAO.length],
   }));
 
   function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<{ payload: (typeof data)[number] }> }) {
@@ -29,13 +32,13 @@ export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Int
 
   return (
     <div>
-      <p className="text-sm font-semibold text-neutral-900">Intervenções por município</p>
+      <p className="text-sm font-semibold text-neutral-900">Intervenções por órgão executor</p>
       <div className="mt-3 h-48">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={10}>
             <CartesianGrid horizontal={false} stroke="#e5e7eb" />
             <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: '#5a6b78' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <YAxis type="category" dataKey="nome" width={130} tick={{ fontSize: 12, fill: '#34424d' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
+            <YAxis type="category" dataKey="nome" width={70} tick={{ fontSize: 12, fill: '#34424d' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
             <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false}>
               {data.map((entry) => (

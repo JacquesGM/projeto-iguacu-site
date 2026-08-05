@@ -10,6 +10,12 @@
       "ressalva": "O Projeto Iguaçu abrange historicamente 7 municípios, incluindo também Nova Iguaçu, Mesquita, São João de Meriti e Bangu/RJ.",
       "rotuloLista": "Municípios"
     },
+    "orgaos": {
+      "titulo": "Órgãos executores",
+      "oQueE": "3 órgãos executam as 11 intervenções já contratadas: INEA, SEAS e SEIOP.",
+      "ressalva": "A execução técnica e contratual de cada obra é do órgão responsável — o IRM apenas consolida e divulga essas informações.",
+      "rotuloLista": "Órgãos"
+    },
     "intervencoes": {
       "titulo": "Intervenções cadastradas",
       "oQueE": "11 intervenções com contrato já registrado, extraídas da planilha do IRM.",

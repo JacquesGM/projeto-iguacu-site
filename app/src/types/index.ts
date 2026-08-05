@@ -50,6 +50,7 @@ export interface SituacaoAtual {
   proximoMarco: string;
   dataReferencia: string;
   situacaoGeral: string;
+  escopoRessalva: string;
 }
 
 export interface DetalheIndicador {

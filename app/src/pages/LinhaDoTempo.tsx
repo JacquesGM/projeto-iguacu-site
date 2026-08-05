@@ -1,8 +1,12 @@
+import { AlertTriangle } from 'lucide-react';
 import linhaDoTempoData from '../data/linhaDoTempo.json';
-import type { MarcoLinhaDoTempo } from '../types';
+import situacaoAtualData from '../data/situacaoAtual.json';
+import type { MarcoLinhaDoTempo, SituacaoAtual as SituacaoAtualType } from '../types';
 import { Section } from '../components/ui/Section';
+import { Card } from '../components/ui/Card';
 
 const marcos = linhaDoTempoData as MarcoLinhaDoTempo[];
+const situacao = situacaoAtualData as SituacaoAtualType;
 
 export function LinhaDoTempo() {
   return (
@@ -11,6 +15,13 @@ export function LinhaDoTempo() {
       title="Linha do tempo institucional"
       subtitle="Do primeiro estudo técnico, em 1996, até a fase atual do Projeto Iguaçu."
     >
+      <Card className="mb-6 border-amber-300 bg-amber-50">
+        <div className="flex gap-3">
+          <AlertTriangle aria-hidden="true" className="h-5 w-5 shrink-0 text-amber-700" />
+          <p className="text-sm text-amber-900">{situacao.escopoRessalva}</p>
+        </div>
+      </Card>
+
       <ol className="relative space-y-6 border-l-2 border-brand-blue-200 pl-6">
         {marcos.map((marco) => (
           <li key={marco.id} className="relative">

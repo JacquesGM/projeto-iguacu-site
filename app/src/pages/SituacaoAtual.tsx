@@ -1,3 +1,4 @@
+import { AlertTriangle } from 'lucide-react';
 import situacaoAtualData from '../data/situacaoAtual.json';
 import type { SituacaoAtual as SituacaoAtualType } from '../types';
 import { Section } from '../components/ui/Section';
@@ -13,6 +14,13 @@ export function SituacaoAtual() {
       subtitle="Fase, marcos e atividades em andamento do Projeto Iguaçu."
       tone="muted"
     >
+      <Card className="mb-6 border-amber-300 bg-amber-50">
+        <div className="flex gap-3">
+          <AlertTriangle aria-hidden="true" className="h-5 w-5 shrink-0 text-amber-700" />
+          <p className="text-sm text-amber-900">{situacao.escopoRessalva}</p>
+        </div>
+      </Card>
+
       <Card>
         <dl className="grid gap-4 sm:grid-cols-2">
           <div>
