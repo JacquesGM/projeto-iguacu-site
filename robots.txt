@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jacquesgm.github.io/projeto-iguacu-site/sitemap.xml
