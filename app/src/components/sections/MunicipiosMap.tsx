@@ -7,16 +7,10 @@ import type { Intervencao, Municipio } from '../../types';
 import { Card } from '../ui/Card';
 import { SituacaoBadge } from '../ui/SituacaoBadge';
 import { centroid, convexHull, maxDistanceMeters, uniquePoints, type LatLng } from '../../lib/geo';
+import { CORES_MUNICIPIO } from '../../lib/coresMunicipio';
 
 const municipios = municipiosData as Municipio[];
 const intervencoes = intervencoesData as Intervencao[];
-
-const CORES_MUNICIPIO: Record<string, string> = {
-  m1: '#2f7fb8',
-  m3: '#7c4dbd',
-  m4: '#c2703d',
-  varios: '#5a6b78',
-};
 
 const RAIO_MINIMO_METROS = 500;
 const MARGEM_BUFFER_METROS = 400;

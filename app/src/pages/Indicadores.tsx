@@ -3,7 +3,13 @@ import { Banknote, CalendarClock, Info, ListChecks, MapPin, Users } from 'lucide
 import intervencoesData from '../data/intervencoes.json';
 import municipiosData from '../data/municipios.json';
 import indicadoresData from '../data/indicadores.json';
-import type { Indicadores as IndicadoresType, Intervencao, Municipio, SituacaoIntervencao } from '../types';
+import type {
+  Indicadores as IndicadoresType,
+  ItemPopupIndicador,
+  Intervencao,
+  Municipio,
+  SituacaoIntervencao,
+} from '../types';
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
 import { situacaoColorHex, situacaoIcon } from '../components/ui/SituacaoBadge';
@@ -11,14 +17,85 @@ import { SituacaoDistributionChart } from '../components/charts/SituacaoDistribu
 import { MunicipioDistributionChart } from '../components/charts/MunicipioDistributionChart';
 import { DownloadButton } from '../components/ui/DownloadButton';
 import { IndicatorDetailModal } from '../components/sections/IndicatorDetailModal';
+import { InterventionModal } from '../components/sections/InterventionModal';
+import { CORES_MUNICIPIO } from '../lib/coresMunicipio';
 import type { DownloadColumn } from '../lib/download';
 
 const intervencoes = intervencoesData as Intervencao[];
 const municipios = municipiosData as Municipio[];
 const indicadores = indicadoresData as IndicadoresType;
 
+const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+const ESCOPO_HISTORICO_MUNICIPIOS = [
+  'Nilópolis',
+  'Mesquita',
+  'São João de Meriti',
+  'Belford Roxo',
+  'Nova Iguaçu',
+  'Duque de Caxias',
+  'Bangu/RJ',
+];
+
 function contarSituacao(situacao: SituacaoIntervencao): number {
   return intervencoes.filter((i) => i.situacao === situacao).length;
+}
+
+function nomeMunicipio(id: string): string {
+  return municipios.find((m) => m.id === id)?.nome ?? 'Não informado';
+}
+
+function itensIntervencoes(lista: Intervencao[]): ItemPopupIndicador[] {
+  return lista.map((i) => ({
+    id: i.id,
+    titulo: i.nomeProjeto,
+    subtitulo: nomeMunicipio(i.municipioId),
+    situacao: i.situacao,
+    valorTexto: i.valorContrato !== null ? moeda.format(i.valorContrato) : undefined,
+    intervencaoId: i.id,
+  }));
+}
+
+function itensParaChave(chave: string | null): ItemPopupIndicador[] {
+  switch (chave) {
+    case 'municipios':
+      return municipios.map((m) => {
+        const total = intervencoes.filter((i) => i.municipioId === m.id).length;
+        return {
+          id: m.id,
+          titulo: m.nome,
+          subtitulo: `${total} intervenç${total === 1 ? 'ão' : 'ões'}`,
+          cor: CORES_MUNICIPIO[m.id],
+        };
+      });
+    case 'intervencoes':
+      return itensIntervencoes(intervencoes);
+    case 'situacaoFaseDeProjeto':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Fase de Projeto'));
+    case 'situacaoEmExecucao':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Em Execução'));
+    case 'situacaoConcluido':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Concluído'));
+    case 'situacaoSuspenso':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Suspenso'));
+    case 'investimentoPrevisto': {
+      // Mesmo critério de exclusão do callout de divergência em Intervenções:
+      // os 2 registros do projeto guarda-chuva do Rio Iguaçu (INEA/SEAS) não
+      // entram na soma, então também não aparecem neste detalhamento.
+      const idsExcluidos = new Set(
+        intervencoes.filter((i) => i.rio === 'Rio Iguaçu' && i.tipo === 'Controle de inundação').map((i) => i.id),
+      );
+      return itensIntervencoes(
+        intervencoes
+          .filter((i) => i.valorContrato !== null && !idsExcluidos.has(i.id))
+          .sort((a, b) => (b.valorContrato ?? 0) - (a.valorContrato ?? 0)),
+      );
+    }
+    case 'populacaoBeneficiadaEstimada':
+      return ESCOPO_HISTORICO_MUNICIPIOS.map((nome) => ({ id: nome, titulo: nome }));
+    default:
+      return [];
+  }
 }
 
 const cartoesPrincipais = [
@@ -54,12 +131,16 @@ const cartoesFinais = [
 const colunasIntervencoesResumo: DownloadColumn<Intervencao>[] = [
   { key: 'nomeProjeto', label: 'Intervenção' },
   { key: 'situacao', label: 'Situação' },
-  { key: 'municipioId', label: 'Município', value: (row) => municipios.find((m) => m.id === row.municipioId)?.nome },
+  { key: 'municipioId', label: 'Município', value: (row) => nomeMunicipio(row.municipioId) },
 ];
 
 export function Indicadores() {
   const [chaveSelecionada, setChaveSelecionada] = useState<string | null>(null);
+  const [intervencaoSelecionadaId, setIntervencaoSelecionadaId] = useState<string | null>(null);
   const detalheSelecionado = chaveSelecionada ? indicadores.detalhamento[chaveSelecionada] : null;
+  const intervencaoSelecionada = intervencaoSelecionadaId
+    ? (intervencoes.find((i) => i.id === intervencaoSelecionadaId) ?? null)
+    : null;
 
   return (
     <Section
@@ -165,7 +246,18 @@ export function Indicadores() {
       <IndicatorDetailModal
         detalhe={detalheSelecionado}
         fontePadrao={indicadores.fontePadrao}
+        itens={itensParaChave(chaveSelecionada)}
+        onSelecionarItem={(id) => {
+          setChaveSelecionada(null);
+          setIntervencaoSelecionadaId(id);
+        }}
         onClose={() => setChaveSelecionada(null)}
+      />
+
+      <InterventionModal
+        intervencao={intervencaoSelecionada}
+        municipioNome={intervencaoSelecionada ? nomeMunicipio(intervencaoSelecionada.municipioId) : ''}
+        onClose={() => setIntervencaoSelecionadaId(null)}
       />
     </Section>
   );

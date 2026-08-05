@@ -1,14 +1,50 @@
 import { useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
-import type { DetalheIndicador } from '../../types';
+import { ChevronRight, X } from 'lucide-react';
+import type { DetalheIndicador, ItemPopupIndicador } from '../../types';
+import { situacaoColorHex } from '../ui/SituacaoBadge';
+
+function ItemLista({ item, onClick }: { item: ItemPopupIndicador; onClick?: () => void }) {
+  const cor = item.cor ?? (item.situacao ? situacaoColorHex(item.situacao) : '#94a3b8');
+  const conteudo = (
+    <>
+      <span aria-hidden="true" className="mt-1.5 h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: cor }} />
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-medium text-neutral-900">{item.titulo}</span>
+        {item.subtitulo && <span className="block text-xs text-neutral-500">{item.subtitulo}</span>}
+      </span>
+      {item.valorTexto && (
+        <span className="shrink-0 text-xs font-medium text-neutral-700">{item.valorTexto}</span>
+      )}
+      {onClick && <ChevronRight aria-hidden="true" className="h-4 w-4 shrink-0 text-neutral-400" />}
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className="flex w-full items-start gap-2.5 rounded-lg px-2 py-2 text-left hover:bg-neutral-50"
+      >
+        {conteudo}
+      </button>
+    );
+  }
+
+  return <div className="flex items-start gap-2.5 rounded-lg px-2 py-2">{conteudo}</div>;
+}
 
 export function IndicatorDetailModal({
   detalhe,
   fontePadrao,
+  itens = [],
+  onSelecionarItem,
   onClose,
 }: {
   detalhe: DetalheIndicador | null;
   fontePadrao: string;
+  itens?: ItemPopupIndicador[];
+  onSelecionarItem?: (intervencaoId: string) => void;
   onClose: () => void;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -63,7 +99,7 @@ export function IndicatorDetailModal({
         aria-modal="true"
         aria-labelledby="indicador-modal-titulo"
         tabIndex={-1}
-        className="flex max-h-[85vh] w-full max-w-lg flex-col rounded-xl bg-white shadow-xl outline-none"
+        className="flex max-h-[85vh] w-full max-w-xl flex-col rounded-xl bg-white shadow-xl outline-none"
       >
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-neutral-100 p-6 pb-4">
           <h2 id="indicador-modal-titulo" className="text-lg font-bold text-neutral-900">
@@ -87,6 +123,27 @@ export function IndicatorDetailModal({
             <>
               <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-neutral-500">Ressalva</p>
               <p className="mt-1 text-sm text-neutral-800">{detalhe.ressalva}</p>
+            </>
+          )}
+
+          {itens.length > 0 && (
+            <>
+              <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                {detalhe.rotuloLista ?? 'Detalhamento'}
+              </p>
+              <div className="mt-1 divide-y divide-neutral-100 border-y border-neutral-100">
+                {itens.map((item) => (
+                  <ItemLista
+                    key={item.id}
+                    item={item}
+                    onClick={
+                      item.intervencaoId && onSelecionarItem
+                        ? () => onSelecionarItem(item.intervencaoId as string)
+                        : undefined
+                    }
+                  />
+                ))}
+              </div>
             </>
           )}
 

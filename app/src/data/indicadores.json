@@ -7,41 +7,49 @@
     "municipios": {
       "titulo": "Municípios contemplados",
       "oQueE": "4 municípios com pelo menos uma intervenção já contratada: Duque de Caxias, Belford Roxo, Nilópolis e um registro de \"Vários municípios\".",
-      "ressalva": "O Projeto Iguaçu abrange historicamente 7 municípios, incluindo também Nova Iguaçu, Mesquita, São João de Meriti e Bangu/RJ."
+      "ressalva": "O Projeto Iguaçu abrange historicamente 7 municípios, incluindo também Nova Iguaçu, Mesquita, São João de Meriti e Bangu/RJ.",
+      "rotuloLista": "Municípios"
     },
     "intervencoes": {
       "titulo": "Intervenções cadastradas",
       "oQueE": "11 intervenções com contrato já registrado, extraídas da planilha do IRM.",
-      "ressalva": "Não inclui o projeto do Rio Iguaçu (INEA/SEAS), tratado à parte por ter valores divergentes — ver Intervenções."
+      "ressalva": "Não inclui o projeto do Rio Iguaçu (INEA/SEAS), tratado à parte por ter valores divergentes — ver Intervenções.",
+      "rotuloLista": "As 11 intervenções"
     },
     "situacaoFaseDeProjeto": {
       "titulo": "Em fase de projeto",
-      "oQueE": "Intervenções ainda em projeto ou diagnóstico, sem obra iniciada."
+      "oQueE": "Intervenções ainda em projeto ou diagnóstico, sem obra iniciada.",
+      "rotuloLista": "Quais são"
     },
     "situacaoEmExecucao": {
       "titulo": "Em execução",
       "oQueE": "Intervenções com obra em andamento.",
-      "ressalva": "O percentual de execução não constava na planilha-fonte."
+      "ressalva": "O percentual de execução não constava na planilha-fonte.",
+      "rotuloLista": "Quais são"
     },
     "situacaoConcluido": {
       "titulo": "Concluídas",
-      "oQueE": "Intervenções com obra finalizada, conforme informado pelo IRM."
+      "oQueE": "Intervenções com obra finalizada, conforme informado pelo IRM.",
+      "rotuloLista": "Quais são"
     },
     "situacaoSuspenso": {
       "titulo": "Suspensas",
       "oQueE": "Intervenções com obra interrompida.",
-      "ressalva": "O motivo da paralisação não constava na planilha-fonte."
+      "ressalva": "O motivo da paralisação não constava na planilha-fonte.",
+      "rotuloLista": "Quais são"
     },
     "investimentoPrevisto": {
       "titulo": "Investimento previsto",
       "oQueE": "Soma dos contratos das 11 intervenções já registradas.",
-      "ressalva": "Não inclui o projeto do Rio Iguaçu (valor ainda divergente entre INEA e SEAS — ver Intervenções)."
+      "ressalva": "Não inclui o projeto do Rio Iguaçu (valor ainda divergente entre INEA e SEAS — ver Intervenções).",
+      "rotuloLista": "De onde vem a soma"
     },
     "populacaoBeneficiadaEstimada": {
       "titulo": "População estimada beneficiada",
       "oQueE": "Estimativa do COPPE/UFRJ para os 7 municípios do escopo histórico do Projeto Iguaçu.",
       "ressalva": "Não é uma estimativa oficial do IRM/INEA para as 11 intervenções desta fase, nem foi recalculada por esta página.",
-      "fonte": "COPPE/UFRJ — Segurança Hídrica RJ (ver Documentos)"
+      "fonte": "COPPE/UFRJ — Segurança Hídrica RJ (ver Documentos)",
+      "rotuloLista": "Municípios do escopo histórico"
     },
     "dataUltimaAtualizacao": {
       "titulo": "Data da última atualização",

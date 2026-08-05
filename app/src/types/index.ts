@@ -57,6 +57,7 @@ export interface DetalheIndicador {
   oQueE: string;
   ressalva?: string;
   fonte?: string;
+  rotuloLista?: string;
 }
 
 export interface Indicadores {
@@ -65,6 +66,16 @@ export interface Indicadores {
   dataUltimaAtualizacao: string;
   fontePadrao: string;
   detalhamento: Record<string, DetalheIndicador>;
+}
+
+export interface ItemPopupIndicador {
+  id: string;
+  titulo: string;
+  subtitulo?: string;
+  situacao?: SituacaoIntervencao;
+  cor?: string;
+  valorTexto?: string;
+  intervencaoId?: string;
 }
 
 export interface Municipio {
