@@ -34,6 +34,22 @@ correspondente na página mostra "Não informado", "A confirmar" ou
 > INEA e SEAS para o projeto guarda-chuva do Rio Iguaçu, sinalizada na
 > página em vez de resolvida silenciosamente.
 
+## Siglas dos órgãos executores
+
+- [ ] **O que significa "PCNI – SEMIF"?** A página oficial do IRM traz apenas a
+      sigla, sem expansão, como órgão responsável pela execução dos reservatórios
+      de amortecimento de cheias em Nova Iguaçu. Duas coisas dependem disso:
+      - **PCNI** foi expandido para "Prefeitura da Cidade de Nova Iguaçu" em
+        `app/src/data/sobreProjeto.json` (lista de órgãos participantes). Essa
+        expansão é **dedução**, não consta da fonte — confirmar com o GT ou
+        corrigir para a sigla pura.
+      - **SEMIF** não foi expandido em lugar nenhum, por não haver fonte. Sem
+        essa confirmação, o glossário da página de Transparência não ganha
+        verbete para o órgão, embora ele execute um dos 14 projetos.
+- [x] EMOP — verbete acrescentado ao glossário, com o nome por extenso declarado
+      na consolidação do IRM e a ressalva de que o projeto de pontes aguarda
+      manifestação da própria empresa.
+
 ## Identidade visual
 - [x] Logotipo oficial do IRM — já inserido (`Docs/Modelo antigo/prototipo-estatico/assets/img/logo-irm-branca-horizontal.png`
       e `Docs/Modelo antigo/prototipo-estatico/assets/img/logo-governo-rj.png`), obtido em www.rj.gov.br/irm em 31/07/2026.
