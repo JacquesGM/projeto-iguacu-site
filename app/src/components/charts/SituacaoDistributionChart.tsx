@@ -32,7 +32,7 @@ export function SituacaoDistributionChart({ situacoes }: { situacoes: SituacaoIn
 
   return (
     <div>
-      <p className="text-sm font-semibold text-neutral-900">Intervenções por situação</p>
+      <p className="text-sm font-semibold text-neutral-900">Projetos por situação</p>
       <div className="mt-3 h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={8}>
@@ -49,7 +49,7 @@ export function SituacaoDistributionChart({ situacoes }: { situacoes: SituacaoIn
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <p className="mt-2 text-xs text-neutral-500">Fonte: registros de intervenções cadastrados. Total: {total}.</p>
+      <p className="mt-2 text-xs text-neutral-500">Fonte: página oficial do Projeto Iguaçu (IRM). Total: {total} projetos.</p>
     </div>
   );
 }

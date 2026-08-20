@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Banknote, Building2, CalendarClock, Info, ListChecks, MapPin, Users } from 'lucide-react';
+import { Banknote, Building2, CalendarClock, CalendarPlus, Info, ListChecks, MapPin } from 'lucide-react';
 import intervencoesData from '../data/intervencoes.json';
 import municipiosData from '../data/municipios.json';
 import indicadoresData from '../data/indicadores.json';
@@ -28,16 +28,6 @@ const indicadores = indicadoresData as IndicadoresType;
 
 const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
-const ESCOPO_HISTORICO_MUNICIPIOS = [
-  'Nilópolis',
-  'Mesquita',
-  'São João de Meriti',
-  'Belford Roxo',
-  'Nova Iguaçu',
-  'Duque de Caxias',
-  'Bangu/RJ',
-];
-
 function contarSituacao(situacao: SituacaoIntervencao): number {
   return intervencoes.filter((i) => i.situacao === situacao).length;
 }
@@ -45,6 +35,14 @@ function contarSituacao(situacao: SituacaoIntervencao): number {
 function nomeMunicipio(id: string): string {
   return municipios.find((m) => m.id === id)?.nome ?? 'Não informado';
 }
+
+// Gericinó é declarado para Nilópolis e Mesquita: os dois municípios contam o
+// projeto, por isso a soma por município é maior que o total de projetos.
+function projetosDoMunicipio(id: string): Intervencao[] {
+  return intervencoes.filter((i) => i.municipioId === id || i.municipiosAdicionais.includes(id));
+}
+
+const valorTotalContratado = intervencoes.reduce((soma, i) => soma + Math.round((i.valorContrato ?? 0) * 100), 0) / 100;
 
 function itensIntervencoes(lista: Intervencao[]): ItemPopupIndicador[] {
   return lista.map((i) => ({
@@ -61,11 +59,11 @@ function itensParaChave(chave: string | null): ItemPopupIndicador[] {
   switch (chave) {
     case 'municipios':
       return municipios.map((m) => {
-        const total = intervencoes.filter((i) => i.municipioId === m.id).length;
+        const total = projetosDoMunicipio(m.id).length;
         return {
           id: m.id,
           titulo: m.nome,
-          subtitulo: `${total} intervenç${total === 1 ? 'ão' : 'ões'}`,
+          subtitulo: `${total} projeto${total === 1 ? '' : 's'}`,
           cor: CORES_MUNICIPIO[m.id],
         };
       });
@@ -73,42 +71,35 @@ function itensParaChave(chave: string | null): ItemPopupIndicador[] {
       const orgaos = [...new Set(intervencoes.map((i) => i.orgaoResponsavel))];
       return orgaos.map((orgao) => {
         const total = intervencoes.filter((i) => i.orgaoResponsavel === orgao).length;
-        return { id: orgao, titulo: orgao, subtitulo: `${total} intervenç${total === 1 ? 'ão' : 'ões'}` };
+        return { id: orgao, titulo: orgao, subtitulo: `${total} projeto${total === 1 ? '' : 's'}` };
       });
     }
     case 'intervencoes':
       return itensIntervencoes(intervencoes);
-    case 'situacaoFaseDeProjeto':
-      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Fase de Projeto'));
-    case 'situacaoEmExecucao':
-      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Em Execução'));
-    case 'situacaoConcluido':
-      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Concluído'));
-    case 'situacaoSuspenso':
-      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Suspenso'));
-    case 'investimentoPrevisto': {
-      // Mesmo critério de exclusão do callout de divergência em Intervenções:
-      // os 2 registros do projeto guarda-chuva do Rio Iguaçu (INEA/SEAS) não
-      // entram na soma, então também não aparecem neste detalhamento.
-      const idsExcluidos = new Set(
-        intervencoes.filter((i) => i.rio === 'Rio Iguaçu' && i.tipo === 'Controle de inundação').map((i) => i.id),
-      );
+    case 'situacaoEmLicitacao':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Em licitação'));
+    case 'situacaoEmAndamento':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Em andamento'));
+    case 'situacaoConclusaoEmBreve':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Conclusão em breve'));
+    case 'situacaoBaixaDeClausulaSuspensiva':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Baixa de cláusula suspensiva'));
+    case 'situacaoAguardandoManifestacao':
+      return itensIntervencoes(intervencoes.filter((i) => i.situacao === 'Aguardando manifestação'));
+    case 'valorTotalContratado':
       return itensIntervencoes(
-        intervencoes
-          .filter((i) => i.valorContrato !== null && !idsExcluidos.has(i.id))
+        [...intervencoes]
+          .filter((i) => i.valorContrato !== null)
           .sort((a, b) => (b.valorContrato ?? 0) - (a.valorContrato ?? 0)),
       );
-    }
-    case 'populacaoBeneficiadaEstimada':
-      return ESCOPO_HISTORICO_MUNICIPIOS.map((nome) => ({ id: nome, titulo: nome }));
     default:
       return [];
   }
 }
 
 const cartoesPrincipais = [
-  { chave: 'municipios', rotulo: 'Municípios contemplados', valor: String(municipios.length), Icon: MapPin, cor: '#0b4f8a' },
-  { chave: 'intervencoes', rotulo: 'Intervenções cadastradas', valor: String(intervencoes.length), Icon: ListChecks, cor: '#0b4f8a' },
+  { chave: 'municipios', rotulo: 'Municípios com projeto', valor: String(municipios.length), Icon: MapPin, cor: '#0b4f8a' },
+  { chave: 'intervencoes', rotulo: 'Projetos publicados', valor: String(intervencoes.length), Icon: ListChecks, cor: '#0b4f8a' },
   {
     chave: 'orgaos',
     rotulo: 'Órgãos executores',
@@ -119,19 +110,23 @@ const cartoesPrincipais = [
 ];
 
 const cartoesSituacao: { chave: string; situacao: SituacaoIntervencao; rotulo: string }[] = [
-  { chave: 'situacaoFaseDeProjeto', situacao: 'Fase de Projeto', rotulo: 'Em fase de projeto' },
-  { chave: 'situacaoEmExecucao', situacao: 'Em Execução', rotulo: 'Em execução' },
-  { chave: 'situacaoConcluido', situacao: 'Concluído', rotulo: 'Concluídas' },
-  { chave: 'situacaoSuspenso', situacao: 'Suspenso', rotulo: 'Suspensas' },
+  { chave: 'situacaoEmLicitacao', situacao: 'Em licitação', rotulo: 'Em licitação' },
+  { chave: 'situacaoEmAndamento', situacao: 'Em andamento', rotulo: 'Em andamento' },
+  { chave: 'situacaoConclusaoEmBreve', situacao: 'Conclusão em breve', rotulo: 'Conclusão em breve' },
+  {
+    chave: 'situacaoBaixaDeClausulaSuspensiva',
+    situacao: 'Baixa de cláusula suspensiva',
+    rotulo: 'Baixa de cláusula suspensiva',
+  },
+  { chave: 'situacaoAguardandoManifestacao', situacao: 'Aguardando manifestação', rotulo: 'Aguardando manifestação' },
 ];
 
 const cartoesFinais = [
-  { chave: 'investimentoPrevisto', rotulo: 'Investimento previsto', valor: indicadores.investimentoPrevisto, Icon: Banknote, cor: '#5a6b78' },
   {
-    chave: 'populacaoBeneficiadaEstimada',
-    rotulo: 'População estimada beneficiada',
-    valor: indicadores.populacaoBeneficiadaEstimada,
-    Icon: Users,
+    chave: 'valorTotalContratado',
+    rotulo: 'Valor total contratado',
+    valor: moeda.format(valorTotalContratado),
+    Icon: Banknote,
     cor: '#5a6b78',
   },
   {
@@ -141,10 +136,17 @@ const cartoesFinais = [
     Icon: CalendarClock,
     cor: '#5a6b78',
   },
+  {
+    chave: 'proximaAtualizacao',
+    rotulo: 'Próxima atualização prevista',
+    valor: indicadores.proximaAtualizacao,
+    Icon: CalendarPlus,
+    cor: '#5a6b78',
+  },
 ];
 
 const colunasIntervencoesResumo: DownloadColumn<Intervencao>[] = [
-  { key: 'nomeProjeto', label: 'Intervenção' },
+  { key: 'nomeProjeto', label: 'Projeto' },
   { key: 'situacao', label: 'Situação' },
   { key: 'municipioId', label: 'Município', value: (row) => nomeMunicipio(row.municipioId) },
   { key: 'orgaoResponsavel', label: 'Órgão responsável' },
@@ -162,7 +164,7 @@ export function Indicadores() {
     <Section
       id="indicadores"
       title="Indicadores principais"
-      subtitle="Os números do Projeto Iguaçu, calculados automaticamente a partir das intervenções cadastradas. Clique em um indicador para ver como ele foi calculado."
+      subtitle="Os números do Projeto Iguaçu, calculados automaticamente a partir dos 14 projetos publicados pelo IRM. Clique em um indicador para ver como ele foi calculado."
     >
       <div className="mb-6">
         <DownloadButton

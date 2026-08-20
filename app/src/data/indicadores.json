@@ -1,66 +1,67 @@
 {
-  "investimentoPrevisto": "R$ 350,1 milhões",
-  "populacaoBeneficiadaEstimada": "≈ 2,5 milhões de habitantes",
-  "dataUltimaAtualizacao": "23/07/2026",
-  "fontePadrao": "Extração de dados BI/INFOVIA do IRM · 23/07/2026",
+  "dataUltimaAtualizacao": "06/08/2026",
+  "periodoReferencia": "1º/01/2026 a 23/07/2026",
+  "proximaAtualizacao": "08/10/2026",
+  "fontePadrao": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole · atualização de 06/08/2026",
   "detalhamento": {
     "municipios": {
-      "titulo": "Municípios contemplados",
-      "oQueE": "4 municípios com pelo menos uma intervenção já contratada: Duque de Caxias, Belford Roxo, Nilópolis e um registro de \"Vários municípios\".",
-      "ressalva": "O Projeto Iguaçu abrange historicamente 7 municípios, incluindo também Nova Iguaçu, Mesquita, São João de Meriti e Bangu/RJ.",
+      "titulo": "Municípios com projeto declarado",
+      "oQueE": "6 municípios têm ao menos um projeto declarado na página oficial do IRM: Duque de Caxias, Belford Roxo, Nova Iguaçu, São João de Meriti, Nilópolis e Mesquita.",
+      "ressalva": "Nilópolis e Mesquita aparecem apenas como corresponsáveis da Barragem de Gericinó, o único projeto atribuído a dois municípios.",
       "rotuloLista": "Municípios"
     },
     "orgaos": {
       "titulo": "Órgãos executores",
-      "oQueE": "3 órgãos executam as 11 intervenções já contratadas: INEA, SEAS e SEIOP.",
+      "oQueE": "4 órgãos executam os 14 projetos: INEA, Prefeitura Municipal de Belford Roxo, PCNI – SEMIF (Prefeitura de Nova Iguaçu) e EMOP.",
       "ressalva": "A execução técnica e contratual de cada obra é do órgão responsável. O IRM apenas consolida e divulga essas informações.",
       "rotuloLista": "Órgãos"
     },
     "intervencoes": {
-      "titulo": "Intervenções cadastradas",
-      "oQueE": "11 intervenções com contrato já registrado, extraídas da planilha do IRM.",
-      "ressalva": "Não inclui o projeto do Rio Iguaçu (INEA/SEAS), tratado à parte por ter valores divergentes (ver Intervenções).",
-      "rotuloLista": "As 11 intervenções"
+      "titulo": "Projetos publicados",
+      "oQueE": "Os 14 projetos com status declarado pelos órgãos executores no formulário padronizado do GT IRM – Projeto Iguaçu.",
+      "ressalva": "Nenhum programa guarda-chuva integra esta lista; cada registro é um contrato ou serviço individualizado.",
+      "rotuloLista": "Os 14 projetos"
     },
-    "situacaoFaseDeProjeto": {
-      "titulo": "Em fase de projeto",
-      "oQueE": "Intervenções ainda em projeto ou diagnóstico, sem obra iniciada.",
+    "situacaoEmLicitacao": {
+      "titulo": "Em licitação",
+      "oQueE": "Projetos cujo processo licitatório ainda não foi concluído.",
       "rotuloLista": "Quais são"
     },
-    "situacaoEmExecucao": {
-      "titulo": "Em execução",
-      "oQueE": "Intervenções com obra em andamento.",
-      "ressalva": "O percentual de execução não constava na planilha-fonte.",
+    "situacaoEmAndamento": {
+      "titulo": "Em andamento",
+      "oQueE": "Projetos com contrato vigente e execução em curso.",
+      "ressalva": "O percentual de execução física ou financeira não é informado pela fonte.",
       "rotuloLista": "Quais são"
     },
-    "situacaoConcluido": {
-      "titulo": "Concluídas",
-      "oQueE": "Intervenções com obra finalizada, conforme informado pelo IRM.",
+    "situacaoConclusaoEmBreve": {
+      "titulo": "Conclusão em breve",
+      "oQueE": "Projetos em fase final de execução, conforme declarado pelo órgão executor.",
       "rotuloLista": "Quais são"
     },
-    "situacaoSuspenso": {
-      "titulo": "Suspensas",
-      "oQueE": "Intervenções com obra interrompida.",
-      "ressalva": "O motivo da paralisação não constava na planilha-fonte.",
+    "situacaoBaixaDeClausulaSuspensiva": {
+      "titulo": "Baixa de cláusula suspensiva",
+      "oQueE": "Contrato assinado cuja eficácia depende da verificação da documentação pela mandatária, etapa anterior à licitação.",
       "rotuloLista": "Quais são"
     },
-    "investimentoPrevisto": {
-      "titulo": "Investimento previsto",
-      "oQueE": "Soma dos contratos das 11 intervenções já registradas.",
-      "ressalva": "Não inclui o projeto do Rio Iguaçu (valor ainda divergente entre INEA e SEAS, ver Intervenções).",
+    "situacaoAguardandoManifestacao": {
+      "titulo": "Aguardando manifestação",
+      "oQueE": "Execução pleiteada junto ao órgão por ofício, ainda sem resposta sobre o atendimento da solicitação.",
+      "rotuloLista": "Quais são"
+    },
+    "valorTotalContratado": {
+      "titulo": "Valor total contratado",
+      "oQueE": "Soma dos valores de contrato declarados para os 14 projetos, calculada a partir dos registros — não é um número digitado.",
+      "ressalva": "É valor de contrato, não valor executado nem pago: a fonte não informa quanto já foi medido ou desembolsado. Projetos em licitação têm valor estimado para a contratação.",
       "rotuloLista": "De onde vem a soma"
-    },
-    "populacaoBeneficiadaEstimada": {
-      "titulo": "População estimada beneficiada",
-      "oQueE": "Estimativa do COPPE/UFRJ para os 7 municípios do escopo histórico do Projeto Iguaçu.",
-      "ressalva": "Não é uma estimativa oficial do IRM/INEA para as 11 intervenções desta fase, nem foi recalculada por esta página.",
-      "fonte": "COPPE/UFRJ — Segurança Hídrica RJ (ver Documentos)",
-      "rotuloLista": "Municípios do escopo histórico"
     },
     "dataUltimaAtualizacao": {
       "titulo": "Data da última atualização",
-      "oQueE": "Data de referência da extração de dados usada nesta página.",
-      "ressalva": "Não é a data de publicação da página nem a de conclusão de obras."
+      "oQueE": "Data em que o IRM publicou esta consolidação, referente ao período de 1º/01 a 23/07/2026.",
+      "ressalva": "Não é a data de publicação desta página nem a de conclusão de obras."
+    },
+    "proximaAtualizacao": {
+      "titulo": "Próxima atualização prevista",
+      "oQueE": "Data prevista pelo IRM para a próxima rodada de atualização dos status junto aos órgãos executores."
     }
   }
 }

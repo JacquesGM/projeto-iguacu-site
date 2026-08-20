@@ -18,6 +18,16 @@ function nomeMunicipio(id: string): string {
   return municipios.find((m) => m.id === id)?.nome ?? 'Não informado';
 }
 
+// A Barragem de Gericinó é declarada para Nilópolis e Mesquita; os demais
+// projetos têm um único município.
+export function nomesMunicipios(item: Intervencao): string {
+  return [item.municipioId, ...item.municipiosAdicionais].map(nomeMunicipio).join(' / ');
+}
+
+function ehDoMunicipio(item: Intervencao, municipioId: string): boolean {
+  return item.municipioId === municipioId || item.municipiosAdicionais.includes(municipioId);
+}
+
 type CampoOrdenacao = 'nomeProjeto' | 'municipio' | 'tipo' | 'orgaoResponsavel' | 'situacao' | 'valorContrato' | 'ultimaAtualizacao';
 
 function dataParaOrdenacao(valor: unknown): number {
@@ -28,7 +38,7 @@ function dataParaOrdenacao(valor: unknown): number {
 }
 
 function valorParaOrdenacao(item: Intervencao, campo: CampoOrdenacao): string | number {
-  if (campo === 'municipio') return nomeMunicipio(item.municipioId).toLowerCase();
+  if (campo === 'municipio') return nomesMunicipios(item).toLowerCase();
   if (campo === 'valorContrato') return item.valorContrato ?? -1;
   if (campo === 'ultimaAtualizacao') return dataParaOrdenacao(item.ultimaAtualizacao);
   const valor = item[campo];
@@ -36,10 +46,10 @@ function valorParaOrdenacao(item: Intervencao, campo: CampoOrdenacao): string | 
 }
 
 const colunas: { campo: CampoOrdenacao; rotulo: string }[] = [
-  { campo: 'nomeProjeto', rotulo: 'Intervenção' },
+  { campo: 'nomeProjeto', rotulo: 'Projeto' },
   { campo: 'municipio', rotulo: 'Município' },
   { campo: 'tipo', rotulo: 'Tipo' },
-  { campo: 'orgaoResponsavel', rotulo: 'Órgão responsável' },
+  { campo: 'orgaoResponsavel', rotulo: 'Órgão executor' },
   { campo: 'situacao', rotulo: 'Situação' },
   { campo: 'valorContrato', rotulo: 'Valor do contrato' },
   { campo: 'ultimaAtualizacao', rotulo: 'Última atualização' },
@@ -61,11 +71,11 @@ export function InterventionsTable() {
   const filtradas = useMemo(() => {
     const buscaLower = busca.trim().toLowerCase();
     return intervencoes.filter((i) => {
-      if (municipioFiltro !== ALL && i.municipioId !== municipioFiltro) return false;
+      if (municipioFiltro !== ALL && !ehDoMunicipio(i, municipioFiltro)) return false;
       if (situacaoFiltro !== ALL && i.situacao !== situacaoFiltro) return false;
       if (orgaoFiltro !== ALL && i.orgaoResponsavel !== orgaoFiltro) return false;
       if (buscaLower) {
-        const alvo = [i.nomeProjeto, i.rio, i.orgaoResponsavel, i.tipo, nomeMunicipio(i.municipioId)]
+        const alvo = [i.nomeProjeto, i.objeto, i.rio, i.orgaoResponsavel, i.tipo, nomesMunicipios(i)]
           .join(' ')
           .toLowerCase();
         if (!alvo.includes(buscaLower)) return false;
@@ -107,7 +117,7 @@ export function InterventionsTable() {
       <form
         className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
         role="search"
-        aria-label="Pesquisar e filtrar intervenções"
+        aria-label="Pesquisar e filtrar projetos"
         onSubmit={(e) => e.preventDefault()}
       >
         <label className="text-sm sm:col-span-2 lg:col-span-1">
@@ -116,7 +126,7 @@ export function InterventionsTable() {
             type="search"
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
-            placeholder="Nome da intervenção, rio, órgão…"
+            placeholder="Nome do projeto, objeto, rio, órgão…"
             className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
           />
         </label>
@@ -169,7 +179,7 @@ export function InterventionsTable() {
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-neutral-500" role="status">
-          {ordenadas.length} {ordenadas.length === 1 ? 'intervenção encontrada' : 'intervenções encontradas'}
+          {ordenadas.length} {ordenadas.length === 1 ? 'projeto encontrado' : 'projetos encontrados'}
         </p>
         <button
           type="button"
@@ -181,7 +191,7 @@ export function InterventionsTable() {
       </div>
 
       {ordenadas.length === 0 ? (
-        <EmptyState message="Nenhuma intervenção encontrada para os filtros selecionados." onClear={limparFiltros} />
+        <EmptyState message="Nenhum projeto encontrado para os filtros selecionados." onClear={limparFiltros} />
       ) : (
         <>
           {/* Tabela — telas médias e grandes */}
@@ -218,7 +228,7 @@ export function InterventionsTable() {
                 {ordenadas.map((item) => (
                   <tr key={item.id} className="align-top">
                     <td className="px-4 py-3 font-medium text-neutral-900">{item.nomeProjeto}</td>
-                    <td className="px-4 py-3">{nomeMunicipio(item.municipioId)}</td>
+                    <td className="px-4 py-3">{nomesMunicipios(item)}</td>
                     <td className="px-4 py-3">{item.tipo}</td>
                     <td className="px-4 py-3">{item.orgaoResponsavel}</td>
                     <td className="px-4 py-3">
@@ -250,7 +260,7 @@ export function InterventionsTable() {
                 <dl className="mt-2 space-y-1.5 text-sm">
                   <div className="flex items-start justify-between gap-3">
                     <dt className="text-neutral-500">Município</dt>
-                    <dd className="text-right font-medium text-neutral-900">{nomeMunicipio(item.municipioId)}</dd>
+                    <dd className="text-right font-medium text-neutral-900">{nomesMunicipios(item)}</dd>
                   </div>
                   <div className="flex items-start justify-between gap-3">
                     <dt className="text-neutral-500">Tipo</dt>
@@ -283,7 +293,7 @@ export function InterventionsTable() {
 
       <InterventionModal
         intervencao={selecionada}
-        municipioNome={selecionada ? nomeMunicipio(selecionada.municipioId) : ''}
+        municipioNome={selecionada ? nomesMunicipios(selecionada) : ''}
         onClose={() => setSelecionada(null)}
       />
     </div>

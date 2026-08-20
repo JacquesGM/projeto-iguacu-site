@@ -109,11 +109,11 @@
   },
   {
     "id": "t13",
-    "data": "23/07/2026",
-    "titulo": "Situação real das intervenções já contratadas",
-    "descricao": "A extração de dados BI/INFOVIA do IRM registra, entre as 11 intervenções com contrato já firmado (distintas da nova licitação relatada pelo GT), 4 em execução, 3 concluídas, 2 suspensas e 2 em fase de projeto. Ver Indicadores e Intervenções para o detalhe de cada uma.",
-    "categoria": "Situação real das intervenções",
-    "fonte": "Extração de dados BI/INFOVIA do IRM (Dados_BI.xlsx), dados de referência de 23/07/2026",
+    "data": "06/08/2026",
+    "titulo": "Consolidação de agosto publicada pelo IRM",
+    "descricao": "O IRM publica a consolidação do período de 1º/01 a 23/07/2026 com 14 projetos declarados pelos órgãos executores: 6 em licitação, 4 em andamento, 2 com conclusão em breve, 1 com baixa de cláusula suspensiva e 1 aguardando manifestação. Ver Indicadores e Projetos para o detalhe de cada um.",
+    "categoria": "Situação dos projetos",
+    "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole, atualização de 06/08/2026",
     "confirmado": true
   },
   {

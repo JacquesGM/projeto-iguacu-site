@@ -1,6 +1,26 @@
 [
-  { "id": "m1", "nome": "Duque de Caxias" },
-  { "id": "m3", "nome": "Belford Roxo" },
-  { "id": "m4", "nome": "Nilópolis" },
-  { "id": "varios", "nome": "Vários municípios" }
+  {
+    "id": "m1",
+    "nome": "Duque de Caxias"
+  },
+  {
+    "id": "m2",
+    "nome": "Belford Roxo"
+  },
+  {
+    "id": "m3",
+    "nome": "Nova Iguaçu"
+  },
+  {
+    "id": "m4",
+    "nome": "São João de Meriti"
+  },
+  {
+    "id": "m5",
+    "nome": "Nilópolis"
+  },
+  {
+    "id": "m6",
+    "nome": "Mesquita"
+  }
 ]
