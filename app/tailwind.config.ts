@@ -56,7 +56,24 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+        // "Rawline" e a tipografia do Padrao Digital de Governo. Enquanto os
+        // arquivos nao estao auto-hospedados (ver app/public/fonts/LEIA-ME.md),
+        // o nome fica declarado e o navegador segue para a pilha do sistema.
+        //
+        // A ordem importa: system-ui PRIMEIRO faz cada sistema usar sua propria
+        // fonte de interface -- Segoe UI no Windows, San Francisco no macOS e
+        // iOS, Roboto no Android. Antes "Segoe UI" vinha primeiro, o que
+        // amarrava a identidade do portal a um unico sistema operacional.
+        sans: [
+          'Rawline',
+          'system-ui',
+          '-apple-system',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          'sans-serif',
+        ],
       },
     },
   },
