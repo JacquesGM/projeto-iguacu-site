@@ -15,15 +15,16 @@
     "Portaria IRM nº 195/2025 — formaliza a criação do Grupo de Trabalho (GT) Projeto Iguaçu, com o IRM como coordenador."
   ],
   "orgaosParticipantes": [
-    "Instituto Rio Metrópole (IRM) — coordenação do GT",
-    "Instituto Estadual do Ambiente (INEA) — órgão executor",
-    "Secretaria de Estado do Ambiente e Sustentabilidade (SEAS) — órgão executor",
-    "Secretaria de Estado de Infraestrutura e Obras Públicas (SEIOP) — órgão executor",
-    "Ministério Público do Estado do Rio de Janeiro (MPRJ)",
-    "Comitês de Bacia Hidrográfica (incluindo o CBH Baía de Guanabara)",
+    "Instituto Rio Metrópole (IRM) — coordenação do GT e consolidação das informações",
+    "Instituto Estadual do Ambiente (INEA) — órgão executor de 9 dos 14 projetos",
+    "Prefeitura Municipal de Belford Roxo — órgão executor de 2 projetos do Novo PAC",
+    "Prefeitura da Cidade de Nova Iguaçu (PCNI – SEMIF) — órgão executor dos reservatórios de amortecimento de cheias",
+    "Empresa de Obras Públicas do Estado do Rio de Janeiro (EMOP) — órgão executor da intervenção em pontes",
+    "Ministério Público do Estado do Rio de Janeiro (MPRJ/GAEMA) — Inquérito Civil que originou o Grupo de Trabalho",
+    "Comitê de Bacia Hidrográfica da Baía de Guanabara e AGEVAP — painel de indicadores SIGA Águas",
     "Prefeituras dos municípios contemplados"
   ],
-  "municipiosContempladosTexto": "Os municípios com intervenção já contratada nesta fase estão listados em Indicadores e Intervenções; o escopo histórico completo do Projeto Iguaçu abrange 7 municípios da Baixada Fluminense.",
+  "municipiosContempladosTexto": "Os municípios com projeto declarado nesta consolidação estão listados em Indicadores e Projetos. O Plano Diretor da Bacia Iguaçu/Sarapuí, de 2007, reuniu 25 intervenções propostas para seis municípios da região.",
   "blocoPapelIRM": {
     "titulo": "Papel do Instituto Rio Metrópole",
     "texto": "O IRM atua no acompanhamento, articulação, consolidação e divulgação das informações sobre o Projeto Iguaçu, sem assumir as responsabilidades técnicas, contratuais ou executivas dos órgãos e empresas responsáveis por cada obra."

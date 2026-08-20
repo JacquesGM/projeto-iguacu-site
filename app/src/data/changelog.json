@@ -1,5 +1,9 @@
 [
   {
+    "data": "20/08/2026",
+    "descricao": "Escopo reduzido aos 14 projetos publicados na página oficial do Projeto Iguaçu no site do IRM, que passa a ser a única fonte do conteúdo público. Substituídos os 11 registros da extração BI/INFOVIA de 23/07/2026, adotado o vocabulário de situação declarado pelos órgãos e removidos os indicadores que a fonte não informa (população beneficiada e investimento previsto agregado)."
+  },
+  {
     "data": "05/08/2026",
     "descricao": "Esclarecida a relação entre a situação institucional da nova licitação e as 11 intervenções já contratadas; adicionado o recorte \"Intervenções por órgão executor\" (INEA, SEAS, SEIOP)."
   },

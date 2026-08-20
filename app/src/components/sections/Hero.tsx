@@ -34,7 +34,7 @@ export function Hero() {
               to="/intervencoes"
               className="rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-brand-blue-700 hover:bg-brand-blue-50"
             >
-              Consultar intervenções
+              Consultar projetos
             </Link>
             <Link
               to="/documentos"

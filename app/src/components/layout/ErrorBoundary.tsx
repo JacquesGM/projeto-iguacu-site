@@ -53,7 +53,7 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.temErro) {
       return (
         <div className="mx-auto flex max-w-lg flex-col items-center gap-4 px-4 py-16 text-center">
-          <p className="text-lg font-semibold text-neutral-900">Não foi possível carregar esta página</p>
+          <h1 className="text-lg font-semibold text-neutral-900">Não foi possível carregar esta página</h1>
           <p className="text-sm text-neutral-600">
             {this.state.jaTentouRecarregar
               ? 'Já tentamos recarregar automaticamente e o problema continuou. Verifique sua conexão e tente de novo — se persistir, entre em contato pelo e-mail saneamento@irm.rj.gov.br.'

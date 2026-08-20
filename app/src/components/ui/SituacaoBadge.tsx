@@ -1,4 +1,4 @@
-import { CheckCircle2, ClipboardList, Hammer, PauseCircle, type LucideIcon } from 'lucide-react';
+import { CheckCircle2, ClipboardList, FileClock, Hammer, PauseCircle, type LucideIcon } from 'lucide-react';
 import type { SituacaoIntervencao } from '../../types';
 
 interface SituacaoConfig {
@@ -8,28 +8,32 @@ interface SituacaoConfig {
   hex: string;
 }
 
-// Os 4 status vêm da extração BI/INFOVIA (Dados_BI.xlsx) — vocabulário real,
-// não mais os 8 valores hipotéticos do prompt original. Cores mantidas na
-// mesma família das etiquetas anteriores (planejamento→cinza-azulado,
-// execução→azul, concluído→verde, suspenso→vermelho) para continuidade
-// visual, sempre com ícone + texto (nunca cor isolada).
+// As 5 situações declaradas pelos órgãos na página oficial do IRM. Cada uma tem
+// cor + ícone + texto — a situação nunca é comunicada só por cor (WCAG 2.2 AA).
+// Famílias: licitação/pré-contratual → cinza-azulado e âmbar; execução → azul;
+// próximo do fim → verde; pendente de terceiro → vermelho-tijolo.
 const situacaoConfig: Record<SituacaoIntervencao, SituacaoConfig> = {
-  'Fase de Projeto': {
+  'Em licitação': {
     classes: 'bg-[#eef1f6] text-[#40506b] border-[#c3cbdb]',
     Icon: ClipboardList,
     hex: '#40506b',
   },
-  'Em Execução': {
+  'Em andamento': {
     classes: 'bg-brand-blue-50 text-brand-blue-800 border-[#bcdcef]',
     Icon: Hammer,
     hex: '#0b3a63',
   },
-  'Concluído': {
+  'Conclusão em breve': {
     classes: 'bg-brand-green-50 text-brand-green-700 border-[#a9e0c6]',
     Icon: CheckCircle2,
     hex: '#1f7a5c',
   },
-  'Suspenso': {
+  'Baixa de cláusula suspensiva': {
+    classes: 'bg-[#fdf3e3] text-[#8a5a12] border-[#eccf9c]',
+    Icon: FileClock,
+    hex: '#8a5a12',
+  },
+  'Aguardando manifestação': {
     classes: 'bg-[#fbe6e6] text-[#9c2b2b] border-[#f0bcbc]',
     Icon: PauseCircle,
     hex: '#9c2b2b',

@@ -102,16 +102,17 @@ export function InterventionModal({
         </div>
 
         <dl ref={corpoRef} className="overflow-y-auto p-6 pt-4 sm:p-8 sm:pt-4">
+          <Linha rotulo="Objeto">{intervencao.objeto}</Linha>
           <Linha rotulo="Tipo">{intervencao.tipo}</Linha>
           <Linha rotulo="Município">{municipioNome}</Linha>
           <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
           <Linha rotulo="Coordenadas">
-            {intervencao.latitude !== null && intervencao.longitude !== null
-              ? `${intervencao.latitude}, ${intervencao.longitude}`
-              : 'Não informado'}
+            {intervencao.coordenadasTexto ?? 'Não informado'}
           </Linha>
           <Linha rotulo="Órgão responsável">{intervencao.orgaoResponsavel}</Linha>
-          <Linha rotulo="Empresa contratada">{textoOu(intervencao.empresaContratada)}</Linha>
+          <Linha rotulo="Empresa contratada">
+            {intervencao.empresaContratada ?? intervencao.empresaTexto ?? 'Não informado'}
+          </Linha>
           <Linha rotulo="Processo">{textoOu(intervencao.processoSEI)}</Linha>
           <Linha rotulo="Programa / fonte do recurso">{textoOu(intervencao.programa)}</Linha>
           <Linha rotulo="Valor do contrato">
@@ -121,10 +122,16 @@ export function InterventionModal({
             <SituacaoBadge situacao={intervencao.situacao} />
           </Linha>
           <Linha rotulo="Prazo do contrato">
-            {intervencao.prazoContratoDias !== null ? `${intervencao.prazoContratoDias} dias` : 'Não informado'}
+            {intervencao.prazoTexto ??
+              (intervencao.prazoContratoMeses !== null ? `${intervencao.prazoContratoMeses} meses` : 'Não informado')}
           </Linha>
-          <Linha rotulo="Início de vigência">{textoOu(intervencao.dataInicioVigencia)}</Linha>
-          <Linha rotulo="Término de vigência">{textoOu(intervencao.dataTerminoVigencia)}</Linha>
+          <Linha rotulo="Início de vigência">
+            {intervencao.dataInicioVigencia ?? intervencao.dataInicioVigenciaTexto ?? 'Não informado'}
+          </Linha>
+          <Linha rotulo="Término de vigência">
+            {intervencao.dataTerminoVigencia ?? intervencao.dataTerminoVigenciaTexto ?? 'Não informado'}
+          </Linha>
+          {intervencao.observacoes && <Linha rotulo="Observações do órgão">{intervencao.observacoes}</Linha>}
           <Linha rotulo="Data da informação">{intervencao.dataInformacao}</Linha>
           <Linha rotulo="Fonte">{intervencao.fonte}</Linha>
         </dl>

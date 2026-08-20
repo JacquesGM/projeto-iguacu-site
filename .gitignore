@@ -17,3 +17,13 @@ app/vite.config.d.ts
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Firebase
+*-debug.log
+.firebase/
+
+# Credenciais locais — nunca versionar (§5.3 do Prompt Mestre v2.1)
+serviceAccount*.json
+*.serviceaccount.json
+.env
+.env.local

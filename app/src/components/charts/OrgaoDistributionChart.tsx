@@ -32,7 +32,7 @@ export function OrgaoDistributionChart({ intervencoes }: { intervencoes: Interve
 
   return (
     <div>
-      <p className="text-sm font-semibold text-neutral-900">Intervenções por órgão executor</p>
+      <h2 className="text-sm font-semibold text-neutral-900">Projetos por órgão executor</h2>
       <div className="mt-3 h-48">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={10}>
@@ -50,7 +50,7 @@ export function OrgaoDistributionChart({ intervencoes }: { intervencoes: Interve
         </ResponsiveContainer>
       </div>
       <p className="mt-2 text-xs text-neutral-500">
-        Fonte: extração BI/INFOVIA do IRM. Total: {total} intervenções.
+        Fonte: página oficial do Projeto Iguaçu (IRM). Total: {total} projetos.
       </p>
     </div>
   );

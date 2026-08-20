@@ -1,34 +1,102 @@
 {
-  "origemDados": "Os dados de cada intervenção são preenchidos pelos próprios órgãos executores (como o INEA) e pelas prefeituras dos municípios contemplados, e consolidados pelo Instituto Rio Metrópole a partir da extração de dados BI/INFOVIA do sistema interno do IRM.",
+  "origemDados": "Os dados de cada projeto são declarados pelos próprios órgãos responsáveis pela execução — INEA, EMOP e as prefeituras dos municípios contemplados — em formulário padronizado de atualização de status, e consolidados pelo Instituto Rio Metrópole no âmbito do GT IRM – Projeto Iguaçu.",
   "responsaveisFornecimento": "Órgãos executores das obras e prefeituras dos municípios contemplados, conforme fluxo definido pelo Grupo de Trabalho (GT) Projeto Iguaçu.",
   "consolidacaoIRM": "O Instituto Rio Metrópole (IRM), na coordenação do GT, checa e consolida os dados recebidos antes da publicação nesta página.",
   "dataReferencia": "23/07/2026",
   "periodicidade": "Ciclo bimestral: cerca de 14 dias para os órgãos enviarem as informações do período de referência encerrado, seguidos de cerca de 14 dias para a consolidação pelo IRM antes da reunião seguinte do GT.",
   "glossario": [
-    { "termo": "IRM", "significado": "Instituto Rio Metrópole — autarquia estadual responsável pela gestão metropolitana da Região Metropolitana do Rio de Janeiro (RMRJ) e pela coordenação do GT Projeto Iguaçu." },
-    { "termo": "GT", "significado": "Grupo de Trabalho — neste caso, o GT Projeto Iguaçu, criado pela Portaria IRM nº 195/2025 para reunir, checar e divulgar informações sobre as intervenções." },
-    { "termo": "INEA", "significado": "Instituto Estadual do Ambiente — órgão do governo do Rio de Janeiro responsável pela execução técnica da maior parte das obras do Projeto Iguaçu." },
-    { "termo": "SEAS", "significado": "Secretaria de Estado do Ambiente e Sustentabilidade — órgão do governo do Rio de Janeiro, também responsável por parte das intervenções (não confundir com a SEA, secretaria antecessora citada no Plano Diretor de 2007)." },
-    { "termo": "SEIOP", "significado": "Secretaria de Estado de Infraestrutura e Obras Públicas — órgão do governo do Rio de Janeiro responsável pela execução técnica de parte das intervenções do Projeto Iguaçu." },
-    { "termo": "MPRJ", "significado": "Ministério Público do Estado do Rio de Janeiro." },
-    { "termo": "PAC / Novo PAC", "significado": "Programa de Aceleração do Crescimento — programa federal de investimento em infraestrutura que financia parte das intervenções." },
-    { "termo": "PEDUI", "significado": "Plano Estratégico de Desenvolvimento Urbano Integrado da Região Metropolitana do Rio de Janeiro, ratificado pela Lei Estadual nº 11.021/2025." },
-    { "termo": "DIRSMI", "significado": "Diretoria de Saneamento Metropolitano Integrado — diretoria do IRM responsável pelos temas de saneamento e drenagem, incluindo o Projeto Iguaçu." },
-    { "termo": "RMRJ", "significado": "Região Metropolitana do Rio de Janeiro — os 22 municípios sob gestão metropolitana do IRM." },
-    { "termo": "SEA / SERLA", "significado": "Secretaria de Estado do Ambiente e Fundação Superintendência Estadual de Rios e Lagoas — órgãos estaduais responsáveis pelo Plano Diretor da Bacia Iguaçu/Sarapuí de 2007 (a SERLA foi posteriormente sucedida pelo INEA; a SEA deu origem à atual SEAS)." },
-    { "termo": "CBH Baía de Guanabara", "significado": "Comitê de Bacia Hidrográfica da Região Hidrográfica da Baía de Guanabara — parceiro do IRM na integração de dados do Projeto Iguaçu ao SIGA Águas." },
-    { "termo": "AGEVAP", "significado": "Entidade de apoio à gestão de recursos hídricos que mantém, em conjunto com o CBH Baía de Guanabara, a plataforma SIGA Águas." },
-    { "termo": "SIGA Águas", "significado": "Sistema com acervo de mapas e camadas de dados georreferenciados sobre recursos hídricos, mantido pela AGEVAP e pelos comitês de bacia." },
-    { "termo": "SEI", "significado": "Sistema Eletrônico de Informações — sistema usado pelo governo do Rio de Janeiro para tramitar processos administrativos, como o processo licitatório das obras." },
-    { "termo": "Valor do contrato", "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada intervenção, apenas o valor contratado. Outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los." }
+    {
+      "termo": "IRM",
+      "significado": "Instituto Rio Metrópole — autarquia estadual responsável pela gestão metropolitana da Região Metropolitana do Rio de Janeiro (RMRJ) e pela coordenação do GT Projeto Iguaçu."
+    },
+    {
+      "termo": "GT",
+      "significado": "Grupo de Trabalho — neste caso, o GT Projeto Iguaçu, criado pela Portaria IRM nº 195/2025 para reunir, checar e divulgar informações sobre as intervenções."
+    },
+    {
+      "termo": "INEA",
+      "significado": "Instituto Estadual do Ambiente — órgão do governo do Rio de Janeiro responsável pela execução técnica da maior parte das obras do Projeto Iguaçu."
+    },
+    {
+      "termo": "EMOP",
+      "significado": "Empresa de Obras Públicas do Estado do Rio de Janeiro — empresa pública estadual voltada à execução de obras do governo do Rio de Janeiro. No Projeto Iguaçu, a consolidação do IRM a indica como órgão responsável pela execução da intervenção em pontes de Nova Iguaçu; esse projeto aguarda manifestação da própria EMOP sobre o atendimento da solicitação."
+    },
+    {
+      "termo": "SEAS",
+      "significado": "Secretaria de Estado do Ambiente e Sustentabilidade — órgão do governo do Rio de Janeiro na área de meio ambiente e recursos hídricos. A sigla aparece em registros anteriores do Projeto Iguaçu e no histórico de atualizações desta página; na consolidação atualmente publicada, nenhum projeto tem a SEAS como órgão responsável pela execução. Não confundir com a SEA, secretaria antecessora citada no Plano Diretor de 2007."
+    },
+    {
+      "termo": "SEIOP",
+      "significado": "Secretaria de Estado de Infraestrutura e Obras Públicas — órgão do governo do Rio de Janeiro na área de infraestrutura e obras. A sigla aparece em registros anteriores do Projeto Iguaçu e no histórico de atualizações desta página; na consolidação atualmente publicada, nenhum projeto tem a SEIOP como órgão responsável pela execução."
+    },
+    {
+      "termo": "MPRJ",
+      "significado": "Ministério Público do Estado do Rio de Janeiro."
+    },
+    {
+      "termo": "PAC / Novo PAC",
+      "significado": "Programa de Aceleração do Crescimento — programa federal de investimento em infraestrutura que financia parte das intervenções."
+    },
+    {
+      "termo": "PEDUI",
+      "significado": "Plano Estratégico de Desenvolvimento Urbano Integrado da Região Metropolitana do Rio de Janeiro, ratificado pela Lei Estadual nº 11.021/2025."
+    },
+    {
+      "termo": "DIRSMI",
+      "significado": "Diretoria de Saneamento Metropolitano Integrado — diretoria do IRM responsável pelos temas de saneamento e drenagem, incluindo o Projeto Iguaçu."
+    },
+    {
+      "termo": "RMRJ",
+      "significado": "Região Metropolitana do Rio de Janeiro — os 22 municípios sob gestão metropolitana do IRM."
+    },
+    {
+      "termo": "SEA / SERLA",
+      "significado": "Secretaria de Estado do Ambiente e Fundação Superintendência Estadual de Rios e Lagoas — órgãos estaduais responsáveis pelo Plano Diretor da Bacia Iguaçu/Sarapuí de 2007 (a SERLA foi posteriormente sucedida pelo INEA; a SEA deu origem à atual SEAS)."
+    },
+    {
+      "termo": "CBH Baía de Guanabara",
+      "significado": "Comitê de Bacia Hidrográfica da Região Hidrográfica da Baía de Guanabara — parceiro do IRM na integração de dados do Projeto Iguaçu ao SIGA Águas."
+    },
+    {
+      "termo": "AGEVAP",
+      "significado": "Entidade de apoio à gestão de recursos hídricos que mantém, em conjunto com o CBH Baía de Guanabara, a plataforma SIGA Águas."
+    },
+    {
+      "termo": "SIGA Águas",
+      "significado": "Sistema com acervo de mapas e camadas de dados georreferenciados sobre recursos hídricos, mantido pela AGEVAP e pelos comitês de bacia."
+    },
+    {
+      "termo": "SEI",
+      "significado": "Sistema Eletrônico de Informações — sistema usado pelo governo do Rio de Janeiro para tramitar processos administrativos, como o processo licitatório das obras."
+    },
+    {
+      "termo": "Valor do contrato",
+      "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada projeto, apenas o valor contratado. Outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los."
+    }
   ],
   "significadoSituacoes": [
-    { "situacao": "Fase de Projeto", "significado": "A intervenção está em fase de projeto ou diagnóstico, sem execução de obra iniciada." },
-    { "situacao": "Em Execução", "significado": "A obra está contratada e em execução física." },
-    { "situacao": "Concluído", "significado": "A obra foi finalizada." },
-    { "situacao": "Suspenso", "significado": "A execução da obra foi interrompida." }
+    {
+      "situacao": "Em licitação",
+      "significado": "O processo licitatório para a contratação ainda não foi concluído."
+    },
+    {
+      "situacao": "Em andamento",
+      "significado": "O contrato está vigente e a execução está em curso. A fonte não informa o percentual de avanço."
+    },
+    {
+      "situacao": "Conclusão em breve",
+      "significado": "A execução está em fase final, conforme declarado pelo órgão executor."
+    },
+    {
+      "situacao": "Baixa de cláusula suspensiva",
+      "significado": "O contrato foi assinado, mas sua eficácia depende da verificação da documentação pela mandatária; concluída essa etapa, o processo segue para a fase licitatória."
+    },
+    {
+      "situacao": "Aguardando manifestação",
+      "significado": "A execução foi pleiteada ao órgão por ofício e ainda não houve resposta sobre o atendimento da solicitação."
+    }
   ],
-  "limitacoes": "Esta é uma versão beta. O percentual físico/financeiro de execução de cada intervenção e o motivo de eventuais paralisações não constavam na extração de dados usada nesta página, por isso não são exibidos. O projeto guarda-chuva de controle de inundações do Rio Iguaçu (INEA/SEAS) é tratado à parte por ter valores divergentes entre os dois órgãos (ver Intervenções).",
+  "limitacoes": "Esta página apresenta o valor de contrato de cada projeto, tal como declarado pelo órgão executor. A fonte não informa valor executado, valor pago nem percentual de avanço físico ou financeiro, e esses números não são estimados aqui. Seis dos catorze projetos ainda não tiveram coordenadas declaradas e, por isso, não aparecem no mapa. Algumas datas de vigência são declaradas como texto (\"Aguardando licitação\", \"Janeiro de 2027 (a confirmar)\") e são exibidas exatamente como recebidas.",
   "canalContato": "Dúvidas, correções ou solicitações de informação podem ser encaminhadas à Diretoria de Saneamento Metropolitano Integrado (DIRSMI) do IRM pelo e-mail saneamento@irm.rj.gov.br.",
   "avisoConsolidacao": "As informações divulgadas nesta página são consolidadas pelo Instituto Rio Metrópole a partir dos dados encaminhados pelos órgãos responsáveis. Informações ainda não validadas são identificadas expressamente."
 }

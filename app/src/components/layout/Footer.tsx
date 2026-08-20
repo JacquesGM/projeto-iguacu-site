@@ -20,7 +20,7 @@ const colunas = [
     titulo: 'Dados abertos',
     itens: [
       'Os dados públicos do Projeto Iguaçu são estruturados com fonte e data de referência.',
-      'Baixe os dados de indicadores, intervenções e documentos em CSV ou PDF diretamente nas páginas correspondentes.',
+      'Baixe os dados de indicadores, projetos e documentos em CSV ou PDF diretamente nas páginas correspondentes.',
     ],
   },
 ];

@@ -2,40 +2,47 @@
 <rss version="2.0">
   <channel>
     <title>Projeto Iguaçu — Atualizações (Instituto Rio Metrópole)</title>
-    <link>https://jacquesgm.github.io/projeto-iguacu-site/transparencia</link>
+    <link>https://projeto-iguacu-irm.web.app/transparencia</link>
     <description>Registro de atualizações da página pública de acompanhamento do Projeto Iguaçu.</description>
     <language>pt-BR</language>
     <item>
+      <title>Atualização de 20/08/2026</title>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
+      <guid isPermaLink="false">projeto-iguacu-20-08-2026-RXNjb3BvIHJl</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Escopo reduzido aos 14 projetos publicados na página oficial do Projeto Iguaçu no site do IRM, que passa a ser a única fonte do conteúdo público. Substituídos os 11 registros da extração BI/INFOVIA de 23/07/2026, adotado o vocabulário de situação declarado pelos órgãos e removidos os indicadores que a fonte não informa (população beneficiada e investimento previsto agregado).</description>
+    </item>
+    <item>
       <title>Atualização de 05/08/2026</title>
-      <link>https://jacquesgm.github.io/projeto-iguacu-site/transparencia</link>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-05-08-2026-RXNjbGFyZWNp</guid>
       <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
       <description>Esclarecida a relação entre a situação institucional da nova licitação e as 11 intervenções já contratadas; adicionado o recorte &quot;Intervenções por órgão executor&quot; (INEA, SEAS, SEIOP).</description>
     </item>
     <item>
       <title>Atualização de 05/08/2026</title>
-      <link>https://jacquesgm.github.io/projeto-iguacu-site/transparencia</link>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-05-08-2026-QWRpY2lvbmFk</guid>
       <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
       <description>Adicionadas as siglas SEAS e SEIOP ao glossário e corrigido o nome da diretoria do IRM (DIRSMI) nas páginas em que aparecia divergente.</description>
     </item>
     <item>
       <title>Atualização de 04/08/2026</title>
-      <link>https://jacquesgm.github.io/projeto-iguacu-site/transparencia</link>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-04-08-2026-T3MgaW5kaWNh</guid>
       <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
       <description>Os indicadores principais passaram a detalhar, ao clicar, as intervenções reais por trás de cada número.</description>
     </item>
     <item>
       <title>Atualização de 04/08/2026</title>
-      <link>https://jacquesgm.github.io/projeto-iguacu-site/transparencia</link>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-04-08-2026-U3Vic3RpdHXD</guid>
       <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
       <description>Substituídos os dados demonstrativos por dados reais extraídos do sistema BI/INFOVIA do IRM, incluindo valores de contrato, situação e coordenadas de cada intervenção.</description>
     </item>
     <item>
       <title>Atualização de 31/07/2026</title>
-      <link>https://jacquesgm.github.io/projeto-iguacu-site/transparencia</link>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-31-07-2026-UHJpbWVpcmEg</guid>
       <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
       <description>Primeira versão pública desta página de acompanhamento.</description>

@@ -1,13 +1,14 @@
 {
   "faseAtual": "Licitação em andamento e elaboração do projeto executivo (nova etapa do projeto guarda-chuva)",
   "atividadesEmAndamento": [
-    "Tramitação do processo licitatório aberto no SEI pelo INEA (desde 06/02/2026).",
-    "Elaboração do projeto executivo, dentro do prazo de 18 meses definido em 12/02/2026 (sendo os 3 meses iniciais dedicados ao projeto executivo).",
-    "Coleta e consolidação, pelo GT Projeto Iguaçu, das informações enviadas pelos órgãos executores e prefeituras."
+    "Tramitação dos processos licitatórios do INEA para as obras e o apoio técnico em Duque de Caxias (SEI-070002/001282/2026 e SEI-070002/002506/2026).",
+    "Licitações da Prefeitura de Belford Roxo para as obras e o apoio técnico do Novo PAC, aguardando o período de defeso eleitoral.",
+    "Obras em execução em Belford Roxo (Maxambomba e Saneamento São Francisco), Duque de Caxias (Calombé) e São João de Meriti (Canal Pavuninha).",
+    "Coleta e consolidação, pelo GT IRM – Projeto Iguaçu, das informações enviadas pelos órgãos executores e prefeituras."
   ],
   "ultimoMarco": "10/02/2026 — Emissão de reserva orçamentária de R$ 147 milhões para projeto executivo e obras.",
   "proximoMarco": "Definição do processo licitatório prevista para junho de 2026; início físico das obras estimado para o 4º trimestre de 2026, segundo o INEA.",
-  "dataReferencia": "30/06/2026",
-  "situacaoGeral": "Refere-se à nova etapa de licitação, ainda em andamento; sem obras físicas iniciadas nesta etapa específica.",
-  "escopoRessalva": "Este resumo descreve a nova etapa de licitação apresentada pelo GT em 25/06/2026. As 11 intervenções já contratadas têm situação própria e mais recente (extração de dados de 23/07/2026), incluindo obras em execução e concluídas. Ver Indicadores e Intervenções para a execução física de cada uma."
+  "dataReferencia": "23/07/2026",
+  "situacaoGeral": "Licitações em curso e obras em andamento simultaneamente: cada projeto tem situação própria, declarada pelo órgão responsável por sua execução.",
+  "escopoRessalva": "Este resumo descreve a etapa de licitação do Novo PAC apresentada pelo GT. Os 14 projetos publicados têm situação própria, declarada por cada órgão executor na consolidação de 06/08/2026. Ver Indicadores e Projetos para o detalhe de cada um."
 }

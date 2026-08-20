@@ -22,7 +22,7 @@ interface GrupoMunicipio {
 }
 
 function textoContagem(n: number): string {
-  return n === 1 ? '1 intervenção registrada' : `${n} intervenções registradas`;
+  return n === 1 ? '1 projeto com coordenada' : `${n} projetos com coordenada`;
 }
 
 export function MunicipiosMap() {
@@ -33,9 +33,11 @@ export function MunicipiosMap() {
     return municipios
       .map((municipio) => {
         const doGrupo = intervencoes.filter(
-          (i) => i.municipioId === municipio.id && i.latitude !== null && i.longitude !== null,
+          (i) => (i.municipioId === municipio.id || i.municipiosAdicionais.includes(municipio.id)) && i.pontos.length > 0,
         );
-        const pontos = doGrupo.map((i) => ({ lat: i.latitude as number, lng: i.longitude as number }));
+        // Todos os pontos declarados entram no contorno, não só o representativo:
+        // as pontes de Nova Iguaçu têm 10 e os reservatórios, 3.
+        const pontos = doGrupo.flatMap((i) => i.pontos.map((pt) => ({ lat: pt.lat, lng: pt.lng })));
         return { municipio, pontos, intervencoesDoGrupo: doGrupo };
       })
       .filter((g) => g.pontos.length > 0);
@@ -44,9 +46,10 @@ export function MunicipiosMap() {
   return (
     <div>
       <p className="text-sm text-neutral-600">
-        Áreas aproximadas construídas a partir das coordenadas reais de cada intervenção registrada (extração
-        BI/INFOVIA do IRM) — não representam um perímetro oficial. Com 3 ou mais pontos distintos, o contorno
-        conecta essas coordenadas; com 1 ou 2 pontos, mostramos um círculo ilustrativo ao redor deles.
+        Áreas aproximadas construídas a partir das coordenadas declaradas pelos órgãos executores na página
+        oficial do IRM — não representam um perímetro oficial. Com 3 ou mais pontos distintos, o contorno conecta
+        essas coordenadas; com 1 ou 2 pontos, mostramos um círculo ilustrativo ao redor deles. Projetos sem
+        coordenada declarada não aparecem no mapa, mas constam na lista acima.
       </p>
 
       <div className="mt-4 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
@@ -59,7 +62,7 @@ export function MunicipiosMap() {
             zoom={10}
             scrollWheelZoom={false}
             className="h-full w-full"
-            aria-label="Áreas aproximadas das intervenções do Projeto Iguaçu, por município"
+            aria-label="Áreas aproximadas dos projetos do Projeto Iguaçu, por município"
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -116,7 +119,7 @@ export function MunicipiosMap() {
               const grupo = grupos.find((g) => g.municipio.id === selecionado.id);
               return (
                 <div>
-                  <p className="font-semibold text-neutral-900">{selecionado.nome}</p>
+                  <h3 className="font-semibold text-neutral-900">{selecionado.nome}</h3>
                   <ul className="mt-3 space-y-3">
                     {grupo?.intervencoesDoGrupo.map((item) => (
                       <li key={item.id} className="border-b border-neutral-100 pb-3 last:border-0 last:pb-0">
@@ -135,7 +138,7 @@ export function MunicipiosMap() {
             })()
           ) : (
             <p className="text-sm text-neutral-500">
-              Clique em uma área do mapa para ver as intervenções registradas naquele município.
+              Clique em uma área do mapa para ver os projetos com coordenada declarada naquele município.
             </p>
           )}
         </Card>

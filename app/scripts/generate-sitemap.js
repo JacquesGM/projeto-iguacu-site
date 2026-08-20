@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SITE_URL = 'https://jacquesgm.github.io/projeto-iguacu-site';
+const SITE_URL = process.env.SITE_URL ?? 'https://projeto-iguacu-irm.web.app';
 
 const routesSource = readFileSync(path.join(__dirname, '../src/routes.tsx'), 'utf8');
 const paths = [...routesSource.matchAll(/path:\s*'([^']*)'/g)].map((m) => m[1]);
