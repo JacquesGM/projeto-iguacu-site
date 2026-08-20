@@ -34,9 +34,9 @@
     "titulo": "SIGA Águas — Baía de Guanabara",
     "tipo": "Sistema público relacionado",
     "orgao": "AGEVAP / CBH Baía de Guanabara",
-    "descricao": "Sistema com acervo de mapas e camadas de dados georreferenciados da Região Hidrográfica V (Baía de Guanabara). O IRM e o CBH Baía de Guanabara vão integrar dados do Projeto Iguaçu a esta plataforma.",
+    "descricao": "Painel de indicadores e acervo de mapas e camadas georreferenciadas da Região Hidrográfica V (Baía de Guanabara). O IRM e o CBH Baía de Guanabara vão integrar dados do Projeto Iguaçu a esta plataforma.",
     "formato": "Plataforma web (SIG)",
-    "url": "https://sigaaguas.org.br/sigaweb/apps/baia-de-guanabara"
+    "url": "https://sigaaguas.org.br/home/sigaguanabara/"
   },
   {
     "id": "d9",
