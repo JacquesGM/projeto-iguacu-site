@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { FileText, Menu, TextCursorInput, X } from 'lucide-react';
+import { Menu, TextCursorInput, X } from 'lucide-react';
 import logoIrm from '../../assets/logo-irm-branca-horizontal.png';
 import logoGovernoRj from '../../assets/logo-governo-rj.png';
 import identidadeData from '../../data/identidade.json';
@@ -78,13 +78,6 @@ export function Header() {
               <TextCursorInput aria-hidden="true" className="h-4 w-4" />
               Texto maior
             </button>
-            <Link
-              to="/documentos"
-              className="hidden min-h-[44px] items-center gap-1.5 rounded-md bg-white px-3 text-sm font-medium text-brand-blue-800 hover:bg-brand-blue-50 sm:inline-flex"
-            >
-              <FileText aria-hidden="true" className="h-4 w-4" />
-              Acessar documentos
-            </Link>
             <button
               type="button"
               className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30 text-white xl:hidden"
