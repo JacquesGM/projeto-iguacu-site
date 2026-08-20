@@ -7,6 +7,20 @@ informação não estava disponível nos documentos de referência, o campo
 correspondente na página mostra "Não informado", "A confirmar" ou
 "Link a inserir".
 
+> **Atualização (20/08/2026 — escopo reduzido)**: o conteúdo público do `app/`
+> passou a ser **exclusivamente os 14 projetos publicados na página oficial do
+> Projeto Iguaçu** (<https://www.rj.gov.br/irm/node/387>, consolidação de
+> 06/08/2026), que é agora a única fonte do dado publicado. Os 11 registros da
+> extração BI/INFOVIA de 23/07/2026 saíram do ar e ficam preservados como
+> registro de origem. Pendências e divergências detalhadas em
+> `Docs/Modelo novo/ESCOPO_REDUZIDO_2026-08-20.md`; o escopo do produto está no
+> `Prompt_Mestre_Atualizacao_Portal_Projeto_Iguacu_v2.1`, na mesma pasta.
+>
+> Continuam pendentes, agora para os 14 projetos: percentual de avanço, valor
+> executado e valor pago (a fonte não informa nenhum dos três); coordenadas de 6
+> projetos; processo SEI de 4 projetos; término de vigência de Calombé e
+> Roncador; e a ficha original de Mesquita.
+
 > **Atualização (dados reais recebidos)**: com o recebimento de
 > `Docs/Dados_BI.xlsx` (extração BI/INFOVIA do IRM, referência de
 > 23/07/2026), a versão em `app/` já substituiu as 8 intervenções
@@ -21,35 +35,35 @@ correspondente na página mostra "Não informado", "A confirmar" ou
 > página em vez de resolvida silenciosamente.
 
 ## Identidade visual
-- [x] Logotipo oficial do IRM — já inserido (`assets/img/logo-irm-branca-horizontal.png`
-      e `assets/img/logo-governo-rj.png`), obtido em www.rj.gov.br/irm em 31/07/2026.
+- [x] Logotipo oficial do IRM — já inserido (`Docs/Modelo antigo/prototipo-estatico/assets/img/logo-irm-branca-horizontal.png`
+      e `Docs/Modelo antigo/prototipo-estatico/assets/img/logo-governo-rj.png`), obtido em www.rj.gov.br/irm em 31/07/2026.
 - [ ] Confirmar com o IRM se este é o arquivo/versão mais atual da marca, e se
       existe um arquivo vetorial (.svg/.eps) de maior qualidade a fornecer.
 - [ ] Manual de identidade visual/marca, se existir, para ajustar cores,
       tipografia e espaçamentos ao padrão oficial com mais precisão.
 - [x] Imagem para a seção de abertura — já inserida uma fotografia real do
-      rio Iguaçu (`assets/img/rio-iguacu-nascente.jpg`, Gerson Tavares, CC BY 2.0,
+      rio Iguaçu (`Docs/Modelo antigo/prototipo-estatico/assets/img/rio-iguacu-nascente.jpg`, Gerson Tavares, CC BY 2.0,
       via Wikimedia Commons). É uma imagem ilustrativa do rio, não de uma obra
       específica; substituir por foto institucional oficial do IRM, se houver.
 
 ## Endereços e links institucionais
 - [x] URL do site institucional do IRM confirmada: https://www.rj.gov.br/irm
       (já preenchida em `identidade.siteInstitucionalUrl` e
-      `rodape.linkSitePrincipal` em `js/dados.js`).
+      `rodape.linkSitePrincipal` em `Docs/Modelo antigo/prototipo-estatico/js/dados.js` (arquivado)).
 - [ ] URL da política de privacidade do IRM (`rodape.linkPrivacidade`).
 - [ ] URL da página de acessibilidade do IRM (`rodape.linkAcessibilidade`).
 - [ ] URL canônica definitiva desta página, para a tag `<link rel="canonical">`
-      em `index.html`, quando esta página tiver um endereço público definitivo.
+      em `app/index.html`, quando esta página tiver um endereço público definitivo.
 
 ## Município e território
 - [ ] Lista oficial e definitiva dos municípios contemplados nesta fase do
       Projeto Iguaçu (o protótipo estático mantém 3 municípios demonstrativos
-      em `js/dados.js`, bloco 7; a versão `app/` já mostra Duque de Caxias,
+      em `Docs/Modelo antigo/prototipo-estatico/js/dados.js` (arquivado), bloco 7; a versão `app/` já mostra Duque de Caxias,
       Belford Roxo e Nilópolis com intervenção real registrada — Nova Iguaçu
       segue sem intervenção na extração recebida, apesar de dar nome ao
       projeto).
 - [x] Mapa de localização geral da Baixada Fluminense já inserido
-      (`assets/img/mapa-baixada-fluminense.png`, Alvoradaking, CC BY-SA 4.0,
+      (`Docs/Modelo antigo/prototipo-estatico/assets/img/mapa-baixada-fluminense.png`, Alvoradaking, CC BY-SA 4.0,
       via Wikimedia Commons) — é apenas um mapa de referência da região, não
       um mapa oficial das intervenções.
 - [ ] Mapa oficial do território com a localização de cada intervenção, ou a
@@ -57,7 +71,7 @@ correspondente na página mostra "Não informado", "A confirmar" ou
       publicamente.
 
 ## Intervenções (obras)
-As 8 intervenções em `js/dados.js` (bloco 8, protótipo estático) continuam
+As 8 intervenções em `Docs/Modelo antigo/prototipo-estatico/js/dados.js` (arquivado) (bloco 8, protótipo estático) continuam
 **demonstrativas** (`demonstrativo: true`) — não foram alteradas. Na versão
 `app/`, foram substituídas por 11 intervenções reais (`intervencoes.json`):
 - [x] Nome do projeto (objeto), tipo, programa e processo SEI de cada obra;
@@ -80,7 +94,7 @@ As 8 intervenções em `js/dados.js` (bloco 8, protótipo estático) continuam
 
 ## Documentos
 Os seguintes documentos estão referenciados na página (bloco 10 de
-`js/dados.js`), mas **sem link**, por não haver URL oficial disponível nos
+`Docs/Modelo antigo/prototipo-estatico/js/dados.js` (arquivado)), mas **sem link**, por não haver URL oficial disponível nos
 materiais de referência consultados:
 - [ ] Portaria IRM nº 195/2025;
 - [ ] Plano Diretor da Bacia Iguaçu/Sarapuí (SEA/SERLA, 2007);

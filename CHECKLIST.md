@@ -1,13 +1,18 @@
 # Checklist antes da publicação
 
-Use esta lista antes de publicar a página no site institucional ou de
-divulgar o link publicamente.
+Use esta lista antes de publicar o portal ou de divulgar o link publicamente.
+Ela se aplica à aplicação em `app/` — o protótipo estático original está
+arquivado em `Docs/Modelo antigo/prototipo-estatico/` e não deve ser publicado.
+
+- [ ] `npm test` passa em `app/` (inclui os controles da consolidação oficial:
+      14 projetos e soma dos contratos igual a R$ 755.161.214,53).
+- [ ] `npx tsc -b` e `npm run build` passam sem erro.
 
 ## Conteúdo e dados
 - [ ] Todos os itens de `PENDENCIAS.md` foram resolvidos ou aceitos
       conscientemente como pendentes (com prazo definido).
-- [ ] Nenhuma intervenção continua com `demonstrativo: true` apontando
-      dados fictícios como se fossem reais.
+- [ ] Todo projeto exibido consta da página oficial do IRM; nenhum dado
+      fictício ou de demonstração foi reintroduzido.
 - [ ] Nenhum número (indicador, percentual, valor de contrato) foi inventado
       — tudo vem de fonte identificável ou está marcado como "A confirmar" /
       "Dado em validação".
@@ -15,7 +20,7 @@ divulgar o link publicamente.
       URL oficial mostram "Link a inserir".
 - [ ] Campos sem informação mostram "Não informado", nunca ficam em branco.
 - [ ] Data de atualização (`meta.ultimaAtualizacao`) e data de referência
-      (`meta.dataReferencia`) em `js/dados.js` estão corretas.
+      (`meta.dataReferencia`) em `app/src/data/meta.json` estão corretas.
 - [ ] O aviso de versão beta (`meta.avisoVersaoBeta`) foi removido ou
       atualizado quando a página deixar de ser protótipo.
 
@@ -53,7 +58,7 @@ divulgar o link publicamente.
 - [ ] Testado nos principais navegadores modernos (Chrome, Edge, Firefox).
 
 ## Institucional
-- [ ] Equipe de Comunicação treinada para editar `js/dados.js`.
+- [ ] Equipe de Comunicação treinada para editar os JSON em `app/src/data/`.
 - [ ] Decisão tomada sobre a forma de incorporação ao site institucional
       atual (ver seção correspondente no `README.md`).
 - [ ] Canal de contato para dúvidas/correções (`saneamento@irm.rj.gov.br`)
@@ -72,7 +77,7 @@ divulgar o link publicamente.
       no código-fonte da página.
 - [ ] Nenhum documento interno foi linkado publicamente por engano.
 - [ ] Confirmado com o IRM que os nomes/e-mails de contato do GT
-      (`js/dados.js`, bloco 13) podem ser publicados nesta página pública,
+      (`app/src/data/contatos.json`) podem ser publicados nesta página pública,
       em conformidade com a LGPD (dados de agentes públicos em exercício
       de função, e não dados pessoais sensíveis de terceiros).
 
