@@ -14,16 +14,16 @@ export function Sobre() {
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4 text-neutral-700">
           <div>
-            <p className="font-semibold text-neutral-900">O que é</p>
+            <h3 className="font-semibold text-neutral-900">O que é</h3>
             <p className="mt-1">{sobre.oQueE}</p>
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">O problema público</p>
+            <h3 className="font-semibold text-neutral-900">O problema público</h3>
             <p className="mt-1">{sobre.problemaPublico}</p>
           </div>
         </div>
         <div>
-          <p className="font-semibold text-neutral-900">Objetivos</p>
+          <h3 className="font-semibold text-neutral-900">Objetivos</h3>
           <ul className="mt-2 space-y-2">
             {sobre.objetivos.map((item) => (
               <li key={item} className="flex items-start gap-2 text-sm text-neutral-700">
@@ -45,7 +45,7 @@ export function Sobre() {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
         <div>
-          <p className="font-semibold text-neutral-900">Base legal</p>
+          <h3 className="font-semibold text-neutral-900">Base legal</h3>
           <ul className="mt-2 space-y-2 text-sm text-neutral-600">
             {sobre.baseLegal.map((item) => (
               <li key={item}>{item}</li>
@@ -53,10 +53,10 @@ export function Sobre() {
           </ul>
         </div>
         <div>
-          <p className="flex items-center gap-2 font-semibold text-neutral-900">
+          <h3 className="flex items-center gap-2 font-semibold text-neutral-900">
             <Users aria-hidden="true" className="h-4 w-4 text-brand-blue-600" />
             Órgãos participantes
-          </p>
+          </h3>
           <ul className="mt-2 space-y-1.5 text-sm text-neutral-600">
             {sobre.orgaosParticipantes.map((item) => (
               <li key={item}>{item}</li>

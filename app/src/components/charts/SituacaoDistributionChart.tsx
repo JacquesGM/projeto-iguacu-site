@@ -32,7 +32,7 @@ export function SituacaoDistributionChart({ situacoes }: { situacoes: SituacaoIn
 
   return (
     <div>
-      <p className="text-sm font-semibold text-neutral-900">Projetos por situação</p>
+      <h2 className="text-sm font-semibold text-neutral-900">Projetos por situação</h2>
       <div className="mt-3 h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={8}>

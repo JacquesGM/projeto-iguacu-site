@@ -51,6 +51,7 @@ export function Intervencoes() {
     <Section
       id="intervencoes"
       title="Projetos por município"
+      headingLevel="h1"
       subtitle="Pesquise, filtre e ordene os 14 projetos publicados pelo IRM; clique em uma linha para ver todos os detalhes."
       tone="muted"
     >
@@ -87,7 +88,7 @@ export function Intervencoes() {
       <InterventionsTable />
 
       <div className="mt-12 border-t border-neutral-200 pt-10">
-        <p className="text-lg font-semibold text-neutral-900">Onde estão os projetos</p>
+        <h2 className="text-lg font-semibold text-neutral-900">Onde estão os projetos</h2>
         <p className="mt-1 text-sm text-neutral-600">{territorio.descricaoTextual}</p>
         <div className="mt-4">
           <Suspense fallback={<PageLoading label="Carregando mapa..." />}>

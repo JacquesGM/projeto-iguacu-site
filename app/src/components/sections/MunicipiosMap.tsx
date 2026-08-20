@@ -119,7 +119,7 @@ export function MunicipiosMap() {
               const grupo = grupos.find((g) => g.municipio.id === selecionado.id);
               return (
                 <div>
-                  <p className="font-semibold text-neutral-900">{selecionado.nome}</p>
+                  <h3 className="font-semibold text-neutral-900">{selecionado.nome}</h3>
                   <ul className="mt-3 space-y-3">
                     {grupo?.intervencoesDoGrupo.map((item) => (
                       <li key={item.id} className="border-b border-neutral-100 pb-3 last:border-0 last:pb-0">

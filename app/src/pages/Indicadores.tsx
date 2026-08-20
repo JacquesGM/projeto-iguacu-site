@@ -164,6 +164,7 @@ export function Indicadores() {
     <Section
       id="indicadores"
       title="Indicadores principais"
+      headingLevel="h1"
       subtitle="Os números do Projeto Iguaçu, calculados automaticamente a partir dos 14 projetos publicados pelo IRM. Clique em um indicador para ver como ele foi calculado."
     >
       <div className="mb-6">

@@ -23,37 +23,38 @@ export function Transparencia() {
     <Section
       id="transparencia"
       title="Transparência e metodologia"
+      headingLevel="h1"
       subtitle="De onde vêm os dados, quem os fornece e como o IRM os consolida."
       tone="muted"
     >
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4 text-neutral-700">
           <div>
-            <p className="font-semibold text-neutral-900">Origem dos dados</p>
+            <h2 className="font-semibold text-neutral-900">Origem dos dados</h2>
             <p className="mt-1">{transparencia.origemDados}</p>
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">Responsáveis pelo fornecimento</p>
+            <h2 className="font-semibold text-neutral-900">Responsáveis pelo fornecimento</h2>
             <p className="mt-1">{transparencia.responsaveisFornecimento}</p>
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">Consolidação</p>
+            <h2 className="font-semibold text-neutral-900">Consolidação</h2>
             <p className="mt-1">{transparencia.consolidacaoIRM}</p>
           </div>
         </div>
         <div className="space-y-4 text-neutral-700">
           <div>
-            <p className="font-semibold text-neutral-900">Data de referência e periodicidade</p>
+            <h2 className="font-semibold text-neutral-900">Data de referência e periodicidade</h2>
             <p className="mt-1">
               Data de referência: {transparencia.dataReferencia}. {transparencia.periodicidade}
             </p>
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">Limitações desta versão</p>
+            <h2 className="font-semibold text-neutral-900">Limitações desta versão</h2>
             <p className="mt-1">{transparencia.limitacoes}</p>
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">Canal para esclarecimentos e correções</p>
+            <h2 className="font-semibold text-neutral-900">Canal para esclarecimentos e correções</h2>
             <p className="mt-1">{transparencia.canalContato}</p>
           </div>
         </div>
@@ -64,7 +65,7 @@ export function Transparencia() {
       </Card>
 
       <div className="mt-10">
-        <p className="text-lg font-semibold text-neutral-900">Significado das situações</p>
+        <h2 className="text-lg font-semibold text-neutral-900">Significado das situações</h2>
         <dl className="mt-3">
           {transparencia.significadoSituacoes.map((item) => (
             <Definicao key={item.situacao} termo={item.situacao} significado={item.significado} />
@@ -73,7 +74,7 @@ export function Transparencia() {
       </div>
 
       <div className="mt-10">
-        <p className="text-lg font-semibold text-neutral-900">Glossário de siglas e termos técnicos</p>
+        <h2 className="text-lg font-semibold text-neutral-900">Glossário de siglas e termos técnicos</h2>
         <dl className="mt-3">
           {transparencia.glossario.map((item) => (
             <Definicao key={item.termo} termo={item.termo} significado={item.significado} />
@@ -83,7 +84,7 @@ export function Transparencia() {
 
       <div className="mt-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-lg font-semibold text-neutral-900">Últimas atualizações desta página</p>
+          <h2 className="text-lg font-semibold text-neutral-900">Últimas atualizações desta página</h2>
           <a
             href={`${import.meta.env.BASE_URL}rss.xml`}
             className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
@@ -102,7 +103,7 @@ export function Transparencia() {
       </div>
 
       <div className="mt-10">
-        <p className="text-lg font-semibold text-neutral-900">Contatos do Grupo de Trabalho</p>
+        <h2 className="text-lg font-semibold text-neutral-900">Contatos do Grupo de Trabalho</h2>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
           {contatos.map((c) => (
             <li key={c.email} className="rounded-lg border border-neutral-200 bg-white p-4 text-sm">

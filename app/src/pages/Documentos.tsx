@@ -24,6 +24,7 @@ export function Documentos() {
     <Section
       id="documentos"
       title="Documentos e links"
+      headingLevel="h1"
       subtitle="Atos normativos, relatórios, apresentações e sistemas públicos relacionados ao Projeto Iguaçu."
     >
       <div className="mb-6">
@@ -68,7 +69,7 @@ export function Documentos() {
       </div>
 
       <div className="mt-8">
-        <p className="text-sm font-semibold text-neutral-900">Fontes gerais</p>
+        <h2 className="text-sm font-semibold text-neutral-900">Fontes gerais</h2>
         <ul className="mt-2 space-y-1 text-sm text-neutral-600">
           {fontes.map((fonte) => (
             <li key={fonte}>{fonte}</li>

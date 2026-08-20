@@ -13,6 +13,7 @@ export function LinhaDoTempo() {
     <Section
       id="linha-do-tempo"
       title="Linha do tempo institucional"
+      headingLevel="h1"
       subtitle="Do primeiro estudo técnico, em 1996, até a fase atual do Projeto Iguaçu."
     >
       <Card className="mb-6 border-amber-300 bg-amber-50">

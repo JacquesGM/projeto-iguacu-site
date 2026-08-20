@@ -11,6 +11,7 @@ export function SituacaoAtual() {
     <Section
       id="situacao-atual"
       title="Situação atual"
+      headingLevel="h1"
       subtitle="Fase, marcos e atividades em andamento do Projeto Iguaçu."
       tone="muted"
     >
@@ -47,7 +48,7 @@ export function SituacaoAtual() {
       </Card>
 
       <Card className="mt-6">
-        <p className="font-semibold text-neutral-900">Atividades em andamento</p>
+        <h2 className="font-semibold text-neutral-900">Atividades em andamento</h2>
         <ul className="mt-3 space-y-2 text-sm text-neutral-700">
           {situacao.atividadesEmAndamento.map((item) => (
             <li key={item} className="flex items-start gap-2">
