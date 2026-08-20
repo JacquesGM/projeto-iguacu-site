@@ -67,7 +67,7 @@
     },
     {
       "termo": "Valor do contrato",
-      "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada intervenção, apenas o valor contratado. Outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los."
+      "significado": "Valor firmado em contrato com a empresa executora. Esta página registra, para cada projeto, apenas o valor contratado. Outros momentos do valor (previsto, empenhado, pago) serão incorporados conforme os órgãos executores passarem a informá-los."
     }
   ],
   "significadoSituacoes": [

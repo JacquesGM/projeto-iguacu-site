@@ -36,14 +36,16 @@ export const routes: AppRoute[] = [
     path: '/indicadores',
     label: 'Indicadores',
     title: 'Indicadores principais',
-    description: 'Municípios contemplados, intervenções por situação e demais números do Projeto Iguaçu, com fonte e período.',
+    description: 'Municípios contemplados, projetos por situação e demais números do Projeto Iguaçu, com fonte e período.',
     element: <Indicadores />,
   },
   {
+    // A rota continua /intervencoes: o endereço já foi divulgado e trocá-lo
+    // quebraria links salvos. Muda só o que a pessoa lê.
     path: '/intervencoes',
-    label: 'Intervenções',
-    title: 'Intervenções por município',
-    description: 'Tabela filtrável e pesquisável das intervenções do Projeto Iguaçu, com detalhes completos de cada obra.',
+    label: 'Projetos',
+    title: 'Projetos por município',
+    description: 'Tabela filtrável e pesquisável dos projetos do Projeto Iguaçu, com detalhes completos de cada um.',
     element: <Intervencoes />,
   },
   {
