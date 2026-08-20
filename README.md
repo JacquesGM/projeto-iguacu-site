@@ -98,8 +98,36 @@ HTML semântico, navegação completa por teclado, foco visível, link "pular pa
 conteúdo", VLibras, situação nunca comunicada só por cor (cor + ícone + texto),
 alternativa em lista para o mapa e tabela que vira lista de cartões no celular.
 
-## Próximos passos
+## Arquitetura
 
-O escopo do produto — portal público mais área administrativa privada, operando
-no plano gratuito do Firebase — está descrito em
-`Docs/Modelo novo/Prompt_Mestre_Atualizacao_Portal_Projeto_Iguacu_v2.1.md`.
+O portal é **inteiramente público e estático**: não há login, banco de dados nem
+servidor de aplicação. Os dados vivem em JSON versionado neste repositório, o
+build gera arquivos estáticos e o Firebase Hosting os serve pelo CDN.
+
+```
+app/src/data/*.json  →  npm run build  →  app/dist  →  Firebase Hosting
+   (fonte, no Git)       (testes no CI)                (projeto-iguacu-irm.web.app)
+```
+
+Consequências práticas dessa escolha:
+
+- **Custo R$ 0.** Plano Spark, sem conta de faturamento vinculada. Os limites
+  gratuitos do Hosting são 10 GB de armazenamento e 10 GB/mês de transferência.
+- **Sem superfície de ataque de dados.** Não existe endpoint de escrita: alterar
+  o conteúdo exige acesso ao repositório.
+- **Trilha de auditoria de graça.** O Git registra quem mudou o quê, quando e por
+  quê — o histórico de versões que um portal de transparência precisa ter, sem
+  construir nada para isso.
+- **Sem cota de leitura.** O conteúdo é servido pelo CDN; um pico de acesso não
+  derruba o portal nem estoura limite gratuito.
+
+Projeto Firebase: `carrinho-virtual-iw-48fc7` (exibido como "Projeto Iguaçu"; o
+ID é permanente no Google Cloud e não pode ser alterado). Site de Hosting:
+`projeto-iguacu-irm`.
+
+## Escopo do produto
+
+`Docs/Modelo novo/Prompt_Mestre_Atualizacao_Portal_Projeto_Iguacu_v2.2` — versão
+vigente, para o portal público estático. A v2.1 continua na pasta como registro
+histórico: ela descrevia uma área administrativa privada com Firestore, papéis e
+convites, descartada pela decisão de que o sistema é público e sem login.

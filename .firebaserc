@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "carrinho-virtual-iw-48fc7",
+    "prod": "carrinho-virtual-iw-48fc7"
+  },
+  "targets": {
+    "carrinho-virtual-iw-48fc7": {
+      "hosting": {
+        "portal": [
+          "projeto-iguacu-irm"
+        ]
+      }
+    }
+  }
+}
