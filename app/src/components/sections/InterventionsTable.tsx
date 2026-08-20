@@ -6,6 +6,7 @@ import type { Intervencao, Municipio } from '../../types';
 import { SituacaoBadge, SITUACOES_VALIDAS } from '../ui/SituacaoBadge';
 import { EmptyState } from '../ui/EmptyState';
 import { InterventionModal } from './InterventionModal';
+import { primeiraMaiuscula } from '../../lib/texto';
 
 const intervencoes = intervencoesData as Intervencao[];
 const municipios = municipiosData as Municipio[];
@@ -229,7 +230,7 @@ export function InterventionsTable() {
                   <tr key={item.id} className="align-top">
                     <td className="px-4 py-3 font-medium text-neutral-900">{item.nomeProjeto}</td>
                     <td className="px-4 py-3">{nomesMunicipios(item)}</td>
-                    <td className="px-4 py-3">{item.tipo}</td>
+                    <td className="px-4 py-3">{primeiraMaiuscula(item.tipo)}</td>
                     <td className="px-4 py-3">{item.orgaoResponsavel}</td>
                     <td className="px-4 py-3">
                       <SituacaoBadge situacao={item.situacao} />
@@ -241,7 +242,7 @@ export function InterventionsTable() {
                         type="button"
                         onClick={() => setSelecionada(item)}
                         aria-haspopup="dialog"
-                        className="min-h-9 rounded-md border border-neutral-400 px-3 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
+                        className="min-h-9 whitespace-nowrap rounded-md border border-neutral-400 px-3 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
                       >
                         Ver detalhes
                       </button>
@@ -264,7 +265,7 @@ export function InterventionsTable() {
                   </div>
                   <div className="flex items-start justify-between gap-3">
                     <dt className="text-neutral-500">Tipo</dt>
-                    <dd className="text-right font-medium text-neutral-900">{item.tipo}</dd>
+                    <dd className="text-right font-medium text-neutral-900">{primeiraMaiuscula(item.tipo)}</dd>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <dt className="text-neutral-500">Situação</dt>

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import type { Intervencao } from '../../types';
 import { SituacaoBadge } from '../ui/SituacaoBadge';
+import { primeiraMaiuscula } from '../../lib/texto';
 
 function Linha({ rotulo, children }: { rotulo: string; children: React.ReactNode }) {
   return (
@@ -103,7 +104,7 @@ export function InterventionModal({
 
         <dl ref={corpoRef} className="overflow-y-auto p-6 pt-4 sm:p-8 sm:pt-4">
           <Linha rotulo="Objeto">{intervencao.objeto}</Linha>
-          <Linha rotulo="Tipo">{intervencao.tipo}</Linha>
+          <Linha rotulo="Tipo">{primeiraMaiuscula(intervencao.tipo)}</Linha>
           <Linha rotulo="Município">{municipioNome}</Linha>
           <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
           <Linha rotulo="Coordenadas">
