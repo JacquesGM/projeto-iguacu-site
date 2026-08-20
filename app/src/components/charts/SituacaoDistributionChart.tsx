@@ -1,6 +1,7 @@
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { SituacaoIntervencao } from '../../types';
 import { situacaoColorHex } from '../ui/SituacaoBadge';
+import { GRAFICO } from '../../lib/tokensGrafico';
 
 export function groupBySituacao(situacoes: SituacaoIntervencao[]) {
   const counts = new Map<SituacaoIntervencao, number>();
@@ -36,15 +37,15 @@ export function SituacaoDistributionChart({ situacoes }: { situacoes: SituacaoIn
       <div className="mt-3 h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={8}>
-            <CartesianGrid horizontal={false} stroke="#e5e7eb" />
-            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: '#5a6b78' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <YAxis type="category" dataKey="situacao" width={140} tick={{ fontSize: 12, fill: '#34424d' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+            <CartesianGrid horizontal={false} stroke={GRAFICO.grade} />
+            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: GRAFICO.rotuloEixo }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
+            <YAxis type="category" dataKey="situacao" width={140} tick={{ fontSize: 12, fill: GRAFICO.rotuloCategoria }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: GRAFICO.cursor }} />
             <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={20} isAnimationActive={false}>
               {data.map((entry) => (
                 <Cell key={entry.situacao} fill={entry.color} />
               ))}
-              <LabelList dataKey="count" position="right" style={{ fill: '#4a5964', fontSize: 12, fontWeight: 600 }} />
+              <LabelList dataKey="count" position="right" style={{ fill: GRAFICO.valor, fontSize: 12, fontWeight: 600 }} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

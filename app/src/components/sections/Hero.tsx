@@ -16,7 +16,7 @@ export function Hero() {
     >
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:py-24">
         <div>
-          <p className="text-left text-sm font-semibold uppercase tracking-wide text-brand-blue-100">
+          <p className="text-left text-sm font-semibold uppercase tracking-wide text-white">
             Instituto Rio Metrópole — Acompanhamento público
           </p>
           <h1 id="hero-titulo" tabIndex={-1} className="mt-3 outline-none">

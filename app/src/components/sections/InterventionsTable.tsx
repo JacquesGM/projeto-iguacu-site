@@ -127,7 +127,7 @@ export function InterventionsTable() {
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
             placeholder="Nome do projeto, objeto, rio, órgão…"
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           />
         </label>
         <label className="text-sm">
@@ -135,7 +135,7 @@ export function InterventionsTable() {
           <select
             value={municipioFiltro}
             onChange={(e) => setMunicipioFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           >
             <option value={ALL}>Todos</option>
             {municipios.map((m) => (
@@ -150,7 +150,7 @@ export function InterventionsTable() {
           <select
             value={situacaoFiltro}
             onChange={(e) => setSituacaoFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           >
             <option value={ALL}>Todas</option>
             {SITUACOES_VALIDAS.map((s) => (
@@ -165,7 +165,7 @@ export function InterventionsTable() {
           <select
             value={orgaoFiltro}
             onChange={(e) => setOrgaoFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           >
             <option value={ALL}>Todos</option>
             {orgaos.map((o) => (
@@ -184,7 +184,7 @@ export function InterventionsTable() {
         <button
           type="button"
           onClick={limparFiltros}
-          className="min-h-11 rounded-md border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
+          className="min-h-11 rounded-md border border-neutral-400 bg-white px-4 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
         >
           Limpar filtros
         </button>
@@ -241,7 +241,7 @@ export function InterventionsTable() {
                         type="button"
                         onClick={() => setSelecionada(item)}
                         aria-haspopup="dialog"
-                        className="min-h-9 rounded-md border border-neutral-300 px-3 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
+                        className="min-h-9 rounded-md border border-neutral-400 px-3 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
                       >
                         Ver detalhes
                       </button>
@@ -281,7 +281,7 @@ export function InterventionsTable() {
                   type="button"
                   onClick={() => setSelecionada(item)}
                   aria-haspopup="dialog"
-                  className="mt-3 min-h-11 w-full rounded-md border border-neutral-300 text-sm font-medium text-brand-blue-700 hover:bg-brand-blue-50"
+                  className="mt-3 min-h-11 w-full rounded-md border border-neutral-400 text-sm font-medium text-brand-blue-700 hover:bg-brand-blue-50"
                 >
                   Ver detalhes
                 </button>

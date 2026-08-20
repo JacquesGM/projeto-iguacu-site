@@ -4,7 +4,11 @@ import type { SituacaoIntervencao } from '../../types';
 interface SituacaoConfig {
   classes: string;
   Icon: LucideIcon;
-  /** Cor sólida equivalente (mesmo hex do texto da etiqueta), para uso nos gráficos. */
+  /**
+   * Mesmo valor de `text-situacao-*` do tema, repetido como hex porque Recharts
+   * e Leaflet recebem cor por propriedade JS, não por classe CSS. É a única
+   * duplicação de cor que sobrou, e é deliberada.
+   */
   hex: string;
 }
 
@@ -14,27 +18,27 @@ interface SituacaoConfig {
 // próximo do fim → verde; pendente de terceiro → vermelho-tijolo.
 const situacaoConfig: Record<SituacaoIntervencao, SituacaoConfig> = {
   'Em licitação': {
-    classes: 'bg-[#eef1f6] text-[#40506b] border-[#c3cbdb]',
+    classes: 'bg-situacao-licitacao-bg text-situacao-licitacao border-situacao-licitacao-borda',
     Icon: ClipboardList,
     hex: '#40506b',
   },
   'Em andamento': {
-    classes: 'bg-brand-blue-50 text-brand-blue-800 border-[#bcdcef]',
+    classes: 'bg-situacao-andamento-bg text-situacao-andamento border-situacao-andamento-borda',
     Icon: Hammer,
     hex: '#0b3a63',
   },
   'Conclusão em breve': {
-    classes: 'bg-brand-green-50 text-brand-green-700 border-[#a9e0c6]',
+    classes: 'bg-situacao-conclusao-bg text-situacao-conclusao border-situacao-conclusao-borda',
     Icon: CheckCircle2,
     hex: '#1f7a5c',
   },
   'Baixa de cláusula suspensiva': {
-    classes: 'bg-[#fdf3e3] text-[#8a5a12] border-[#eccf9c]',
+    classes: 'bg-situacao-clausula-bg text-situacao-clausula border-situacao-clausula-borda',
     Icon: FileClock,
     hex: '#8a5a12',
   },
   'Aguardando manifestação': {
-    classes: 'bg-[#fbe6e6] text-[#9c2b2b] border-[#f0bcbc]',
+    classes: 'bg-situacao-aguardando-bg text-situacao-aguardando border-situacao-aguardando-borda',
     Icon: PauseCircle,
     hex: '#9c2b2b',
   },

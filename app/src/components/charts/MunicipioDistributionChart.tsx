@@ -1,7 +1,8 @@
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import municipiosData from '../../data/municipios.json';
 import type { Intervencao, Municipio } from '../../types';
-import { CORES_MUNICIPIO } from '../../lib/coresMunicipio';
+import { COR_BARRA } from '../../lib/coresMunicipio';
+import { GRAFICO } from '../../lib/tokensGrafico';
 
 const municipios = municipiosData as Municipio[];
 
@@ -10,7 +11,7 @@ export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Int
   const data = municipios.map((municipio) => ({
     nome: municipio.nome,
     count: intervencoes.filter((i) => i.municipioId === municipio.id).length,
-    color: CORES_MUNICIPIO[municipio.id] ?? '#5a6b78',
+    color: COR_BARRA,
   }));
 
   function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<{ payload: (typeof data)[number] }> }) {
@@ -33,15 +34,15 @@ export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Int
       <div className="mt-3 h-48">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={10}>
-            <CartesianGrid horizontal={false} stroke="#e5e7eb" />
-            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: '#5a6b78' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <YAxis type="category" dataKey="nome" width={130} tick={{ fontSize: 12, fill: '#34424d' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+            <CartesianGrid horizontal={false} stroke={GRAFICO.grade} />
+            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: GRAFICO.rotuloEixo }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
+            <YAxis type="category" dataKey="nome" width={130} tick={{ fontSize: 12, fill: GRAFICO.rotuloCategoria }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: GRAFICO.cursor }} />
             <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false}>
               {data.map((entry) => (
                 <Cell key={entry.nome} fill={entry.color} />
               ))}
-              <LabelList dataKey="count" position="right" style={{ fill: '#4a5964', fontSize: 12, fontWeight: 600 }} />
+              <LabelList dataKey="count" position="right" style={{ fill: GRAFICO.valor, fontSize: 12, fontWeight: 600 }} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
