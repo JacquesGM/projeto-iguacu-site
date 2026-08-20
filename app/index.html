@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Só o peso do texto corrido é pré-carregado: pré-carregar todos disputa
+         banda com o HTML e atrasa a primeira renderização. Os demais chegam via
+         @font-face, com font-display: swap. -->
+    <link rel="preload" href="/fonts/rawline-400.woff2" as="font" type="font/woff2" crossorigin />
     <link
       rel="alternate"
       type="application/rss+xml"

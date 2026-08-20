@@ -1,3 +1,50 @@
+/* Rawline — tipografia do Padrão Digital de Governo (gov.br), auto-hospedada.
+   SIL Open Font License 1.1; o texto da licença está em public/fonts/OFL.txt e
+   também embutido na tabela "name" de cada arquivo, como a licença exige.
+
+   Os arquivos foram subsetados para latim + acentuação do português e
+   convertidos para WOFF2: 580 KB de WOFF original viraram 155 KB. O cirílico e
+   o latim estendido que vinham na fonte original foram descartados — o portal
+   não os usa.
+
+   font-display: swap desenha o texto na fonte do sistema enquanto a Rawline
+   carrega, em vez de deixar a página em branco. */
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
