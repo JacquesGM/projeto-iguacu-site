@@ -1,15 +1,28 @@
 import { describe, expect, it } from 'vitest';
 import intervencoesData from './intervencoes.json';
+import rodadasAnterioresData from './rodadasAnteriores.json';
+import metaData from './meta.json';
 import municipiosData from './municipios.json';
 import documentosData from './documentos.json';
 import linhaDoTempoData from './linhaDoTempo.json';
 import contatosData from './contatos.json';
 import transparenciaData from './transparencia.json';
-import type { Contato, Documento, Intervencao, MarcoLinhaDoTempo, Municipio, Transparencia } from '../types';
+import type {
+  Contato,
+  Documento,
+  Intervencao,
+  MarcoLinhaDoTempo,
+  Meta,
+  Municipio,
+  RodadaAnterior,
+  Transparencia,
+} from '../types';
 import { SITUACOES_VALIDAS } from '../components/ui/SituacaoBadge';
 import { routes } from '../routes';
 
 const intervencoes = intervencoesData as Intervencao[];
+const rodadasAnteriores = rodadasAnterioresData as RodadaAnterior[];
+const meta = metaData as Meta;
 const municipios = municipiosData as Municipio[];
 const documentos = documentosData as Documento[];
 const linhaDoTempo = linhaDoTempoData as MarcoLinhaDoTempo[];
@@ -161,5 +174,27 @@ describe('integridade dos dados', () => {
     for (const contato of contatos) {
       expect(contato.email, `e-mail inválido para "${contato.nome}"`).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
     }
+  });
+});
+
+describe('rodadas arquivadas', () => {
+  // Arquivar e o passo 1 da rodada de atualizacao, e o unico que nao quebra o
+  // build se for esquecido: a comparacao so fica vazia, em silencio. Se a
+  // rodada arquivada tiver a data de referencia da rodada corrente, ou o
+  // arquivamento pegou o retrato errado, ou o meta.json nao foi atualizado.
+  it('nenhuma rodada arquivada carrega a data de referência da rodada corrente', () => {
+    for (const rodada of rodadasAnteriores) {
+      expect(rodada.referencia).not.toBe(meta.ultimaAtualizacao);
+    }
+  });
+
+  it('cada rodada arquivada tem projetos com id único', () => {
+    for (const rodada of rodadasAnteriores) {
+      expect(idsUnicos(rodada.projetos)).toBe(true);
+    }
+  });
+
+  it('meta.json declara a data da próxima rodada', () => {
+    expect(meta.proximaAtualizacao).toMatch(/^\d{2}\/\d{2}\/\d{4}$/);
   });
 });

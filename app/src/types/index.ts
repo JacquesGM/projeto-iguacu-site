@@ -14,6 +14,8 @@ export interface Meta {
   ultimaAtualizacao: string;
   dataReferencia: string;
   situacaoGeral: string;
+  /** Data prevista da proxima rodada, em campo proprio porque a comparacao entre rodadas a le. */
+  proximaAtualizacao: string;
   periodicidadeAtualizacao: string;
   avisoVersaoBeta: string;
 }
@@ -209,4 +211,22 @@ export interface AtualizacaoChangelog {
 
 export interface Territorio {
   descricaoTextual: string;
+}
+
+/**
+ * Retrato dos projetos como estavam numa rodada de atualização já encerrada.
+ *
+ * `intervencoes.json` guarda sempre a rodada corrente — é o que o portal
+ * mostra. Antes de editá-lo para a rodada seguinte, o conteúdo vigente é
+ * arquivado aqui. Sem esse arquivo não há com o que comparar: o histórico do
+ * Git registra a mudança, mas o portal é estático e não lê o Git.
+ */
+export interface RodadaAnterior {
+  /** Data de referência declarada pela fonte, no formato dd/mm/aaaa. */
+  referencia: string;
+  /** Como a rodada é nomeada para quem lê, ex.: "Consolidação de 06/08/2026". */
+  rotulo: string;
+  /** De onde vieram os dados desta rodada. */
+  fonte: string;
+  projetos: Intervencao[];
 }

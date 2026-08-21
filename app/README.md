@@ -31,6 +31,37 @@ npm run build    # build de produção (tsc + vite build)
 - `src/lib/download.ts` — exportação de dados em CSV e PDF (jsPDF carregado
   sob demanda, só quando alguém clica em "PDF").
 
+## Rodada de atualização
+
+Cada rodada do GT vira um commit. Antes de editar os dados da rodada nova,
+**arquive a rodada vigente** — é dela que sai a comparação "o que mudou", na
+página de Transparência:
+
+1. Copie o conteúdo de `src/data/intervencoes.json` para uma nova entrada **no
+   topo** de `src/data/rodadasAnteriores.json`:
+
+   ```json
+   {
+     "referencia": "06/08/2026",
+     "rotulo": "Consolidação de 06/08/2026",
+     "fonte": "Página oficial do Projeto Iguaçu — IRM (rj.gov.br/irm/node/387)",
+     "projetos": [ ...o conteúdo de intervencoes.json... ]
+   }
+   ```
+
+   O `referencia` é a data da rodada que está saindo de cartaz, não a nova.
+
+2. Só então edite `src/data/intervencoes.json` com os dados da rodada nova.
+3. Atualize `src/data/meta.json` (`ultimaAtualizacao`, `dataReferencia`,
+   `proximaAtualizacao`) e acrescente a nota editorial em
+   `src/data/changelog.json`.
+4. `npm run test` — há um teste que falha se a rodada arquivada tiver a mesma
+   data de referência da rodada corrente, que é o sintoma de arquivamento
+   trocado ou esquecido.
+
+Pular o passo 1 não quebra o build: a seção de comparação simplesmente não
+tem o que mostrar, em silêncio. Por isso ele vem primeiro.
+
 ## Pendências de dados oficiais
 
 As mesmas pendências do protótipo estático continuam valendo — ver

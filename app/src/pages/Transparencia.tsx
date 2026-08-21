@@ -4,6 +4,7 @@ import changelogData from '../data/changelog.json';
 import type { AtualizacaoChangelog, Contato, Transparencia as TransparenciaType } from '../types';
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
+import { ComparacaoRodadas } from '../components/sections/ComparacaoRodadas';
 
 const transparencia = transparenciaData as TransparenciaType;
 const contatos = contatosData as Contato[];
@@ -81,6 +82,8 @@ export function Transparencia() {
           ))}
         </dl>
       </div>
+
+      <ComparacaoRodadas />
 
       <div className="mt-10">
         <div className="flex flex-wrap items-center justify-between gap-3">

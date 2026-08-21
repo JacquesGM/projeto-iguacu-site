@@ -1,5 +1,9 @@
 [
   {
+    "data": "21/08/2026",
+    "descricao": "A página de Transparência passou a mostrar a comparação entre rodadas de atualização: a partir da próxima rodada, prevista para 08/10/2026, ela lista projeto a projeto o que mudou de uma rodada para a outra — situação, valor de contrato, empresa, prazos e coordenadas — e quais projetos entraram ou saíram. Os valores aparecem como declarados, sem interpretação de avanço."
+  },
+  {
     "data": "20/08/2026",
     "descricao": "Escopo reduzido aos 14 projetos publicados na página oficial do Projeto Iguaçu no site do IRM, que passa a ser a única fonte do conteúdo público. Substituídos os 11 registros da extração BI/INFOVIA de 23/07/2026, adotado o vocabulário de situação declarado pelos órgãos e removidos os indicadores que a fonte não informa (população beneficiada e investimento previsto agregado)."
   },
