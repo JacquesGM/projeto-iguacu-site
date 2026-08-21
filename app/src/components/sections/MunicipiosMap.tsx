@@ -8,6 +8,7 @@ import { Card } from '../ui/Card';
 import { SituacaoBadge } from '../ui/SituacaoBadge';
 import { CORES_MUNICIPIO } from '../../lib/coresMunicipio';
 import { geometriasDosProjetos, semCoordenada, type GeometriaProjeto } from '../../lib/geometriaProjeto';
+import { prefereMovimentoReduzido } from '../../lib/movimento';
 
 const municipios = municipiosData as Municipio[];
 const intervencoes = intervencoesData as Intervencao[];
@@ -48,7 +49,7 @@ function FocarSelecionado({ geometria, visaoInicial }: { geometria: GeometriaPro
   const ultimoId = useRef<string | null>(null);
 
   useEffect(() => {
-    const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const semMovimento = prefereMovimentoReduzido();
 
     if (!geometria) {
       // Limpar a seleção devolve o panorama: sem isso o mapa fica parado no

@@ -4,6 +4,7 @@ import intervencoesData from '../../data/intervencoes.json';
 import municipiosData from '../../data/municipios.json';
 import type { Intervencao, Municipio } from '../../types';
 import { SituacaoBadge, SITUACOES_VALIDAS } from '../ui/SituacaoBadge';
+import { SeloProcedencia } from '../ui/SeloProcedencia';
 import { EmptyState } from '../ui/EmptyState';
 import { InterventionModal } from './InterventionModal';
 import { primeiraMaiuscula } from '../../lib/texto';
@@ -295,6 +296,10 @@ export function InterventionsTable() {
                     <dd className="text-right font-medium text-neutral-900">{valorTexto(item.valorContrato)}</dd>
                   </div>
                 </dl>
+                {/* No cartao o valor aparece sem quem o declarou; na tabela isso
+                    esta nas colunas "Orgao executor" e "Ultima atualizacao", que
+                    somem no celular. O selo devolve as duas informacoes. */}
+                <SeloProcedencia intervencao={item} />
                 <button
                   type="button"
                   onClick={() => setSelecionada(item)}
