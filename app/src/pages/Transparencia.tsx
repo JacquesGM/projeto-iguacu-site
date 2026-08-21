@@ -6,6 +6,7 @@ import type { AtualizacaoChangelog, Contato, Intervencao, Transparencia as Trans
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
 import { ComparacaoRodadas } from '../components/sections/ComparacaoRodadas';
+import { DicionarioDeCampos } from '../components/sections/DicionarioDeCampos';
 
 const transparencia = transparenciaData as TransparenciaType;
 const contatos = contatosData as Contato[];
@@ -86,6 +87,8 @@ export function Transparencia() {
       </div>
 
       <ComparacaoRodadas />
+
+      <DicionarioDeCampos />
 
       <div className="mt-10">
         <h2 className="text-lg font-semibold text-neutral-900">Dados abertos</h2>

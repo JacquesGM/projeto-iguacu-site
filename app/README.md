@@ -72,6 +72,30 @@ página de Transparência:
 Pular o passo 1 não quebra o build: a seção de comparação simplesmente não
 tem o que mostrar, em silêncio. Por isso ele vem primeiro.
 
+## Publicação
+
+O CI publica no Firebase Hosting a cada push no `master`, depois de tipos,
+testes e build passarem — mas **só quando o secret existir**. Enquanto não
+existir, o job de deploy é *pulado* (não falha) e a publicação segue manual:
+
+```sh
+cd app && npm run build
+cd .. && firebase deploy --only hosting --project carrinho-virtual-iw-48fc7
+```
+
+Para ligar a publicação automática, alguém com acesso ao projeto Firebase
+precisa criar o secret `FIREBASE_SERVICE_ACCOUNT` no repositório:
+
+1. No console do Firebase → Configurações do projeto → Contas de serviço →
+   **Gerar nova chave privada**. Baixa um JSON.
+2. No GitHub → Settings → Secrets and variables → Actions → **New repository
+   secret**, com o nome `FIREBASE_SERVICE_ACCOUNT` e o **conteúdo inteiro do
+   JSON** como valor.
+3. Apagar o JSON baixado da máquina. Ele dá acesso de publicação ao projeto.
+
+O `projectId` (`carrinho-virtual-iw-48fc7`) está fixo no workflow: é o ID
+permanente do projeto no Google Cloud, não muda.
+
 ## Pendências de dados oficiais
 
 As mesmas pendências do protótipo estático continuam valendo — ver

@@ -1,6 +1,10 @@
 [
   {
     "data": "21/08/2026",
+    "descricao": "A página de Transparência passou a trazer o dicionário de campos: o que cada um dos 29 campos de um projeto significa, que tipo tem e o que quer dizer quando vem vazio. É a mesma descrição publicada em /dados.json, gerada do mesmo arquivo."
+  },
+  {
+    "data": "21/08/2026",
     "descricao": "Todos os gráficos passaram a ter uma tabela equivalente, aberta por \"Ver dados em tabela\", com o valor exato que o rótulo arredondado da barra não mostra. Quem usa leitor de tela lê a tabela: o desenho do gráfico saiu da árvore de acessibilidade, porque era lido como uma sequência de números soltos, sem rótulo e fora de ordem."
   },
   {
