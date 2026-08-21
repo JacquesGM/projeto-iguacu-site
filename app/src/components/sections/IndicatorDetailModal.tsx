@@ -109,7 +109,7 @@ export function IndicatorDetailModal({
             type="button"
             onClick={onClose}
             aria-label="Fechar detalhes"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-neutral-500 hover:bg-neutral-100"
+            className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-neutral-500 hover:bg-neutral-100"
           >
             <X aria-hidden="true" className="h-5 w-5" />
           </button>

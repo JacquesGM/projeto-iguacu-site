@@ -195,8 +195,11 @@ export function InterventionsTable() {
         <EmptyState message="Nenhum projeto encontrado para os filtros selecionados." onClear={limparFiltros} />
       ) : (
         <>
-          {/* Tabela — telas médias e grandes */}
-          <div className="hidden overflow-x-auto rounded-xl border border-neutral-200 md:block">
+          {/* Tabela — telas médias e grandes. O `relative` é necessário: sem ele o
+              `sr-only` do cabeçalho "Ações", que é absoluto, se posiciona pelo
+              documento em vez do container e faz a página inteira rolar na
+              horizontal quando a tabela não cabe. */}
+          <div className="relative hidden overflow-x-auto rounded-xl border border-neutral-200 md:block">
             <table className="w-full min-w-[900px] text-left text-sm">
               <thead className="bg-neutral-50 text-neutral-600">
                 <tr>

@@ -75,3 +75,20 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * VLibras: o widget oficial se ancora no meio da lateral direita
+ * (top: 50% com translate). Em telas estreitas isso cai em cima do
+ * conteúdo — cobre item do menu aberto, valor de cartão e texto de modal.
+ * Abaixo de 768px ele vai para o canto inferior direito, logo acima do
+ * botão "Voltar ao topo" (bottom-5, 48px de altura). Só a âncora muda;
+ * o widget continua o do gov.br.
+ */
+@media (max-width: 767px) {
+  div[vw].enabled {
+    top: auto !important;
+    bottom: 5.5rem !important;
+    right: 1.25rem !important;
+    transform: none !important;
+  }
+}
