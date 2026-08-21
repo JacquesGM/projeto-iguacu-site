@@ -1,0 +1,192 @@
+[
+  {
+    "campo": "id",
+    "tipo": "string",
+    "descricao": "Identificador estável do projeto dentro deste portal. Não é um código oficial do IRM nem do SEI: foi criado aqui para permitir acompanhar o mesmo projeto entre rodadas de atualização.",
+    "exemplo": "maxambomba-br"
+  },
+  {
+    "campo": "nomeProjeto",
+    "tipo": "string",
+    "descricao": "Nome do projeto como declarado pelo órgão executor.",
+    "exemplo": "Maxambomba - Belford Roxo"
+  },
+  {
+    "campo": "objeto",
+    "tipo": "string",
+    "descricao": "Objeto da contratação, transcrito da fonte.",
+    "exemplo": "Projeto executivo e obra de macrodrenagem do Rio Maxambomba, Areia Branca, Belford Roxo, RJ"
+  },
+  {
+    "campo": "tipo",
+    "tipo": "string",
+    "descricao": "Natureza do que foi contratado.",
+    "valoresObservados": ["obra", "apoio técnico / gerenciamento", "projeto básico", "serviço contínuo"],
+    "observacao": "A lista é o que aparece nesta rodada, não um domínio fechado declarado pela fonte."
+  },
+  {
+    "campo": "programa",
+    "tipo": "string | null",
+    "descricao": "Programa de governo ao qual o projeto está vinculado, quando a fonte informa.",
+    "exemplo": "Novo PAC – 1ª Seleção"
+  },
+  {
+    "campo": "orgaoResponsavel",
+    "tipo": "string",
+    "descricao": "Órgão ou prefeitura responsável pela execução, como declarado na fonte.",
+    "valoresObservados": ["INEA", "EMOP", "PCNI - SEMIF", "Prefeitura Municipal de Belford Roxo"],
+    "observacao": "O IRM consolida e publica; não executa obra nem contrato."
+  },
+  {
+    "campo": "rio",
+    "tipo": "string",
+    "descricao": "Rio, canal ou corpo hídrico da intervenção, ou o local quando a fonte não nomeia um curso d'água.",
+    "exemplo": "Iguaçu/Botas"
+  },
+  {
+    "campo": "municipioId",
+    "tipo": "string",
+    "descricao": "Município principal do projeto. Referencia o campo `id` da lista `municipios` deste mesmo arquivo.",
+    "exemplo": "m2"
+  },
+  {
+    "campo": "municipiosAdicionais",
+    "tipo": "string[]",
+    "descricao": "Demais municípios quando a fonte atribui o projeto a mais de um. Vazio na maioria dos casos.",
+    "exemplo": ["m6"]
+  },
+  {
+    "campo": "processoSEI",
+    "tipo": "string | null",
+    "descricao": "Número do processo no SEI-RJ. `null` quando a fonte não informa.",
+    "exemplo": "SEI-070002/004135/2025",
+    "observacao": "Quatro dos 14 projetos estão sem processo SEI declarado."
+  },
+  {
+    "campo": "situacao",
+    "tipo": "string",
+    "descricao": "Estado declarado pelo órgão executor na ficha de atualização.",
+    "valoresObservados": [
+      "Em licitação",
+      "Em andamento",
+      "Conclusão em breve",
+      "Baixa de cláusula suspensiva",
+      "Aguardando manifestação"
+    ],
+    "observacao": "São estados declarados, não etapas de uma escala de progresso. O portal não os ordena e não deduz avanço a partir deles."
+  },
+  {
+    "campo": "valorContrato",
+    "tipo": "number | null",
+    "descricao": "Valor do contrato em reais. `null` quando a fonte não informa.",
+    "exemplo": 69290032.04,
+    "observacao": "É o valor CONTRATADO. A fonte não informa valor executado, medido ou pago, nem percentual de avanço físico ou financeiro — por isso esses campos não existem aqui."
+  },
+  {
+    "campo": "empresaContratada",
+    "tipo": "string | null",
+    "descricao": "Empresa contratada. `null` quando ainda não há contrato assinado.",
+    "exemplo": "LYTORÂNEA"
+  },
+  {
+    "campo": "empresaTexto",
+    "tipo": "string | null",
+    "descricao": "Texto declarado pela fonte no lugar do nome da empresa, quando ela ainda não foi definida.",
+    "exemplo": "A definir"
+  },
+  {
+    "campo": "prazoContratoMeses",
+    "tipo": "number | null",
+    "descricao": "Prazo do contrato em meses, quando a fonte declara um número.",
+    "exemplo": 20
+  },
+  {
+    "campo": "prazoTexto",
+    "tipo": "string | null",
+    "descricao": "Ressalva da fonte sobre o prazo, preservada como recebida.",
+    "exemplo": "12 meses (serviço contínuo)"
+  },
+  {
+    "campo": "dataInicioVigencia",
+    "tipo": "string | null",
+    "descricao": "Início da vigência no formato dd/mm/aaaa, quando a fonte declara uma data.",
+    "exemplo": "01/07/2025"
+  },
+  {
+    "campo": "dataInicioVigenciaTexto",
+    "tipo": "string | null",
+    "descricao": "Texto original quando a fonte declara o início como algo que não é uma data.",
+    "exemplo": "Aguardando licitação",
+    "observacao": "Exatamente um entre `dataInicioVigencia` e `dataInicioVigenciaTexto` costuma estar preenchido. O portal exibe o primeiro quando existe."
+  },
+  {
+    "campo": "dataTerminoVigencia",
+    "tipo": "string | null",
+    "descricao": "Término da vigência no formato dd/mm/aaaa, quando a fonte declara uma data.",
+    "exemplo": "01/09/2027"
+  },
+  {
+    "campo": "dataTerminoVigenciaTexto",
+    "tipo": "string | null",
+    "descricao": "Texto original quando a fonte declara o término como algo que não é uma data. Nunca convertido para data.",
+    "exemplo": "Julho de 2028 (a confirmar)"
+  },
+  {
+    "campo": "latitude",
+    "tipo": "number | null",
+    "descricao": "Latitude do primeiro ponto declarado, em graus decimais (WGS 84). Repetida de `pontos[0]` por conveniência.",
+    "exemplo": -22.744292
+  },
+  {
+    "campo": "longitude",
+    "tipo": "number | null",
+    "descricao": "Longitude do primeiro ponto declarado, em graus decimais (WGS 84). Repetida de `pontos[0]` por conveniência.",
+    "exemplo": -43.401256
+  },
+  {
+    "campo": "pontos",
+    "tipo": "{ rotulo: string, lat: number, lng: number }[]",
+    "descricao": "Todas as coordenadas declaradas, convertidas para graus decimais. O `rotulo` vem da fonte e distingue os três formatos que ela usa: 'Local' para um ponto único, o par 'Inicial'/'Final' para um trecho, e 'Ponto N' para um conjunto de obras distintas.",
+    "exemplo": [
+      { "rotulo": "Inicial", "lat": -22.744292, "lng": -43.401256 },
+      { "rotulo": "Final", "lat": -22.745864, "lng": -43.413256 }
+    ],
+    "observacao": "Vazio em 6 dos 14 projetos: a fonte não declarou onde ficam. Não foram estimados pelo município."
+  },
+  {
+    "campo": "coordenadasTexto",
+    "tipo": "string | null",
+    "descricao": "Coordenadas exatamente como declaradas na fonte, incluindo grau-minuto-segundo, para conferência contra a conversão em `pontos`.",
+    "exemplo": "22°44'49.70\"S 22°44'48.57\"S · 43°28'56.77\"O 43°28'56.28\"O"
+  },
+  {
+    "campo": "localizacaoTexto",
+    "tipo": "string",
+    "descricao": "Descrição textual da localização, como declarada.",
+    "exemplo": "Maxambomba"
+  },
+  {
+    "campo": "observacoes",
+    "tipo": "string | null",
+    "descricao": "Observação livre registrada pelo órgão executor na ficha.",
+    "exemplo": "As contratações inseridas neste formulário estão aguardando o período de defeso eleitoral para serem realizadas suas respectivas licitações."
+  },
+  {
+    "campo": "dataInformacao",
+    "tipo": "string",
+    "descricao": "Data em que a informação deste registro foi declarada, no formato dd/mm/aaaa.",
+    "exemplo": "06/08/2026"
+  },
+  {
+    "campo": "fonte",
+    "tipo": "string",
+    "descricao": "Origem declarada do registro, com o período de referência.",
+    "exemplo": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026"
+  },
+  {
+    "campo": "ultimaAtualizacao",
+    "tipo": "string",
+    "descricao": "Data da rodada de atualização em que este registro foi publicado, no formato dd/mm/aaaa.",
+    "exemplo": "06/08/2026"
+  }
+]

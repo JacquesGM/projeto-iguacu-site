@@ -1,0 +1,837 @@
+{
+  "titulo": "Projetos do Projeto Iguaçu — Instituto Rio Metrópole",
+  "descricao": "Projetos de controle de inundações e recuperação ambiental das bacias dos rios Iguaçu, Botas e Sarapuí, na Baixada Fluminense, declarados pelos órgãos executores e prefeituras e consolidados pelo Instituto Rio Metrópole no âmbito do GT IRM – Projeto Iguaçu.",
+  "paginaHumana": "https://projeto-iguacu-irm.web.app/intervencoes",
+  "repositorio": "https://github.com/JacquesGM/projeto-iguacu-site",
+  "dataReferencia": "23/07/2026",
+  "ultimaAtualizacao": "06/08/2026",
+  "proximaAtualizacao": "08/10/2026",
+  "periodicidade": "Bimestral, alinhada às reuniões do Grupo de Trabalho (GT) IRM – Projeto Iguaçu. Próxima atualização prevista: 08/10/2026",
+  "condicoesDeUso": {
+    "licencaDeclarada": null,
+    "observacao": "A fonte não declara licença de uso para estes dados. Eles são públicos e vêm da página oficial do IRM; na dúvida sobre redistribuição, procure o GT pelo contato abaixo. Ao reusar, cite a fonte e a data de referência.",
+    "contato": "saneamento@irm.rj.gov.br"
+  },
+  "advertencias": [
+    "Os dados são declarados pelos próprios órgãos executores e prefeituras; o IRM consolida e publica, não executa.",
+    "O valor apresentado é o valor do CONTRATO. A fonte não informa valor executado, medido ou pago, nem percentual de avanço.",
+    "Campos sem informação declarada vêm como null — nunca como zero, nunca estimados.",
+    "Datas que a fonte declara como texto ficam no campo \"...Texto\" correspondente e não são convertidas em data.",
+    "Seis dos 14 projetos não têm coordenada declarada; seu campo \"pontos\" vem vazio, sem aproximação pelo município."
+  ],
+  "fontes": [
+    "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), atualização de 06/08/2026",
+    "Fichas de Atualização de Status do Projeto Iguaçu, enviadas pelos órgãos executores e prefeituras (rodada de agosto de 2026)",
+    "Portaria IRM nº 195/2025 — institui o GT IRM – Projeto Iguaçu",
+    "Inquérito Civil nº 04.22.0010.0042904/2024-19 (MPRJ/GAEMA)",
+    "Processo SEI-150018/000311/2025",
+    "Painel de indicadores SIGA Águas — CBH Baía de Guanabara / AGEVAP",
+    "COPPE/UFRJ (1996) — primeiros estudos de controle de inundações das bacias Iguaçu, Botas e Sarapuí",
+    "SEA/SERLA — Plano Diretor da Bacia Iguaçu/Sarapuí (2007)",
+    "INEA/PAC (2007–2014)"
+  ],
+  "dicionarioDeCampos": [
+    {
+      "campo": "id",
+      "tipo": "string",
+      "descricao": "Identificador estável do projeto dentro deste portal. Não é um código oficial do IRM nem do SEI: foi criado aqui para permitir acompanhar o mesmo projeto entre rodadas de atualização.",
+      "exemplo": "maxambomba-br"
+    },
+    {
+      "campo": "nomeProjeto",
+      "tipo": "string",
+      "descricao": "Nome do projeto como declarado pelo órgão executor.",
+      "exemplo": "Maxambomba - Belford Roxo"
+    },
+    {
+      "campo": "objeto",
+      "tipo": "string",
+      "descricao": "Objeto da contratação, transcrito da fonte.",
+      "exemplo": "Projeto executivo e obra de macrodrenagem do Rio Maxambomba, Areia Branca, Belford Roxo, RJ"
+    },
+    {
+      "campo": "tipo",
+      "tipo": "string",
+      "descricao": "Natureza do que foi contratado.",
+      "valoresObservados": [
+        "obra",
+        "apoio técnico / gerenciamento",
+        "projeto básico",
+        "serviço contínuo"
+      ],
+      "observacao": "A lista é o que aparece nesta rodada, não um domínio fechado declarado pela fonte."
+    },
+    {
+      "campo": "programa",
+      "tipo": "string | null",
+      "descricao": "Programa de governo ao qual o projeto está vinculado, quando a fonte informa.",
+      "exemplo": "Novo PAC – 1ª Seleção"
+    },
+    {
+      "campo": "orgaoResponsavel",
+      "tipo": "string",
+      "descricao": "Órgão ou prefeitura responsável pela execução, como declarado na fonte.",
+      "valoresObservados": [
+        "INEA",
+        "EMOP",
+        "PCNI - SEMIF",
+        "Prefeitura Municipal de Belford Roxo"
+      ],
+      "observacao": "O IRM consolida e publica; não executa obra nem contrato."
+    },
+    {
+      "campo": "rio",
+      "tipo": "string",
+      "descricao": "Rio, canal ou corpo hídrico da intervenção, ou o local quando a fonte não nomeia um curso d'água.",
+      "exemplo": "Iguaçu/Botas"
+    },
+    {
+      "campo": "municipioId",
+      "tipo": "string",
+      "descricao": "Município principal do projeto. Referencia o campo `id` da lista `municipios` deste mesmo arquivo.",
+      "exemplo": "m2"
+    },
+    {
+      "campo": "municipiosAdicionais",
+      "tipo": "string[]",
+      "descricao": "Demais municípios quando a fonte atribui o projeto a mais de um. Vazio na maioria dos casos.",
+      "exemplo": [
+        "m6"
+      ]
+    },
+    {
+      "campo": "processoSEI",
+      "tipo": "string | null",
+      "descricao": "Número do processo no SEI-RJ. `null` quando a fonte não informa.",
+      "exemplo": "SEI-070002/004135/2025",
+      "observacao": "Quatro dos 14 projetos estão sem processo SEI declarado."
+    },
+    {
+      "campo": "situacao",
+      "tipo": "string",
+      "descricao": "Estado declarado pelo órgão executor na ficha de atualização.",
+      "valoresObservados": [
+        "Em licitação",
+        "Em andamento",
+        "Conclusão em breve",
+        "Baixa de cláusula suspensiva",
+        "Aguardando manifestação"
+      ],
+      "observacao": "São estados declarados, não etapas de uma escala de progresso. O portal não os ordena e não deduz avanço a partir deles."
+    },
+    {
+      "campo": "valorContrato",
+      "tipo": "number | null",
+      "descricao": "Valor do contrato em reais. `null` quando a fonte não informa.",
+      "exemplo": 69290032.04,
+      "observacao": "É o valor CONTRATADO. A fonte não informa valor executado, medido ou pago, nem percentual de avanço físico ou financeiro — por isso esses campos não existem aqui."
+    },
+    {
+      "campo": "empresaContratada",
+      "tipo": "string | null",
+      "descricao": "Empresa contratada. `null` quando ainda não há contrato assinado.",
+      "exemplo": "LYTORÂNEA"
+    },
+    {
+      "campo": "empresaTexto",
+      "tipo": "string | null",
+      "descricao": "Texto declarado pela fonte no lugar do nome da empresa, quando ela ainda não foi definida.",
+      "exemplo": "A definir"
+    },
+    {
+      "campo": "prazoContratoMeses",
+      "tipo": "number | null",
+      "descricao": "Prazo do contrato em meses, quando a fonte declara um número.",
+      "exemplo": 20
+    },
+    {
+      "campo": "prazoTexto",
+      "tipo": "string | null",
+      "descricao": "Ressalva da fonte sobre o prazo, preservada como recebida.",
+      "exemplo": "12 meses (serviço contínuo)"
+    },
+    {
+      "campo": "dataInicioVigencia",
+      "tipo": "string | null",
+      "descricao": "Início da vigência no formato dd/mm/aaaa, quando a fonte declara uma data.",
+      "exemplo": "01/07/2025"
+    },
+    {
+      "campo": "dataInicioVigenciaTexto",
+      "tipo": "string | null",
+      "descricao": "Texto original quando a fonte declara o início como algo que não é uma data.",
+      "exemplo": "Aguardando licitação",
+      "observacao": "Exatamente um entre `dataInicioVigencia` e `dataInicioVigenciaTexto` costuma estar preenchido. O portal exibe o primeiro quando existe."
+    },
+    {
+      "campo": "dataTerminoVigencia",
+      "tipo": "string | null",
+      "descricao": "Término da vigência no formato dd/mm/aaaa, quando a fonte declara uma data.",
+      "exemplo": "01/09/2027"
+    },
+    {
+      "campo": "dataTerminoVigenciaTexto",
+      "tipo": "string | null",
+      "descricao": "Texto original quando a fonte declara o término como algo que não é uma data. Nunca convertido para data.",
+      "exemplo": "Julho de 2028 (a confirmar)"
+    },
+    {
+      "campo": "latitude",
+      "tipo": "number | null",
+      "descricao": "Latitude do primeiro ponto declarado, em graus decimais (WGS 84). Repetida de `pontos[0]` por conveniência.",
+      "exemplo": -22.744292
+    },
+    {
+      "campo": "longitude",
+      "tipo": "number | null",
+      "descricao": "Longitude do primeiro ponto declarado, em graus decimais (WGS 84). Repetida de `pontos[0]` por conveniência.",
+      "exemplo": -43.401256
+    },
+    {
+      "campo": "pontos",
+      "tipo": "{ rotulo: string, lat: number, lng: number }[]",
+      "descricao": "Todas as coordenadas declaradas, convertidas para graus decimais. O `rotulo` vem da fonte e distingue os três formatos que ela usa: 'Local' para um ponto único, o par 'Inicial'/'Final' para um trecho, e 'Ponto N' para um conjunto de obras distintas.",
+      "exemplo": [
+        {
+          "rotulo": "Inicial",
+          "lat": -22.744292,
+          "lng": -43.401256
+        },
+        {
+          "rotulo": "Final",
+          "lat": -22.745864,
+          "lng": -43.413256
+        }
+      ],
+      "observacao": "Vazio em 6 dos 14 projetos: a fonte não declarou onde ficam. Não foram estimados pelo município."
+    },
+    {
+      "campo": "coordenadasTexto",
+      "tipo": "string | null",
+      "descricao": "Coordenadas exatamente como declaradas na fonte, incluindo grau-minuto-segundo, para conferência contra a conversão em `pontos`.",
+      "exemplo": "22°44'49.70\"S 22°44'48.57\"S · 43°28'56.77\"O 43°28'56.28\"O"
+    },
+    {
+      "campo": "localizacaoTexto",
+      "tipo": "string",
+      "descricao": "Descrição textual da localização, como declarada.",
+      "exemplo": "Maxambomba"
+    },
+    {
+      "campo": "observacoes",
+      "tipo": "string | null",
+      "descricao": "Observação livre registrada pelo órgão executor na ficha.",
+      "exemplo": "As contratações inseridas neste formulário estão aguardando o período de defeso eleitoral para serem realizadas suas respectivas licitações."
+    },
+    {
+      "campo": "dataInformacao",
+      "tipo": "string",
+      "descricao": "Data em que a informação deste registro foi declarada, no formato dd/mm/aaaa.",
+      "exemplo": "06/08/2026"
+    },
+    {
+      "campo": "fonte",
+      "tipo": "string",
+      "descricao": "Origem declarada do registro, com o período de referência.",
+      "exemplo": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026"
+    },
+    {
+      "campo": "ultimaAtualizacao",
+      "tipo": "string",
+      "descricao": "Data da rodada de atualização em que este registro foi publicado, no formato dd/mm/aaaa.",
+      "exemplo": "06/08/2026"
+    }
+  ],
+  "totais": {
+    "projetos": 14,
+    "municipios": 6,
+    "valorContratado": 755161214.53
+  },
+  "municipios": [
+    {
+      "id": "m1",
+      "nome": "Duque de Caxias"
+    },
+    {
+      "id": "m2",
+      "nome": "Belford Roxo"
+    },
+    {
+      "id": "m3",
+      "nome": "Nova Iguaçu"
+    },
+    {
+      "id": "m4",
+      "nome": "São João de Meriti"
+    },
+    {
+      "id": "m5",
+      "nome": "Nilópolis"
+    },
+    {
+      "id": "m6",
+      "nome": "Mesquita"
+    }
+  ],
+  "projetos": [
+    {
+      "id": "pi-br-obras-pac",
+      "nomeProjeto": "Projeto Iguaçu Belford Roxo",
+      "objeto": "Contratação de empresa especializada para execução de levantamentos de campo, estudos hidráulicos, projetos básicos executivos e execução das obras de controle de inundações e recuperação ambiental das bacias dos rios Iguaçu-Botas",
+      "tipo": "obra",
+      "programa": "Novo PAC – 1ª Seleção",
+      "orgaoResponsavel": "Prefeitura Municipal de Belford Roxo",
+      "rio": "Iguaçu/Botas",
+      "municipioId": "m2",
+      "municipiosAdicionais": [],
+      "processoSEI": null,
+      "situacao": "Em licitação",
+      "valorContrato": 121425964.43,
+      "empresaContratada": null,
+      "empresaTexto": null,
+      "prazoContratoMeses": 18,
+      "prazoTexto": null,
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": "Aguardando licitação",
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": null,
+      "longitude": null,
+      "pontos": [],
+      "coordenadasTexto": null,
+      "localizacaoTexto": "Iguaçu/Botas",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "pi-br-apoio-pac",
+      "nomeProjeto": "Projeto Iguaçu Belford Roxo",
+      "objeto": "Contratação de empresa especializada para apoio técnico, gerenciamento e supervisão das obras de controle de inundações e recuperação ambiental das bacias dos rios Iguaçu-Botas",
+      "tipo": "apoio técnico / gerenciamento",
+      "programa": "Novo PAC – 1ª Seleção",
+      "orgaoResponsavel": "Prefeitura Municipal de Belford Roxo",
+      "rio": "Iguaçu/Botas",
+      "municipioId": "m2",
+      "municipiosAdicionais": [],
+      "processoSEI": null,
+      "situacao": "Em licitação",
+      "valorContrato": 5902329.77,
+      "empresaContratada": null,
+      "empresaTexto": null,
+      "prazoContratoMeses": 18,
+      "prazoTexto": null,
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": "Aguardando licitação",
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": null,
+      "longitude": null,
+      "pontos": [],
+      "coordenadasTexto": null,
+      "localizacaoTexto": "Iguaçu/Botas",
+      "observacoes": "As contratações inseridas neste formulário estão aguardando o período de defeso eleitoral para serem realizadas suas respectivas licitações.",
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "pi-dc-obras-pac",
+      "nomeProjeto": "Projeto Iguaçu - Duque de Caxias",
+      "objeto": "Execução das obras de controle de inundações e recuperação ambiental das bacias dos rios Iguaçu-Sarapuí, no município de Duque de Caxias – RJ, dentro do Programa Novo PAC - 1ª Seleção",
+      "tipo": "obra",
+      "programa": "Programa Novo PAC - 1ª Seleção",
+      "orgaoResponsavel": "INEA",
+      "rio": "Bacias dos rios Iguaçu-Sarapuí",
+      "municipioId": "m1",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/001282/2026",
+      "situacao": "Em licitação",
+      "valorContrato": 147688887.59,
+      "empresaContratada": null,
+      "empresaTexto": "A definir",
+      "prazoContratoMeses": 18,
+      "prazoTexto": null,
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": "Janeiro de 2027 (a confirmar)",
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": "Julho de 2028 (a confirmar)",
+      "latitude": null,
+      "longitude": null,
+      "pontos": [],
+      "coordenadasTexto": null,
+      "localizacaoTexto": "Bacias dos rios Iguaçu-Sarapuí",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "pi-dc-apoio-pac",
+      "nomeProjeto": "Apoio Técnico - Projeto Iguaçu",
+      "objeto": "Apoio técnico, gerenciamento e supervisão das obras de controle de inundações e recuperação ambiental das bacias dos rios Iguaçu-Sarapuí, no município de Duque de Caxias – RJ, dentro do Programa Novo PAC - 1ª Seleção",
+      "tipo": "apoio técnico / gerenciamento",
+      "programa": "Programa Novo PAC - 1ª Seleção",
+      "orgaoResponsavel": "INEA",
+      "rio": "Bacias dos rios Iguaçu-Sarapuí",
+      "municipioId": "m1",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/002506/2026",
+      "situacao": "Em licitação",
+      "valorContrato": 6885041,
+      "empresaContratada": null,
+      "empresaTexto": "A definir",
+      "prazoContratoMeses": 18,
+      "prazoTexto": null,
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": "Janeiro de 2027 (a confirmar)",
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": "Julho de 2028 (a confirmar)",
+      "latitude": null,
+      "longitude": null,
+      "pontos": [],
+      "coordenadasTexto": null,
+      "localizacaoTexto": "Bacias dos rios Iguaçu-Sarapuí",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "psam-sao-francisco",
+      "nomeProjeto": "Saneamento São Francisco",
+      "objeto": "Projeto básico para contratação de obra e serviço de engenharia para a implantação de saneamento básico no bairro de São Francisco no município de Belford Roxo",
+      "tipo": "projeto básico",
+      "programa": "Programa de Saneamento Ambiental - PSAM",
+      "orgaoResponsavel": "INEA",
+      "rio": "Bairro de São Francisco",
+      "municipioId": "m2",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070028/000109/2022",
+      "situacao": "Em andamento",
+      "valorContrato": 62934029.34,
+      "empresaContratada": "União Norte",
+      "empresaTexto": null,
+      "prazoContratoMeses": null,
+      "prazoTexto": null,
+      "dataInicioVigencia": "17/07/2023",
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": "2027",
+      "latitude": null,
+      "longitude": null,
+      "pontos": [],
+      "coordenadasTexto": null,
+      "localizacaoTexto": "Bairro de São Francisco",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "maxambomba-br",
+      "nomeProjeto": "Maxambomba - Belford Roxo",
+      "objeto": "Projeto executivo e obra de macrodrenagem do Rio Maxambomba, Areia Branca, Belford Roxo, RJ",
+      "tipo": "obra",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Maxambomba",
+      "municipioId": "m2",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/004135/2025",
+      "situacao": "Em andamento",
+      "valorContrato": 86595162.77,
+      "empresaContratada": "LYTORÂNEA",
+      "empresaTexto": null,
+      "prazoContratoMeses": 20,
+      "prazoTexto": null,
+      "dataInicioVigencia": "01/07/2025",
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": "01/09/2027",
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.744292,
+      "longitude": -43.401256,
+      "pontos": [
+        {
+          "rotulo": "Inicial",
+          "lat": -22.744292,
+          "lng": -43.401256
+        },
+        {
+          "rotulo": "Final",
+          "lat": -22.745864,
+          "lng": -43.413256
+        }
+      ],
+      "coordenadasTexto": "Inicial: -22.744292, -43.401256 · Final: -22.745864, -43.413256",
+      "localizacaoTexto": "Maxambomba",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "parque-das-missoes-dc",
+      "nomeProjeto": "Parque das Missões - Duque de Caxias",
+      "objeto": "Projeto executivo e obras de urbanização e macrodrenagem nos canais das localidades Parque Duque e Parque das Missões, em Duque de Caxias (Dois Irmãos)",
+      "tipo": "obra",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Canal Dois Irmãos, Canal Parque das Missões e auxiliares",
+      "municipioId": "m1",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/012954/2022",
+      "situacao": "Conclusão em breve",
+      "valorContrato": 57666473.09,
+      "empresaContratada": "HYDRA",
+      "empresaTexto": null,
+      "prazoContratoMeses": null,
+      "prazoTexto": null,
+      "dataInicioVigencia": "06/05/2024",
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": "06/05/2026",
+      "dataTerminoVigenciaTexto": null,
+      "latitude": null,
+      "longitude": null,
+      "pontos": [],
+      "coordenadasTexto": null,
+      "localizacaoTexto": "Canal Dois Irmãos, Canal Parque das Missões e auxiliares",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "canal-pavuninha-sjm",
+      "nomeProjeto": "Canal Pavuninha - São João de Meriti",
+      "objeto": "Obra de canalização e urbanização do Canal Pavuninha, no município de São João de Meriti",
+      "tipo": "obra",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Canal Pavuninha (Rio Pavuna)",
+      "municipioId": "m4",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/017020/2025",
+      "situacao": "Em andamento",
+      "valorContrato": 44476141.27,
+      "empresaContratada": "ERWILL",
+      "empresaTexto": null,
+      "prazoContratoMeses": 16,
+      "prazoTexto": null,
+      "dataInicioVigencia": "19/12/2025",
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": "19/04/2027",
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.804308,
+      "longitude": -43.361467,
+      "pontos": [
+        {
+          "rotulo": "Inicial",
+          "lat": -22.804308,
+          "lng": -43.361467
+        },
+        {
+          "rotulo": "Final",
+          "lat": -22.803561,
+          "lng": -43.348617
+        }
+      ],
+      "coordenadasTexto": "22°48'15.51\"S e 43°21'41.28\"O · 22°48'12.82\"S e 43°20'55.02\"O",
+      "localizacaoTexto": "Canal Pavuninha (Rio Pavuna)",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "roncador-dc",
+      "nomeProjeto": "Roncador - Duque de Caxias",
+      "objeto": "Projeto executivo e obras de urbanização no Rio Roncador, em Duque de Caxias",
+      "tipo": "obra",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Roncador",
+      "municipioId": "m1",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/009726/2023",
+      "situacao": "Conclusão em breve",
+      "valorContrato": 20093017.99,
+      "empresaContratada": "BRAVE",
+      "empresaTexto": null,
+      "prazoContratoMeses": null,
+      "prazoTexto": null,
+      "dataInicioVigencia": "12/09/2024",
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.633011,
+      "longitude": -43.25935,
+      "pontos": [
+        {
+          "rotulo": "Inicial",
+          "lat": -22.633011,
+          "lng": -43.25935
+        },
+        {
+          "rotulo": "Final",
+          "lat": -22.647869,
+          "lng": -43.247839
+        }
+      ],
+      "coordenadasTexto": "22°37'58.84\"S e 43°15'33.66\"O · 22°38'52.33\"S e 43°14'52.22\"O",
+      "localizacaoTexto": "Roncador",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "calombe-dc",
+      "nomeProjeto": "Calombé - Duque de Caxias",
+      "objeto": "Projeto executivo e obras de macrodrenagem do Rio Calombé, Duque de Caxias, RJ",
+      "tipo": "obra",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Calombé",
+      "municipioId": "m1",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/000991/2022",
+      "situacao": "Em andamento",
+      "valorContrato": 87141643.92,
+      "empresaContratada": "LYTORÂNEA",
+      "empresaTexto": null,
+      "prazoContratoMeses": null,
+      "prazoTexto": null,
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.668611,
+      "longitude": -43.292278,
+      "pontos": [
+        {
+          "rotulo": "Inicial",
+          "lat": -22.668611,
+          "lng": -43.292278
+        },
+        {
+          "rotulo": "Final",
+          "lat": -22.6985,
+          "lng": -43.29825
+        }
+      ],
+      "coordenadasTexto": "22°40'07.0\"S e 43°17'32.2\"O · 22°41'54.6\"S e 43°17'53.7\"O",
+      "localizacaoTexto": "Calombé",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "casa-de-bombas-outeiro-br",
+      "nomeProjeto": "Manutenção e Operação da Casa de Bombas",
+      "objeto": "Serviços de manutenção e operação da casa de bombas e comportas do pôlder do Outeiro – Belford Roxo – RJ",
+      "tipo": "serviço contínuo",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Iguaçu",
+      "municipioId": "m2",
+      "municipiosAdicionais": [],
+      "processoSEI": "SEI-070002/019201/2025",
+      "situacao": "Em licitação",
+      "valorContrato": 8605979.82,
+      "empresaContratada": null,
+      "empresaTexto": null,
+      "prazoContratoMeses": 12,
+      "prazoTexto": "12 meses (serviço contínuo)",
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.710191454084477,
+      "longitude": -43.319610410512695,
+      "pontos": [
+        {
+          "rotulo": "Local",
+          "lat": -22.710191454084477,
+          "lng": -43.319610410512695
+        }
+      ],
+      "coordenadasTexto": "-22.710191454084477, -43.319610410512695",
+      "localizacaoTexto": "Iguaçu",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "barragem-gericino",
+      "nomeProjeto": "Manutenção e Operação da Barragem de Gericinó",
+      "objeto": "Serviço de monitoramento e operação da Barragem de Gericinó",
+      "tipo": "serviço contínuo",
+      "programa": null,
+      "orgaoResponsavel": "INEA",
+      "rio": "Rios Sarapuí e Pavuna",
+      "municipioId": "m5",
+      "municipiosAdicionais": [
+        "m6"
+      ],
+      "processoSEI": "SEI-070002/002373/2026",
+      "situacao": "Em licitação",
+      "valorContrato": 14115031.29,
+      "empresaContratada": null,
+      "empresaTexto": null,
+      "prazoContratoMeses": 12,
+      "prazoTexto": "12 meses (serviço contínuo)",
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.81740600999805,
+      "longitude": -43.43197011449229,
+      "pontos": [
+        {
+          "rotulo": "Local",
+          "lat": -22.81740600999805,
+          "lng": -43.43197011449229
+        }
+      ],
+      "coordenadasTexto": "-22.81740600999805, -43.43197011449229",
+      "localizacaoTexto": "Rios Sarapuí e Pavuna",
+      "observacoes": null,
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "reservatorios-nova-iguacu",
+      "nomeProjeto": "Construção de Reservatórios de Amortecimento de Cheias em diversos pontos críticos da Cidade de Nova Iguaçu/RJ",
+      "objeto": "Construção de reservatórios de amortecimento de cheias (piscinões) destinados à macrodrenagem urbana, visando reduzir os picos de vazão das águas pluviais, minimizar os alagamentos recorrentes em áreas críticas do município, aumentar a capacidade do sistema de drenagem existente e promover maior segurança hídrica e resiliência urbana frente aos eventos de chuvas intensas",
+      "tipo": "obra",
+      "programa": "5600020250032 - Novo PAC - Cidades Sustentáveis e Resilientes - Subeixo Prevenção a Desastres - Drenagem Urbana",
+      "orgaoResponsavel": "PCNI - SEMIF",
+      "rio": "Botas e Iguaçu",
+      "municipioId": "m3",
+      "municipiosAdicionais": [],
+      "processoSEI": null,
+      "situacao": "Baixa de cláusula suspensiva",
+      "valorContrato": 57467012.25,
+      "empresaContratada": null,
+      "empresaTexto": null,
+      "prazoContratoMeses": 24,
+      "prazoTexto": null,
+      "dataInicioVigencia": "04/12/2025",
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": "23/11/2027",
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.755797,
+      "longitude": -43.464872,
+      "pontos": [
+        {
+          "rotulo": "Ponto 1",
+          "lat": -22.755797,
+          "lng": -43.464872
+        },
+        {
+          "rotulo": "Ponto 2",
+          "lat": -22.756108,
+          "lng": -43.476283
+        },
+        {
+          "rotulo": "Ponto 3",
+          "lat": -22.756706,
+          "lng": -43.499883
+        }
+      ],
+      "coordenadasTexto": "22°45'20.87\"S 22°45'21.99\"S 22°45'24.14\"S · 43°27'53.54\"O 43°28'34.62\"O 43°29'59.58\"O",
+      "localizacaoTexto": "Botas e Iguaçu",
+      "observacoes": "O contrato encontra-se em fase de análise pela mandatária para verificação da documentação apresentada e posterior baixa da cláusula suspensiva. Após a conclusão dessa etapa, o processo será encaminhado para a fase licitatória, conforme os procedimentos estabelecidos.",
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    },
+    {
+      "id": "pontes-nova-iguacu",
+      "nomeProjeto": "Intervenção em diversas pontes localizadas em pontos críticos da Cidade de Nova Iguaçu/RJ",
+      "objeto": "Execução de obras de recuperação, reforço estrutural, adequação e reabilitação de pontes localizadas em diversos pontos do Município de Nova Iguaçu, visando garantir a segurança estrutural, melhorar a mobilidade urbana e assegurar o adequado escoamento das águas",
+      "tipo": "obra",
+      "programa": null,
+      "orgaoResponsavel": "EMOP",
+      "rio": "Botas e Iguaçu",
+      "municipioId": "m3",
+      "municipiosAdicionais": [],
+      "processoSEI": null,
+      "situacao": "Aguardando manifestação",
+      "valorContrato": 34164500,
+      "empresaContratada": null,
+      "empresaTexto": null,
+      "prazoContratoMeses": null,
+      "prazoTexto": null,
+      "dataInicioVigencia": null,
+      "dataInicioVigenciaTexto": null,
+      "dataTerminoVigencia": null,
+      "dataTerminoVigenciaTexto": null,
+      "latitude": -22.747139,
+      "longitude": -43.482436,
+      "pontos": [
+        {
+          "rotulo": "Ponto 1",
+          "lat": -22.747139,
+          "lng": -43.482436
+        },
+        {
+          "rotulo": "Ponto 2",
+          "lat": -22.746825,
+          "lng": -43.4823
+        },
+        {
+          "rotulo": "Ponto 3",
+          "lat": -22.746469,
+          "lng": -43.476972
+        },
+        {
+          "rotulo": "Ponto 4",
+          "lat": -22.748886,
+          "lng": -43.456875
+        },
+        {
+          "rotulo": "Ponto 5",
+          "lat": -22.747842,
+          "lng": -43.454483
+        },
+        {
+          "rotulo": "Ponto 6",
+          "lat": -22.746147,
+          "lng": -43.452783
+        },
+        {
+          "rotulo": "Ponto 7",
+          "lat": -22.742158,
+          "lng": -43.448542
+        },
+        {
+          "rotulo": "Ponto 8",
+          "lat": -22.737539,
+          "lng": -43.442697
+        },
+        {
+          "rotulo": "Ponto 9",
+          "lat": -22.733333,
+          "lng": -43.431014
+        },
+        {
+          "rotulo": "Ponto 10",
+          "lat": -22.746503,
+          "lng": -43.479667
+        }
+      ],
+      "coordenadasTexto": "22°44'49.70\"S 22°44'48.57\"S 22°44'47.29\"S 22°44'55.99\"S 22°44'52.23\"S 22°44'46.13\"S 22°44'31.77\"S 22°44'15.14\"S 22°44'00.00\"S 22°44'47.41\"S · 43°28'56.77\"O 43°28'56.28\"O 43°28'37.10\"O 43°27'24.75\"O 43°27'16.14\"O 43°27'10.02\"O 43°26'54.75\"O 43°26'33.71\"O 43°25'51.65\"O 43°28'46.80\"O",
+      "localizacaoTexto": "Botas e Iguaçu",
+      "observacoes": "A execução das intervenções foi pleiteada junto à EMOP, por meio de ofício encaminhado, estando a Administração aguardando manifestação daquela empresa quanto ao atendimento da solicitação.",
+      "dataInformacao": "06/08/2026",
+      "fonte": "Página oficial do Projeto Iguaçu — Instituto Rio Metrópole (rj.gov.br/irm/node/387), período de referência 1º/01 a 23/07/2026",
+      "ultimaAtualizacao": "06/08/2026"
+    }
+  ]
+}

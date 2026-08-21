@@ -20,6 +20,15 @@ correspondente na página mostra "Não informado", "A confirmar" ou
 > executado e valor pago (a fonte não informa nenhum dos três); coordenadas de 6
 > projetos; processo SEI de 4 projetos; término de vigência de Calombé e
 > Roncador; e a ficha original de Mesquita.
+>
+> **Acrescentado em 21/08/2026 — licença de uso dos dados abertos.** O portal
+> passou a publicar `/dados.json` com os 14 projetos e um dicionário de campos.
+> A fonte **não declara licença de uso** para esses dados. Nenhuma foi
+> inventada: o arquivo traz `licencaDeclarada: null` e uma observação dizendo
+> que são dados públicos, que se cite fonte e data de referência, e a quem
+> perguntar em caso de dúvida sobre redistribuição. Confirmar com o GT qual
+> licença adotar — CC-BY 4.0 é a usual em dados abertos de governo, mas isso é
+> decisão do IRM, não nossa.
 
 > **Atualização (dados reais recebidos)**: com o recebimento de
 > `Docs/Dados_BI.xlsx` (extração BI/INFOVIA do IRM, referência de

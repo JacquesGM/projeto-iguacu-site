@@ -8,6 +8,13 @@
     <item>
       <title>Atualização de 21/08/2026</title>
       <link>https://projeto-iguacu-irm.web.app/transparencia</link>
+      <guid isPermaLink="false">projeto-iguacu-21-08-2026-T3MgZGFkb3Mg</guid>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Os dados desta página passaram a ser publicados também em /dados.json, num único arquivo com endereço fixo: os 14 projetos, os municípios, as fontes, as datas de referência e um dicionário que descreve cada campo — o que significa, que tipo tem e o que quer dizer quando vem vazio. O arquivo é gerado a cada publicação a partir dos mesmos dados que alimentam a tela. A fonte não declara licença de uso, e nenhuma foi presumida.</description>
+    </item>
+    <item>
+      <title>Atualização de 21/08/2026</title>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-21-08-2026-QSBww6FnaW5h</guid>
       <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>A página de Transparência passou a mostrar a comparação entre rodadas de atualização: a partir da próxima rodada, prevista para 08/10/2026, ela lista projeto a projeto o que mudou de uma rodada para a outra — situação, valor de contrato, empresa, prazos e coordenadas — e quais projetos entraram ou saíram. Os valores aparecem como declarados, sem interpretação de avanço.</description>
