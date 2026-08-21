@@ -15,7 +15,10 @@ export function RootLayout() {
       <ScrollToTop />
       <RouteTitle />
       <Header />
-      <main id="conteudo-principal">
+      {/* tabIndex -1 no alvo do "Ir para o conteudo": o Chrome move o ponto de
+          partida da tabulacao sozinho, mas so um alvo focavel garante que o
+          cursor do leitor de tela va junto em todos os navegadores. */}
+      <main id="conteudo-principal" tabIndex={-1}>
         <ErrorBoundary>
           <Outlet />
         </ErrorBoundary>

@@ -203,8 +203,22 @@ export function InterventionsTable() {
             <table className="w-full min-w-[900px] text-left text-sm">
               <thead className="bg-neutral-50 text-neutral-600">
                 <tr>
+                  {/* O aria-sort e o que diz ao leitor de tela por qual coluna a
+                      tabela esta ordenada e em que sentido; sem ele a seta e
+                      informacao so visual. */}
                   {colunas.map((c) => (
-                    <th key={c.campo} scope="col" className="px-4 py-3 font-semibold">
+                    <th
+                      key={c.campo}
+                      scope="col"
+                      className="px-4 py-3 font-semibold"
+                      aria-sort={
+                        ordenacao.campo === c.campo
+                          ? ordenacao.direcao === 'asc'
+                            ? 'ascending'
+                            : 'descending'
+                          : 'none'
+                      }
+                    >
                       <button
                         type="button"
                         onClick={() => alternarOrdenacao(c.campo)}

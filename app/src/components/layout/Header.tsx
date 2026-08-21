@@ -92,8 +92,15 @@ export function Header() {
           </div>
         </div>
 
+        {/* O max-h com rolagem propria e necessario: em paisagem o menu aberto
+            passa da altura da tela e, como o header e sticky, rolar a pagina nao
+            traz o ultimo item de volta — "Transparência" ficava inalcançável. */}
         {menuOpen && (
-          <nav id="menu-mobile" aria-label="Navegação móvel" className="border-t border-white/15 xl:hidden">
+          <nav
+            id="menu-mobile"
+            aria-label="Navegação móvel"
+            className="max-h-[60dvh] overflow-y-auto overscroll-contain border-t border-white/15 xl:hidden"
+          >
             <ul className="flex flex-col px-4 py-2">
               {navItems.map((route) => (
                 <li key={route.path} className="border-b border-white/10 last:border-0">
