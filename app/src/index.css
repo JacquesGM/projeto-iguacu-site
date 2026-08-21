@@ -1,3 +1,50 @@
+/* Rawline — tipografia do Padrão Digital de Governo (gov.br), auto-hospedada.
+   SIL Open Font License 1.1; o texto da licença está em public/fonts/OFL.txt e
+   também embutido na tabela "name" de cada arquivo, como a licença exige.
+
+   Os arquivos foram subsetados para latim + acentuação do português e
+   convertidos para WOFF2: 580 KB de WOFF original viraram 155 KB. O cirílico e
+   o latim estendido que vinham na fonte original foram descartados — o portal
+   não os usa.
+
+   font-display: swap desenha o texto na fonte do sistema enquanto a Rawline
+   carrega, em vez de deixar a página em branco. */
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rawline';
+  src: url('/fonts/rawline-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,10 +59,6 @@
     scroll-behavior: smooth;
   }
 
-  p {
-    text-align: justify;
-    text-justify: inter-word;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -30,5 +73,22 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * VLibras: o widget oficial se ancora no meio da lateral direita
+ * (top: 50% com translate). Em telas estreitas isso cai em cima do
+ * conteúdo — cobre item do menu aberto, valor de cartão e texto de modal.
+ * Abaixo de 768px ele vai para o canto inferior direito, logo acima do
+ * botão "Voltar ao topo" (bottom-5, 48px de altura). Só a âncora muda;
+ * o widget continua o do gov.br.
+ */
+@media (max-width: 767px) {
+  div[vw].enabled {
+    top: auto !important;
+    bottom: 5.5rem !important;
+    right: 1.25rem !important;
+    transform: none !important;
   }
 }

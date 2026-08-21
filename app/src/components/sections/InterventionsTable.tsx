@@ -6,6 +6,7 @@ import type { Intervencao, Municipio } from '../../types';
 import { SituacaoBadge, SITUACOES_VALIDAS } from '../ui/SituacaoBadge';
 import { EmptyState } from '../ui/EmptyState';
 import { InterventionModal } from './InterventionModal';
+import { primeiraMaiuscula } from '../../lib/texto';
 
 const intervencoes = intervencoesData as Intervencao[];
 const municipios = municipiosData as Municipio[];
@@ -127,7 +128,7 @@ export function InterventionsTable() {
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
             placeholder="Nome do projeto, objeto, rio, órgão…"
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           />
         </label>
         <label className="text-sm">
@@ -135,7 +136,7 @@ export function InterventionsTable() {
           <select
             value={municipioFiltro}
             onChange={(e) => setMunicipioFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           >
             <option value={ALL}>Todos</option>
             {municipios.map((m) => (
@@ -150,7 +151,7 @@ export function InterventionsTable() {
           <select
             value={situacaoFiltro}
             onChange={(e) => setSituacaoFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           >
             <option value={ALL}>Todas</option>
             {SITUACOES_VALIDAS.map((s) => (
@@ -165,7 +166,7 @@ export function InterventionsTable() {
           <select
             value={orgaoFiltro}
             onChange={(e) => setOrgaoFiltro(e.target.value)}
-            className="min-h-11 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm"
+            className="min-h-11 w-full rounded-md border border-neutral-400 px-3 py-2 text-sm"
           >
             <option value={ALL}>Todos</option>
             {orgaos.map((o) => (
@@ -184,7 +185,7 @@ export function InterventionsTable() {
         <button
           type="button"
           onClick={limparFiltros}
-          className="min-h-11 rounded-md border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
+          className="min-h-11 rounded-md border border-neutral-400 bg-white px-4 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
         >
           Limpar filtros
         </button>
@@ -194,8 +195,11 @@ export function InterventionsTable() {
         <EmptyState message="Nenhum projeto encontrado para os filtros selecionados." onClear={limparFiltros} />
       ) : (
         <>
-          {/* Tabela — telas médias e grandes */}
-          <div className="hidden overflow-x-auto rounded-xl border border-neutral-200 md:block">
+          {/* Tabela — telas médias e grandes. O `relative` é necessário: sem ele o
+              `sr-only` do cabeçalho "Ações", que é absoluto, se posiciona pelo
+              documento em vez do container e faz a página inteira rolar na
+              horizontal quando a tabela não cabe. */}
+          <div className="relative hidden overflow-x-auto rounded-xl border border-neutral-200 md:block">
             <table className="w-full min-w-[900px] text-left text-sm">
               <thead className="bg-neutral-50 text-neutral-600">
                 <tr>
@@ -229,7 +233,7 @@ export function InterventionsTable() {
                   <tr key={item.id} className="align-top">
                     <td className="px-4 py-3 font-medium text-neutral-900">{item.nomeProjeto}</td>
                     <td className="px-4 py-3">{nomesMunicipios(item)}</td>
-                    <td className="px-4 py-3">{item.tipo}</td>
+                    <td className="px-4 py-3">{primeiraMaiuscula(item.tipo)}</td>
                     <td className="px-4 py-3">{item.orgaoResponsavel}</td>
                     <td className="px-4 py-3">
                       <SituacaoBadge situacao={item.situacao} />
@@ -241,7 +245,7 @@ export function InterventionsTable() {
                         type="button"
                         onClick={() => setSelecionada(item)}
                         aria-haspopup="dialog"
-                        className="min-h-9 rounded-md border border-neutral-300 px-3 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
+                        className="min-h-9 whitespace-nowrap rounded-md border border-neutral-400 px-3 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
                       >
                         Ver detalhes
                       </button>
@@ -264,7 +268,7 @@ export function InterventionsTable() {
                   </div>
                   <div className="flex items-start justify-between gap-3">
                     <dt className="text-neutral-500">Tipo</dt>
-                    <dd className="text-right font-medium text-neutral-900">{item.tipo}</dd>
+                    <dd className="text-right font-medium text-neutral-900">{primeiraMaiuscula(item.tipo)}</dd>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <dt className="text-neutral-500">Situação</dt>
@@ -281,7 +285,7 @@ export function InterventionsTable() {
                   type="button"
                   onClick={() => setSelecionada(item)}
                   aria-haspopup="dialog"
-                  className="mt-3 min-h-11 w-full rounded-md border border-neutral-300 text-sm font-medium text-brand-blue-700 hover:bg-brand-blue-50"
+                  className="mt-3 min-h-11 w-full rounded-md border border-neutral-400 text-sm font-medium text-brand-blue-700 hover:bg-brand-blue-50"
                 >
                   Ver detalhes
                 </button>

@@ -11,28 +11,30 @@ export function Sobre() {
       id="sobre"
       title="Sobre o Projeto Iguaçu"
     >
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="space-y-4 text-neutral-700">
-          <div>
-            <h3 className="font-semibold text-neutral-900">O que é</h3>
-            <p className="mt-1">{sobre.oQueE}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-neutral-900">O problema público</h3>
-            <p className="mt-1">{sobre.problemaPublico}</p>
-          </div>
+      {/* "O que é" e "O problema público" são os dois blocos de prosa e têm
+          tamanho parecido, então emparelham bem. Antes "Objetivos" dividia a
+          linha com os dois juntos e deixava metade da coluna vazia. */}
+      <div className="grid gap-8 text-neutral-700 lg:grid-cols-2">
+        <div>
+          <h3 className="font-semibold text-neutral-900">O que é</h3>
+          <p className="mt-1">{sobre.oQueE}</p>
         </div>
         <div>
-          <h3 className="font-semibold text-neutral-900">Objetivos</h3>
-          <ul className="mt-2 space-y-2">
-            {sobre.objetivos.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-neutral-700">
-                <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-green-600" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <h3 className="font-semibold text-neutral-900">O problema público</h3>
+          <p className="mt-1">{sobre.problemaPublico}</p>
         </div>
+      </div>
+
+      <div className="mt-8">
+        <h3 className="font-semibold text-neutral-900">Objetivos</h3>
+        <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+          {sobre.objetivos.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-sm text-neutral-700">
+              <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-green-600" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-8 flex gap-3 rounded-xl border border-brand-blue-200 bg-brand-blue-50 p-5">

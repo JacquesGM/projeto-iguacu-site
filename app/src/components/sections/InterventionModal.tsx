@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import type { Intervencao } from '../../types';
 import { SituacaoBadge } from '../ui/SituacaoBadge';
+import { primeiraMaiuscula } from '../../lib/texto';
 
 function Linha({ rotulo, children }: { rotulo: string; children: React.ReactNode }) {
   return (
@@ -95,7 +96,7 @@ export function InterventionModal({
             type="button"
             onClick={onClose}
             aria-label="Fechar detalhes"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-neutral-500 hover:bg-neutral-100"
+            className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-neutral-500 hover:bg-neutral-100"
           >
             <X aria-hidden="true" className="h-5 w-5" />
           </button>
@@ -103,7 +104,7 @@ export function InterventionModal({
 
         <dl ref={corpoRef} className="overflow-y-auto p-6 pt-4 sm:p-8 sm:pt-4">
           <Linha rotulo="Objeto">{intervencao.objeto}</Linha>
-          <Linha rotulo="Tipo">{intervencao.tipo}</Linha>
+          <Linha rotulo="Tipo">{primeiraMaiuscula(intervencao.tipo)}</Linha>
           <Linha rotulo="Município">{municipioNome}</Linha>
           <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
           <Linha rotulo="Coordenadas">

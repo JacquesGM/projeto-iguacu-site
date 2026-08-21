@@ -73,10 +73,11 @@ export function Header() {
               type="button"
               onClick={toggleLargeText}
               aria-pressed={largeText}
-              className="hidden min-h-[44px] items-center gap-1.5 rounded-md border border-white/30 px-2.5 text-xs font-medium text-white hover:bg-white/10 sm:inline-flex"
+              aria-label="Texto maior"
+              className="inline-flex h-11 w-11 items-center justify-center gap-1.5 rounded-md border border-white/30 text-xs font-medium text-white hover:bg-white/10 sm:w-auto sm:px-2.5"
             >
               <TextCursorInput aria-hidden="true" className="h-4 w-4" />
-              Texto maior
+              <span className="hidden sm:inline">Texto maior</span>
             </button>
             <button
               type="button"

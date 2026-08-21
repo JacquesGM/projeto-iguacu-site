@@ -1,19 +1,21 @@
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { Intervencao } from '../../types';
+import { COR_BARRA } from '../../lib/coresMunicipio';
+import { GRAFICO } from '../../lib/tokensGrafico';
 
-// Mesma rampa validada (scripts/validate_palette.js) usada nos demais
-// gráficos categóricos desta página — ordem fixa, nunca ciclada.
-const CORES_ORGAO = ['#2f7fb8', '#2f9e75', '#7c4dbd', '#c2703d', '#5a6b78'];
+// Uma cor só, de propósito: o nome do órgão já está no eixo, então cor por
+// categoria aqui seria decoração — e decoração colorida é justamente o que
+// quebra para quem tem daltonismo, sem informar nada a mais a quem não tem.
 
 export function OrgaoDistributionChart({ intervencoes }: { intervencoes: Intervencao[] }) {
   const total = intervencoes.length;
   const orgaos = [...new Set(intervencoes.map((i) => i.orgaoResponsavel))].sort(
     (a, b) => intervencoes.filter((i) => i.orgaoResponsavel === b).length - intervencoes.filter((i) => i.orgaoResponsavel === a).length,
   );
-  const data = orgaos.map((orgao, index) => ({
+  const data = orgaos.map((orgao) => ({
     nome: orgao,
     count: intervencoes.filter((i) => i.orgaoResponsavel === orgao).length,
-    color: CORES_ORGAO[index % CORES_ORGAO.length],
+    color: COR_BARRA,
   }));
 
   function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<{ payload: (typeof data)[number] }> }) {
@@ -36,15 +38,15 @@ export function OrgaoDistributionChart({ intervencoes }: { intervencoes: Interve
       <div className="mt-3 h-48">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={10}>
-            <CartesianGrid horizontal={false} stroke="#e5e7eb" />
-            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: '#5a6b78' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <YAxis type="category" dataKey="nome" width={70} tick={{ fontSize: 12, fill: '#34424d' }} axisLine={{ stroke: '#c7d8e4' }} tickLine={false} />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
+            <CartesianGrid horizontal={false} stroke={GRAFICO.grade} />
+            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: GRAFICO.rotuloEixo }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
+            <YAxis type="category" dataKey="nome" width={70} tick={{ fontSize: 12, fill: GRAFICO.rotuloCategoria }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: GRAFICO.cursor }} />
             <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false}>
               {data.map((entry) => (
                 <Cell key={entry.nome} fill={entry.color} />
               ))}
-              <LabelList dataKey="count" position="right" style={{ fill: '#4a5964', fontSize: 12, fontWeight: 600 }} />
+              <LabelList dataKey="count" position="right" style={{ fill: GRAFICO.valor, fontSize: 12, fontWeight: 600 }} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

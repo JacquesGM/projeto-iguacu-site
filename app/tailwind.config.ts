@@ -41,22 +41,43 @@ export default {
           100: '#eceef1',
           200: '#c7d8e4',
           300: '#a8b9c7',
-          400: '#8a97a3',
+          400: '#7d8b98', // 3,49:1 no branco — atende a SC 1.4.11 para borda de controle
           500: '#5a6b78',
           600: '#4a5964',
           700: '#34424d',
           800: '#262e36',
           900: '#16232e',
         },
-        status: {
-          amber: '#7a5c00',
-          orange: '#8a5300',
-          red: '#9c2b2b',
-          purple: '#5b2d90',
+        // Uma cor por situação declarada, com o fundo e a borda da etiqueta.
+        // Antes estas viviam como hex cru dentro do componente, e o tema
+        // guardava tokens "status.*" que nenhuma linha de código usava.
+        situacao: {
+          licitacao: { DEFAULT: '#40506b', bg: '#eef1f6', borda: '#c3cbdb' },
+          andamento: { DEFAULT: '#0b3a63', bg: '#eaf2f8', borda: '#bcdcef' },
+          conclusao: { DEFAULT: '#1f7a5c', bg: '#e7f5ee', borda: '#a9e0c6' },
+          clausula: { DEFAULT: '#8a5a12', bg: '#fdf3e3', borda: '#eccf9c' },
+          aguardando: { DEFAULT: '#9c2b2b', bg: '#fbe6e6', borda: '#f0bcbc' },
         },
       },
       fontFamily: {
-        sans: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+        // "Rawline" e a tipografia do Padrao Digital de Governo. Enquanto os
+        // arquivos nao estao auto-hospedados (ver app/public/fonts/LEIA-ME.md),
+        // o nome fica declarado e o navegador segue para a pilha do sistema.
+        //
+        // A ordem importa: system-ui PRIMEIRO faz cada sistema usar sua propria
+        // fonte de interface -- Segoe UI no Windows, San Francisco no macOS e
+        // iOS, Roboto no Android. Antes "Segoe UI" vinha primeiro, o que
+        // amarrava a identidade do portal a um unico sistema operacional.
+        sans: [
+          'Rawline',
+          'system-ui',
+          '-apple-system',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          'sans-serif',
+        ],
       },
     },
   },
