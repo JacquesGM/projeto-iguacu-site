@@ -1,7 +1,8 @@
 import transparenciaData from '../data/transparencia.json';
 import contatosData from '../data/contatos.json';
 import changelogData from '../data/changelog.json';
-import type { AtualizacaoChangelog, Contato, Transparencia as TransparenciaType } from '../types';
+import intervencoesData from '../data/intervencoes.json';
+import type { AtualizacaoChangelog, Contato, Intervencao, Transparencia as TransparenciaType } from '../types';
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
 import { ComparacaoRodadas } from '../components/sections/ComparacaoRodadas';
@@ -9,6 +10,7 @@ import { ComparacaoRodadas } from '../components/sections/ComparacaoRodadas';
 const transparencia = transparenciaData as TransparenciaType;
 const contatos = contatosData as Contato[];
 const changelog = changelogData as AtualizacaoChangelog[];
+const intervencoes = intervencoesData as Intervencao[];
 
 function Definicao({ termo, significado }: { termo: string; significado: string }) {
   return (
@@ -84,6 +86,36 @@ export function Transparencia() {
       </div>
 
       <ComparacaoRodadas />
+
+      <div className="mt-10">
+        <h2 className="text-lg font-semibold text-neutral-900">Dados abertos</h2>
+        <p className="mt-1 text-sm text-neutral-600">
+          Os mesmos dados que esta página exibe estão em um único arquivo JSON, em endereço fixo, para quem quer
+          reusar sem precisar raspar a página. Ele traz os {intervencoes.length} projetos, os municípios, as fontes,
+          as datas de referência e um <strong>dicionário que descreve cada campo</strong> — o que significa, que
+          tipo tem e o que quer dizer quando vem vazio. É gerado a cada publicação a partir dos mesmos arquivos que
+          alimentam a tela, então não tem como divergir do que está no ar.
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <a
+            href={`${import.meta.env.BASE_URL}dados.json`}
+            className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
+          >
+            Abrir /dados.json
+          </a>
+          <a
+            href="https://github.com/JacquesGM/projeto-iguacu-site"
+            className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-100"
+          >
+            Repositório público
+          </a>
+        </div>
+        <p className="mt-3 text-sm text-neutral-600">
+          A fonte não declara licença de uso para estes dados. São públicos e vêm da página oficial do IRM; ao
+          reusar, cite a fonte e a data de referência, e na dúvida sobre redistribuição procure o GT pelo contato
+          abaixo.
+        </p>
+      </div>
 
       <div className="mt-10">
         <div className="flex flex-wrap items-center justify-between gap-3">

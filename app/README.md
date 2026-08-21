@@ -30,6 +30,9 @@ npm run build    # build de produção (tsc + vite build)
   em Recharts, com paleta validada pela skill de dataviz.
 - `src/lib/download.ts` — exportação de dados em CSV e PDF (jsPDF carregado
   sob demanda, só quando alguém clica em "PDF").
+- `scripts/generate-dados.js` — monta `public/dados.json`, o arquivo de dados
+  abertos: os projetos, os municípios, as fontes, as datas e o dicionário de
+  campos. Gerado no `dev` e no `build`, **nunca editado a mão**.
 
 ## Rodada de atualização
 
@@ -55,9 +58,16 @@ página de Transparência:
 3. Atualize `src/data/meta.json` (`ultimaAtualizacao`, `dataReferencia`,
    `proximaAtualizacao`) e acrescente a nota editorial em
    `src/data/changelog.json`.
-4. `npm run test` — há um teste que falha se a rodada arquivada tiver a mesma
-   data de referência da rodada corrente, que é o sintoma de arquivamento
-   trocado ou esquecido.
+   Se algum **campo** entrou ou saiu dos projetos, atualize também
+   `src/data/dicionarioCampos.json` — há teste que falha se o dicionário e os
+   dados divergirem, porque é ele que o `/dados.json` publica como descrição
+   oficial de cada campo.
+4. `npm run build` (ou `node scripts/generate-dados.js`) para regerar
+   `public/dados.json`, e commite o arquivo regerado.
+5. `npm run test`. Dois testes existem justamente para pegar o que passa
+   despercebido: um falha se a rodada arquivada tiver a data de referência da
+   rodada corrente (arquivamento trocado ou esquecido), outro falha se o
+   `public/dados.json` commitado estiver defasado em relação aos dados.
 
 Pular o passo 1 não quebra o build: a seção de comparação simplesmente não
 tem o que mostrar, em silêncio. Por isso ele vem primeiro.

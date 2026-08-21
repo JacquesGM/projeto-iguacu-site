@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import intervencoesData from './intervencoes.json';
 import rodadasAnterioresData from './rodadasAnteriores.json';
 import metaData from './meta.json';
+import dicionarioData from './dicionarioCampos.json';
+import dadosPublicados from '../../public/dados.json';
 import municipiosData from './municipios.json';
 import documentosData from './documentos.json';
 import linhaDoTempoData from './linhaDoTempo.json';
@@ -23,6 +25,7 @@ import { routes } from '../routes';
 const intervencoes = intervencoesData as Intervencao[];
 const rodadasAnteriores = rodadasAnterioresData as RodadaAnterior[];
 const meta = metaData as Meta;
+const dicionario = dicionarioData as { campo: string; tipo: string; descricao: string }[];
 const municipios = municipiosData as Municipio[];
 const documentos = documentosData as Documento[];
 const linhaDoTempo = linhaDoTempoData as MarcoLinhaDoTempo[];
@@ -196,5 +199,78 @@ describe('rodadas arquivadas', () => {
 
   it('meta.json declara a data da próxima rodada', () => {
     expect(meta.proximaAtualizacao).toMatch(/^\d{2}\/\d{2}\/\d{4}$/);
+  });
+});
+
+describe('dicionario de campos do /dados.json', () => {
+  // O dicionario e a promessa publica de que campo significa o que. Se um
+  // campo entrar ou sair de intervencoes.json e o dicionario nao acompanhar,
+  // o /dados.json passa a mentir para quem consome. Estes dois testes sao o
+  // que impede isso de passar despercebido.
+  const camposDocumentados = new Set(dicionario.map((c) => c.campo));
+  const camposReais = new Set(intervencoes.flatMap((i) => Object.keys(i)));
+
+  it('documenta todo campo que existe nos projetos', () => {
+    const semDocumentacao = [...camposReais].filter((c) => !camposDocumentados.has(c));
+    expect(semDocumentacao).toEqual([]);
+  });
+
+  it('nao documenta campo que nao existe', () => {
+    const inexistentes = [...camposDocumentados].filter((c) => !camposReais.has(c));
+    expect(inexistentes).toEqual([]);
+  });
+
+  it('todo campo tem tipo e descricao preenchidos', () => {
+    for (const campo of dicionario) {
+      expect(campo.tipo.length).toBeGreaterThan(0);
+      expect(campo.descricao.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('nao repete campo', () => {
+    expect(camposDocumentados.size).toBe(dicionario.length);
+  });
+
+  // Todos os 14 registros precisam ter a mesma forma: um consumidor que le o
+  // dicionario espera encontrar a chave em todo objeto, ainda que com null.
+  it('todos os projetos tem exatamente o mesmo conjunto de campos', () => {
+    const referencia = Object.keys(intervencoes[0]).sort().join(',');
+    for (const projeto of intervencoes) {
+      expect(Object.keys(projeto).sort().join(',')).toBe(referencia);
+    }
+  });
+});
+
+describe('/dados.json publicado', () => {
+  // public/dados.json e gerado por scripts/generate-dados.js, que so roda no
+  // dev e no build. Quem editar os dados e rodar so os testes nao regenera
+  // nada -- e no CI os testes vem ANTES do build. Sem esta checagem, um
+  // arquivo defasado seria commitado sem ninguem perceber.
+  const recado = 'rode `node scripts/generate-dados.js` (ou `npm run build`) e commite o public/dados.json';
+
+  it(`traz exatamente os projetos de intervencoes.json — senão, ${recado}`, () => {
+    expect(dadosPublicados.projetos).toEqual(intervencoes);
+  });
+
+  it(`traz o dicionário de campos atual — senão, ${recado}`, () => {
+    expect(dadosPublicados.dicionarioDeCampos).toEqual(dicionario);
+  });
+
+  it(`traz as datas do meta.json — senão, ${recado}`, () => {
+    expect(dadosPublicados.ultimaAtualizacao).toBe(meta.ultimaAtualizacao);
+    expect(dadosPublicados.dataReferencia).toBe(meta.dataReferencia);
+    expect(dadosPublicados.proximaAtualizacao).toBe(meta.proximaAtualizacao);
+  });
+
+  it('o total declarado bate com a soma dos contratos', () => {
+    const soma = intervencoes.reduce((acc, i) => acc + (i.valorContrato ?? 0), 0);
+    expect(dadosPublicados.totais.valorContratado).toBeCloseTo(soma, 2);
+    expect(dadosPublicados.totais.projetos).toBe(intervencoes.length);
+  });
+
+  // Nao inventar licenca: enquanto a fonte nao declarar uma, o campo precisa
+  // dizer que nao ha, em vez de afirmar condicao juridica que ninguem definiu.
+  it('não afirma uma licença que a fonte não declarou', () => {
+    expect(dadosPublicados.condicoesDeUso.licencaDeclarada).toBeNull();
   });
 });

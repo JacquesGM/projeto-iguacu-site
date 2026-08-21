@@ -22,6 +22,9 @@ const colunas = [
       'Os dados públicos do Projeto Iguaçu são estruturados com fonte e data de referência.',
       'Baixe os dados de indicadores, projetos e documentos em CSV ou PDF diretamente nas páginas correspondentes.',
     ],
+    // O /dados.json e gerado no build a partir dos mesmos arquivos que a tela
+    // le, entao nao ha como ele divergir do que esta publicado.
+    link: { href: 'dados.json', texto: 'Todos os projetos em JSON, com dicionário de campos' },
   },
 ];
 
@@ -70,6 +73,16 @@ export function Footer() {
                 {coluna.itens.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
+                {coluna.link && (
+                  <li>
+                    <a
+                      href={`${import.meta.env.BASE_URL}${coluna.link.href}`}
+                      className="text-brand-blue-300 hover:text-brand-blue-200 hover:underline"
+                    >
+                      {coluna.link.texto}
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           ))}

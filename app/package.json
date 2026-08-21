@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/generate-rss.js && node scripts/generate-sitemap.js && vite",
-    "build": "node scripts/generate-rss.js && node scripts/generate-sitemap.js && tsc -b && vite build",
+    "dev": "node scripts/generate-rss.js && node scripts/generate-sitemap.js && node scripts/generate-dados.js && vite",
+    "build": "node scripts/generate-rss.js && node scripts/generate-sitemap.js && node scripts/generate-dados.js && tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run"
   },
