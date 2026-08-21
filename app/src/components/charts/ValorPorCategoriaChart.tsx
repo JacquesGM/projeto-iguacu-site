@@ -2,6 +2,7 @@ import { Bar, BarChart, CartesianGrid, LabelList, ResponsiveContainer, Tooltip, 
 import { COR_BARRA } from '../../lib/coresMunicipio';
 import { GRAFICO } from '../../lib/tokensGrafico';
 import { useMediaQuery } from '../../lib/movimento';
+import { GraficoComTabela } from './GraficoComTabela';
 
 /**
  * Barras de valor contratado por categoria.
@@ -119,11 +120,34 @@ export function ValorPorCategoriaChart({
     );
   }
 
+  // A tabela traz o valor CHEIO, nao o compacto da barra: quem abre "ver dados
+  // em tabela" quer justamente o numero exato que "R$ 304,6 mi" esconde.
+  const linhas = ordenados.map((d) => [
+    d.nome,
+    moedaCheia.format(d.valor),
+    total > 0 ? `${Math.round((d.valor / total) * 100)}%` : '0%',
+  ]);
+
+  const notaCompleta = [
+    `Valor do contrato declarado, somado por ${rotuloCategoria}. Total: ${moedaCheia.format(total)}.`,
+    semValor > 0
+      ? semValor === 1
+        ? '1 projeto não tem valor declarado e ficou fora da soma.'
+        : `${semValor} projetos não têm valor declarado e ficaram fora da soma.`
+      : '',
+    nota ?? '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div>
-      <h2 className="text-sm font-semibold text-neutral-900">{titulo}</h2>
-      <div className="mt-3 h-48">
-        <ResponsiveContainer width="100%" height="100%">
+    <GraficoComTabela
+      titulo={titulo}
+      cabecalhos={[rotuloCategoria.charAt(0).toUpperCase() + rotuloCategoria.slice(1), 'Valor contratado', '% do total']}
+      linhas={linhas}
+      nota={notaCompleta}
+    >
+      <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={ordenados}
             layout="vertical"
@@ -152,16 +176,7 @@ export function ValorPorCategoriaChart({
               <LabelList dataKey="valor" content={RotuloDeValor} />
             </Bar>
           </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <p className="mt-2 text-xs text-neutral-500">
-        Valor do contrato declarado, somado por {rotuloCategoria}. Total: {moedaCheia.format(total)}.
-        {semValor > 0 &&
-          (semValor === 1
-            ? ' 1 projeto não tem valor declarado e ficou fora da soma.'
-            : ` ${semValor} projetos não têm valor declarado e ficaram fora da soma.`)}
-        {nota ? ` ${nota}` : ''}
-      </p>
-    </div>
+      </ResponsiveContainer>
+    </GraficoComTabela>
   );
 }

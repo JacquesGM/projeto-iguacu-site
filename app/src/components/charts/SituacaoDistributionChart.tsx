@@ -2,6 +2,7 @@ import { Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Too
 import type { SituacaoIntervencao } from '../../types';
 import { situacaoColorHex } from '../ui/SituacaoBadge';
 import { GRAFICO } from '../../lib/tokensGrafico';
+import { GraficoComTabela } from './GraficoComTabela';
 
 export function groupBySituacao(situacoes: SituacaoIntervencao[]) {
   const counts = new Map<SituacaoIntervencao, number>();
@@ -31,11 +32,21 @@ export function SituacaoDistributionChart({ situacoes }: { situacoes: SituacaoIn
     );
   }
 
+  const linhas = data.map((d) => [
+    d.situacao,
+    String(d.count),
+    total > 0 ? `${Math.round((d.count / total) * 100)}%` : '0%',
+  ]);
+
   return (
-    <div>
-      <h2 className="text-sm font-semibold text-neutral-900">Projetos por situação</h2>
-      <div className="mt-3 h-64">
-        <ResponsiveContainer width="100%" height="100%">
+    <GraficoComTabela
+      titulo="Projetos por situação"
+      cabecalhos={['Situação', 'Projetos', '% do total']}
+      linhas={linhas}
+      nota={`Fonte: página oficial do Projeto Iguaçu (IRM). Total: ${total} projetos.`}
+      alturaDoGrafico="h-64"
+    >
+      <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={8}>
             <CartesianGrid horizontal={false} stroke={GRAFICO.grade} />
             <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: GRAFICO.rotuloEixo }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
@@ -48,9 +59,7 @@ export function SituacaoDistributionChart({ situacoes }: { situacoes: SituacaoIn
               <LabelList dataKey="count" position="right" style={{ fill: GRAFICO.valor, fontSize: 12, fontWeight: 600 }} />
             </Bar>
           </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <p className="mt-2 text-xs text-neutral-500">Fonte: página oficial do Projeto Iguaçu (IRM). Total: {total} projetos.</p>
-    </div>
+      </ResponsiveContainer>
+    </GraficoComTabela>
   );
 }
