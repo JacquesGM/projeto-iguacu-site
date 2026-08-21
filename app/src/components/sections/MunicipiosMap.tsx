@@ -1,145 +1,249 @@
-import { useMemo, useState } from 'react';
-import { Circle, MapContainer, Polygon, Popup, TileLayer } from 'react-leaflet';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import { CircleMarker, MapContainer, Polyline, Popup, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import municipiosData from '../../data/municipios.json';
 import intervencoesData from '../../data/intervencoes.json';
 import type { Intervencao, Municipio } from '../../types';
 import { Card } from '../ui/Card';
 import { SituacaoBadge } from '../ui/SituacaoBadge';
-import { centroid, convexHull, maxDistanceMeters, uniquePoints, type LatLng } from '../../lib/geo';
 import { CORES_MUNICIPIO } from '../../lib/coresMunicipio';
+import { geometriasDosProjetos, semCoordenada, type GeometriaProjeto } from '../../lib/geometriaProjeto';
 
 const municipios = municipiosData as Municipio[];
 const intervencoes = intervencoesData as Intervencao[];
 
-const RAIO_MINIMO_METROS = 500;
-const MARGEM_BUFFER_METROS = 400;
+const COR_PADRAO = '#5a6b78';
+const RAIO_PONTO = 6;
+const RAIO_PONTO_ATIVO = 9;
+const ZOOM_PONTO_UNICO = 14;
 
-interface GrupoMunicipio {
-  municipio: Municipio;
-  pontos: LatLng[];
-  intervencoesDoGrupo: Intervencao[];
+/** Enquadramento de partida, e para onde "Limpar seleção" devolve o mapa. */
+interface VisaoInicial {
+  centro: [number, number];
+  zoom: number;
+}
+const VISAO_INICIAL: VisaoInicial = { centro: [-22.75, -43.33], zoom: 10 };
+
+const nomeMunicipio = (id: string) => municipios.find((m) => m.id === id)?.nome ?? 'Não informado';
+
+const corDoProjeto = (item: Intervencao) => CORES_MUNICIPIO[item.municipioId] ?? COR_PADRAO;
+
+const DESCRICAO_FORMA: Record<GeometriaProjeto['forma'], string> = {
+  ponto: 'local único declarado',
+  trecho: 'trecho entre coordenada inicial e final',
+  conjunto: 'conjunto de pontos declarados',
+};
+
+/**
+ * Reposiciona o mapa quando a seleção muda. Precisa ser filho do MapContainer
+ * porque `useMap` só funciona dentro dele. O ref evita refazer o enquadramento
+ * a cada render enquanto o mesmo projeto segue selecionado — sem ele o mapa
+ * voltaria ao lugar toda vez que a pessoa arrastasse.
+ *
+ * O Leaflet anima por conta própria e não consulta `prefers-reduced-motion`,
+ * ao contrário do resto do site; por isso a preferência é lida aqui.
+ */
+function FocarSelecionado({ geometria, visaoInicial }: { geometria: GeometriaProjeto | null; visaoInicial: VisaoInicial }) {
+  const map = useMap();
+  const ultimoId = useRef<string | null>(null);
+
+  useEffect(() => {
+    const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!geometria) {
+      // Limpar a seleção devolve o panorama: sem isso o mapa fica parado no
+      // último projeto, e a lista deixa de corresponder ao que se vê.
+      if (ultimoId.current !== null) {
+        map.setView(visaoInicial.centro, visaoInicial.zoom, { animate: !semMovimento });
+      }
+      ultimoId.current = null;
+      return;
+    }
+    if (ultimoId.current === geometria.intervencao.id) return;
+    ultimoId.current = geometria.intervencao.id;
+
+    if (geometria.pontos.length === 1) {
+      map.setView([geometria.pontos[0].lat, geometria.pontos[0].lng], ZOOM_PONTO_UNICO, {
+        animate: !semMovimento,
+      });
+      return;
+    }
+    map.fitBounds(
+      geometria.pontos.map((p) => [p.lat, p.lng] as [number, number]),
+      { padding: [40, 40], maxZoom: ZOOM_PONTO_UNICO, animate: !semMovimento },
+    );
+  }, [geometria, map, visaoInicial]);
+
+  return null;
 }
 
-function textoContagem(n: number): string {
-  return n === 1 ? '1 projeto com coordenada' : `${n} projetos com coordenada`;
+function ConteudoPopup({ g, rotulo }: { g: GeometriaProjeto; rotulo: string }) {
+  return (
+    <>
+      <strong>{g.intervencao.nomeProjeto}</strong>
+      <br />
+      {nomeMunicipio(g.intervencao.municipioId)}
+      {rotulo ? ` · ${rotulo}` : ''}
+      <br />
+      <span className="text-neutral-600">{DESCRICAO_FORMA[g.forma]}</span>
+    </>
+  );
 }
 
 export function MunicipiosMap() {
-  const [selecionado, setSelecionado] = useState<Municipio | null>(null);
-  const center = useMemo<[number, number]>(() => [-22.75, -43.33], []);
+  const [selecionadoId, setSelecionadoId] = useState<string | null>(null);
 
-  const grupos = useMemo<GrupoMunicipio[]>(() => {
-    return municipios
-      .map((municipio) => {
-        const doGrupo = intervencoes.filter(
-          (i) => (i.municipioId === municipio.id || i.municipiosAdicionais.includes(municipio.id)) && i.pontos.length > 0,
-        );
-        // Todos os pontos declarados entram no contorno, não só o representativo:
-        // as pontes de Nova Iguaçu têm 10 e os reservatórios, 3.
-        const pontos = doGrupo.flatMap((i) => i.pontos.map((pt) => ({ lat: pt.lat, lng: pt.lng })));
-        return { municipio, pontos, intervencoesDoGrupo: doGrupo };
-      })
-      .filter((g) => g.pontos.length > 0);
-  }, []);
+  const geometrias = useMemo(() => geometriasDosProjetos(intervencoes), []);
+  const semCoord = useMemo(() => semCoordenada(intervencoes), []);
+  const selecionado = geometrias.find((g) => g.intervencao.id === selecionadoId) ?? null;
+  const totalPontos = geometrias.reduce((soma, g) => soma + g.pontos.length, 0);
 
   return (
     <div>
       <p className="text-sm text-neutral-600">
-        Áreas aproximadas construídas a partir das coordenadas declaradas pelos órgãos executores na página
-        oficial do IRM — não representam um perímetro oficial. Com 3 ou mais pontos distintos, o contorno conecta
-        essas coordenadas; com 1 ou 2 pontos, mostramos um círculo ilustrativo ao redor deles. Projetos sem
-        coordenada declarada não aparecem no mapa, mas constam na lista acima.
+        Cada projeto aparece com as coordenadas que o órgão executor declarou na página oficial do IRM —{' '}
+        {geometrias.length} projetos, {totalPontos} coordenadas ao todo. Um projeto pode ser um local único, um
+        trecho entre coordenada inicial e final, ou um conjunto de pontos, como as pontes de Nova Iguaçu, que são
+        obras distintas. Onde há linha, ela liga a coordenada inicial à final em traçado reto:{' '}
+        <strong>não é o eixo real do canal</strong> nem perímetro oficial de obra.
       </p>
 
-      <div className="mt-4 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-        <div className="isolate relative h-[420px] overflow-hidden rounded-xl border border-neutral-200">
-          <span className="absolute bottom-2 left-2 z-[1000] rounded-md border border-neutral-300 bg-white/90 px-2 py-1 text-xs font-medium text-neutral-600 shadow-sm">
-            Contorno tracejado = área aproximada, não oficial
-          </span>
+      <div className="mt-4 grid items-start gap-6 lg:grid-cols-[1.3fr_1fr]">
+        {/* A lista fica bem mais alta que o mapa. Sem o sticky sobrariam ~540px
+            de vazio ao lado dela e, pior, o mapa sairia de vista justamente
+            quando se clica nos projetos do fim da lista — a sincronia entre os
+            dois viraria invisível. O top acompanha a altura do cabeçalho fixo. */}
+        <div className="isolate relative h-[420px] overflow-hidden rounded-xl border border-neutral-200 lg:sticky lg:top-28">
           <MapContainer
-            center={center}
-            zoom={10}
+            center={VISAO_INICIAL.centro}
+            zoom={VISAO_INICIAL.zoom}
             scrollWheelZoom={false}
             className="h-full w-full"
-            aria-label="Áreas aproximadas dos projetos do Projeto Iguaçu, por município"
+            aria-label="Localização declarada dos projetos do Projeto Iguaçu"
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {grupos.map((grupo) => {
-              const cor = CORES_MUNICIPIO[grupo.municipio.id] ?? '#5a6b78';
-              const pathOptions = { color: cor, fillColor: cor, fillOpacity: 0.28, weight: 2, dashArray: '6 4' };
-              const distintos = uniquePoints(grupo.pontos);
-              const contagem = textoContagem(grupo.intervencoesDoGrupo.length);
+            <FocarSelecionado geometria={selecionado} visaoInicial={VISAO_INICIAL} />
 
-              if (distintos.length >= 3) {
-                const hull = convexHull(distintos);
-                return (
-                  <Polygon
-                    key={grupo.municipio.id}
-                    positions={hull.map((p) => [p.lat, p.lng])}
-                    pathOptions={pathOptions}
-                    eventHandlers={{ click: () => setSelecionado(grupo.municipio) }}
-                  >
-                    <Popup>
-                      <strong>{grupo.municipio.nome}</strong>
-                      <br />
-                      {contagem}
-                    </Popup>
-                  </Polygon>
-                );
-              }
+            {geometrias.map((g) => {
+              const cor = corDoProjeto(g.intervencao);
+              const ativo = g.intervencao.id === selecionadoId;
+              const selecionar = () => setSelecionadoId(g.intervencao.id);
 
-              const c = centroid(distintos);
-              const raio = Math.max(RAIO_MINIMO_METROS, maxDistanceMeters(distintos, c) + MARGEM_BUFFER_METROS);
               return (
-                <Circle
-                  key={grupo.municipio.id}
-                  center={[c.lat, c.lng]}
-                  radius={raio}
-                  pathOptions={pathOptions}
-                  eventHandlers={{ click: () => setSelecionado(grupo.municipio) }}
-                >
-                  <Popup>
-                    <strong>{grupo.municipio.nome}</strong>
-                    <br />
-                    {contagem}
-                  </Popup>
-                </Circle>
+                <Fragment key={g.intervencao.id}>
+                  {g.forma === 'trecho' && (
+                    <Polyline
+                      positions={g.pontos.map((p) => [p.lat, p.lng] as [number, number])}
+                      pathOptions={{ color: cor, weight: ativo ? 6 : 4, opacity: ativo ? 1 : 0.85 }}
+                      eventHandlers={{ click: selecionar }}
+                    >
+                      <Popup>
+                        <ConteudoPopup g={g} rotulo="" />
+                      </Popup>
+                    </Polyline>
+                  )}
+
+                  {g.pontos.map((ponto, indice) => (
+                    <CircleMarker
+                      key={`${g.intervencao.id}-${indice}`}
+                      center={[ponto.lat, ponto.lng]}
+                      radius={ativo ? RAIO_PONTO_ATIVO : RAIO_PONTO}
+                      pathOptions={{ color: '#ffffff', weight: 2, fillColor: cor, fillOpacity: 1 }}
+                      eventHandlers={{ click: selecionar }}
+                    >
+                      <Popup>
+                        <ConteudoPopup g={g} rotulo={g.rotulos[indice]} />
+                      </Popup>
+                    </CircleMarker>
+                  ))}
+                </Fragment>
               );
             })}
           </MapContainer>
         </div>
 
         <Card>
-          {selecionado ? (
-            (() => {
-              const grupo = grupos.find((g) => g.municipio.id === selecionado.id);
+          <div className="flex items-baseline justify-between gap-2">
+            <h3 className="font-semibold text-neutral-900">Projetos no mapa</h3>
+            {selecionado && (
+              <button
+                type="button"
+                onClick={() => setSelecionadoId(null)}
+                className="rounded-md px-2 py-1 text-xs font-medium text-brand-blue-700 hover:bg-brand-blue-50"
+              >
+                Limpar seleção
+              </button>
+            )}
+          </div>
+
+          <p className="mt-1 text-sm text-neutral-500">
+            Escolha um projeto para enquadrá-lo no mapa, ou clique direto em um ponto.
+          </p>
+
+          <ul className="mt-3 space-y-1">
+            {geometrias.map((g) => {
+              const ativo = g.intervencao.id === selecionadoId;
               return (
-                <div>
-                  <h3 className="font-semibold text-neutral-900">{selecionado.nome}</h3>
-                  <ul className="mt-3 space-y-3">
-                    {grupo?.intervencoesDoGrupo.map((item) => (
-                      <li key={item.id} className="border-b border-neutral-100 pb-3 last:border-0 last:pb-0">
-                        <p className="text-sm font-medium text-neutral-900">{item.nomeProjeto}</p>
-                        <p className="mt-0.5 text-xs text-neutral-500">
-                          {item.rio} · {item.orgaoResponsavel}
-                        </p>
-                        <div className="mt-1.5">
-                          <SituacaoBadge situacao={item.situacao} />
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <li key={g.intervencao.id}>
+                  <button
+                    type="button"
+                    onClick={() => setSelecionadoId(ativo ? null : g.intervencao.id)}
+                    aria-current={ativo ? 'true' : undefined}
+                    className={`flex w-full items-start gap-2 rounded-md px-2 py-2 text-left ${
+                      ativo ? 'bg-brand-blue-50 ring-1 ring-brand-blue-500' : 'hover:bg-neutral-50'
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-1 h-3 w-3 shrink-0 rounded-full border border-white shadow-[0_0_0_1px_rgba(0,0,0,0.25)]"
+                      style={{ backgroundColor: corDoProjeto(g.intervencao) }}
+                    />
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-neutral-900">{g.intervencao.nomeProjeto}</span>
+                      <span className="mt-0.5 block text-xs text-neutral-500">
+                        {nomeMunicipio(g.intervencao.municipioId)} · {DESCRICAO_FORMA[g.forma]}
+                        {g.pontos.length > 1 ? ` (${g.pontos.length} coordenadas)` : ''}
+                      </span>
+                      {ativo && (
+                        <span className="mt-2 block">
+                          <span className="block text-xs text-neutral-600">
+                            {g.intervencao.rio} · {g.intervencao.orgaoResponsavel}
+                          </span>
+                          <span className="mt-1.5 block">
+                            <SituacaoBadge situacao={g.intervencao.situacao} />
+                          </span>
+                        </span>
+                      )}
+                    </span>
+                  </button>
+                </li>
               );
-            })()
-          ) : (
-            <p className="text-sm text-neutral-500">
-              Clique em uma área do mapa para ver os projetos com coordenada declarada naquele município.
-            </p>
+            })}
+          </ul>
+
+          {semCoord.length > 0 && (
+            <div className="mt-4 border-t border-neutral-200 pt-3">
+              <h4 className="text-sm font-semibold text-neutral-900">
+                {semCoord.length === 1
+                  ? '1 projeto sem coordenada declarada'
+                  : `${semCoord.length} projetos sem coordenada declarada`}
+              </h4>
+              <p className="mt-1 text-xs text-neutral-600">
+                A fonte não informa onde ficam. Não são estimados pelo município nem omitidos: seguem na tabela
+                acima, com todos os demais dados.
+              </p>
+              <ul className="mt-2 space-y-1.5">
+                {semCoord.map((item) => (
+                  <li key={item.id} className="text-sm text-neutral-700">
+                    {item.nomeProjeto}
+                    <span className="block text-xs text-neutral-500">{nomeMunicipio(item.municipioId)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </Card>
       </div>
