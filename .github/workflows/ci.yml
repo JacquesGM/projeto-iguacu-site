@@ -38,3 +38,58 @@ jobs:
 
       - name: Build de produção
         run: npm run build
+
+  # Publica no Firebase Hosting so no push para master, e so depois de tipos,
+  # testes e build passarem. Antes disto a publicacao era manual, o que
+  # funciona enquanto for sempre a mesma pessoa e para de funcionar quando
+  # nao for.
+  #
+  # Precisa do secret FIREBASE_SERVICE_ACCOUNT no repositorio (ver
+  # app/README.md, secao "Publicacao"). Enquanto ele nao existir, o job e
+  # PULADO em vez de falhar: um CI vermelho por configuracao ausente treina
+  # todo mundo a ignorar CI vermelho.
+  deploy:
+    needs: build-and-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verifica se o secret de publicacao existe
+        id: secret
+        run: |
+          if [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
+            echo "existe=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "existe=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::FIREBASE_SERVICE_ACCOUNT nao configurado; publicacao segue manual."
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.secret.outputs.existe == 'true'
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - run: npm install -g npm@11
+        if: steps.secret.outputs.existe == 'true'
+
+      - run: npm ci
+        if: steps.secret.outputs.existe == 'true'
+        working-directory: app
+
+      # Rebuild aqui em vez de carregar artefato do job anterior: sao ~5s, e
+      # assim o que vai ao ar e comprovadamente o que este commit gera.
+      - run: npm run build
+        if: steps.secret.outputs.existe == 'true'
+        working-directory: app
+
+      - name: Publica no Firebase Hosting
+        if: steps.secret.outputs.existe == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: carrinho-virtual-iw-48fc7
+          channelId: live

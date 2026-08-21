@@ -8,6 +8,13 @@
     <item>
       <title>Atualização de 21/08/2026</title>
       <link>https://projeto-iguacu-irm.web.app/transparencia</link>
+      <guid isPermaLink="false">projeto-iguacu-21-08-2026-QSBww6FnaW5h</guid>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A página de Transparência passou a trazer o dicionário de campos: o que cada um dos 29 campos de um projeto significa, que tipo tem e o que quer dizer quando vem vazio. É a mesma descrição publicada em /dados.json, gerada do mesmo arquivo.</description>
+    </item>
+    <item>
+      <title>Atualização de 21/08/2026</title>
+      <link>https://projeto-iguacu-irm.web.app/transparencia</link>
       <guid isPermaLink="false">projeto-iguacu-21-08-2026-VG9kb3Mgb3Mg</guid>
       <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
       <description>Todos os gráficos passaram a ter uma tabela equivalente, aberta por &quot;Ver dados em tabela&quot;, com o valor exato que o rótulo arredondado da barra não mostra. Quem usa leitor de tela lê a tabela: o desenho do gráfico saiu da árvore de acessibilidade, porque era lido como uma sequência de números soltos, sem rótulo e fora de ordem.</description>
