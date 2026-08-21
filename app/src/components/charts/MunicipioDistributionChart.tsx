@@ -3,6 +3,7 @@ import municipiosData from '../../data/municipios.json';
 import type { Intervencao, Municipio } from '../../types';
 import { COR_BARRA } from '../../lib/coresMunicipio';
 import { GRAFICO } from '../../lib/tokensGrafico';
+import { GraficoComTabela } from './GraficoComTabela';
 
 const municipios = municipiosData as Municipio[];
 
@@ -28,11 +29,20 @@ export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Int
     );
   }
 
+  const linhas = data.map((d) => [
+    d.nome,
+    String(d.count),
+    total > 0 ? `${Math.round((d.count / total) * 100)}%` : '0%',
+  ]);
+
   return (
-    <div>
-      <h2 className="text-sm font-semibold text-neutral-900">Projetos por município</h2>
-      <div className="mt-3 h-48">
-        <ResponsiveContainer width="100%" height="100%">
+    <GraficoComTabela
+      titulo="Projetos por município"
+      cabecalhos={['Município', 'Projetos', '% do total']}
+      linhas={linhas}
+      nota={`Fonte: página oficial do Projeto Iguaçu (IRM). Total: ${total} projetos.`}
+    >
+      <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 4, right: 32, left: 8, bottom: 4 }} barCategoryGap={10}>
             <CartesianGrid horizontal={false} stroke={GRAFICO.grade} />
             <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: GRAFICO.rotuloEixo }} axisLine={{ stroke: GRAFICO.eixo }} tickLine={false} />
@@ -45,11 +55,7 @@ export function MunicipioDistributionChart({ intervencoes }: { intervencoes: Int
               <LabelList dataKey="count" position="right" style={{ fill: GRAFICO.valor, fontSize: 12, fontWeight: 600 }} />
             </Bar>
           </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <p className="mt-2 text-xs text-neutral-500">
-        Fonte: página oficial do Projeto Iguaçu (IRM). Total: {total} projetos.
-      </p>
-    </div>
+      </ResponsiveContainer>
+    </GraficoComTabela>
   );
 }
