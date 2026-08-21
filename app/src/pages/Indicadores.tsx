@@ -16,6 +16,8 @@ import { situacaoColorHex, situacaoIcon } from '../components/ui/SituacaoBadge';
 import { SituacaoDistributionChart } from '../components/charts/SituacaoDistributionChart';
 import { MunicipioDistributionChart } from '../components/charts/MunicipioDistributionChart';
 import { OrgaoDistributionChart } from '../components/charts/OrgaoDistributionChart';
+import { ValorPorCategoriaChart } from '../components/charts/ValorPorCategoriaChart';
+import { completudeDosDados, valorPorMunicipio, valorPorSituacao } from '../lib/indicadoresDerivados';
 import { DownloadButton } from '../components/ui/DownloadButton';
 import { IndicatorDetailModal } from '../components/sections/IndicatorDetailModal';
 import { InterventionModal } from '../components/sections/InterventionModal';
@@ -217,7 +219,8 @@ export function Indicadores() {
         <strong className="font-semibold text-neutral-900">{indicadores.proximaAtualizacao}</strong>.
       </p>
 
-      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+      <h2 className="mt-10 text-lg font-semibold text-neutral-900">Quantos projetos, por recorte</h2>
+      <div className="mt-4 grid gap-5 lg:grid-cols-2">
         <Card>
           <SituacaoDistributionChart situacoes={intervencoes.map((i) => i.situacao)} />
         </Card>
@@ -228,6 +231,60 @@ export function Indicadores() {
           <OrgaoDistributionChart intervencoes={intervencoes} />
         </Card>
       </div>
+
+      {/* Contar projetos engana quando os valores sao tao desiguais: um
+          municipio com dois contratos de R$ 5 mi e outro com um de R$ 147 mi
+          aparecem, na contagem, como se o primeiro pesasse o dobro. */}
+      <h2 className="mt-10 text-lg font-semibold text-neutral-900">Quanto foi contratado, por recorte</h2>
+      <p className="mt-1 text-sm text-neutral-600">
+        Os mesmos projetos, pesados pelo valor do contrato em vez da quantidade. É o valor{' '}
+        <strong>contratado</strong>: a fonte não informa quanto já foi executado, medido ou pago.
+      </p>
+      <div className="mt-4 grid gap-5 lg:grid-cols-2">
+        <Card>
+          <ValorPorCategoriaChart
+            titulo="Valor contratado por situação"
+            dados={valorPorSituacao(intervencoes)}
+            rotuloCategoria="situação declarada"
+            larguraDoEixo={150}
+          />
+        </Card>
+        <Card>
+          <ValorPorCategoriaChart
+            titulo="Valor contratado por município"
+            dados={valorPorMunicipio(intervencoes, municipios)}
+            rotuloCategoria="município"
+            nota="O projeto atribuído a dois municípios é contado uma vez, no município principal: a fonte declara um valor único para o contrato e não diz quanto cabe a cada um."
+          />
+        </Card>
+      </div>
+
+      <h2 className="mt-10 text-lg font-semibold text-neutral-900">O que a fonte ainda não informa</h2>
+      <p className="mt-1 text-sm text-neutral-600">
+        Quantos dos {intervencoes.length} projetos têm cada dado declarado. Estas lacunas não são estimadas nem
+        preenchidas por dedução em nenhuma tela do portal.
+      </p>
+      <Card className="mt-4">
+        <ul className="space-y-3">
+          {completudeDosDados(intervencoes).map((linha) => {
+            const pct = Math.round((linha.preenchidos / linha.total) * 100);
+            return (
+              <li key={linha.rotulo}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+                  <span className="text-sm text-neutral-700">{linha.rotulo}</span>
+                  <span className="text-sm font-semibold text-neutral-900">
+                    {linha.preenchidos} de {linha.total}
+                  </span>
+                </div>
+                {/* aria-hidden: a barra repete o numero ao lado, que ja e lido. */}
+                <div aria-hidden="true" className="mt-1 h-1.5 w-full rounded-full bg-neutral-200">
+                  <div className="h-1.5 rounded-full bg-brand-blue-700" style={{ width: `${pct}%` }} />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </Card>
 
       <IndicatorDetailModal
         detalhe={detalheSelecionado}

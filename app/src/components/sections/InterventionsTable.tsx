@@ -14,7 +14,10 @@ const municipios = municipiosData as Municipio[];
 
 const ALL = 'todos';
 
-const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+// Valor cheio, com centavos. Arredondado, o numero da tabela nao batia com
+// nenhum documento oficial nem com o que o proprio detalhe do projeto mostra:
+// num portal de transparencia isso e um convite a desconfiar do dado.
+const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
 function nomeMunicipio(id: string): string {
   return municipios.find((m) => m.id === id)?.nome ?? 'Não informado';
