@@ -1,6 +1,10 @@
 [
   {
     "data": "21/08/2026",
+    "descricao": "Cada projeto passou a exibir um selo de procedência: quem declarou o dado e em que data. No detalhe do projeto, o selo mostra a cadeia inteira — o órgão que declarou, a data da informação e a página de onde o conteúdo foi transcrito. A procedência já estava publicada, mas nas duas últimas linhas do detalhe, com o mesmo peso visual do resto."
+  },
+  {
+    "data": "21/08/2026",
     "descricao": "Os dados desta página passaram a ser publicados também em /dados.json, num único arquivo com endereço fixo: os 14 projetos, os municípios, as fontes, as datas de referência e um dicionário que descreve cada campo — o que significa, que tipo tem e o que quer dizer quando vem vazio. O arquivo é gerado a cada publicação a partir dos mesmos dados que alimentam a tela. A fonte não declara licença de uso, e nenhuma foi presumida."
   },
   {

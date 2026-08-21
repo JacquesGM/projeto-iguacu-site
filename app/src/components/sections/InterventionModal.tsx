@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import type { Intervencao } from '../../types';
 import { SituacaoBadge } from '../ui/SituacaoBadge';
+import { SeloProcedenciaCompleto } from '../ui/SeloProcedencia';
 import { primeiraMaiuscula } from '../../lib/texto';
 
 function Linha({ rotulo, children }: { rotulo: string; children: React.ReactNode }) {
@@ -30,7 +31,7 @@ export function InterventionModal({
   onClose: () => void;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
-  const corpoRef = useRef<HTMLDListElement>(null);
+  const corpoRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -102,40 +103,46 @@ export function InterventionModal({
           </button>
         </div>
 
-        <dl ref={corpoRef} className="overflow-y-auto p-6 pt-4 sm:p-8 sm:pt-4">
-          <Linha rotulo="Objeto">{intervencao.objeto}</Linha>
-          <Linha rotulo="Tipo">{primeiraMaiuscula(intervencao.tipo)}</Linha>
-          <Linha rotulo="Município">{municipioNome}</Linha>
-          <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
-          <Linha rotulo="Coordenadas">
-            {intervencao.coordenadasTexto ?? 'Não informado'}
-          </Linha>
-          <Linha rotulo="Órgão responsável">{intervencao.orgaoResponsavel}</Linha>
-          <Linha rotulo="Empresa contratada">
-            {intervencao.empresaContratada ?? intervencao.empresaTexto ?? 'Não informado'}
-          </Linha>
-          <Linha rotulo="Processo">{textoOu(intervencao.processoSEI)}</Linha>
-          <Linha rotulo="Programa / fonte do recurso">{textoOu(intervencao.programa)}</Linha>
-          <Linha rotulo="Valor do contrato">
-            {intervencao.valorContrato !== null ? moeda.format(intervencao.valorContrato) : 'Não informado'}
-          </Linha>
-          <Linha rotulo="Situação">
-            <SituacaoBadge situacao={intervencao.situacao} />
-          </Linha>
-          <Linha rotulo="Prazo do contrato">
-            {intervencao.prazoTexto ??
-              (intervencao.prazoContratoMeses !== null ? `${intervencao.prazoContratoMeses} meses` : 'Não informado')}
-          </Linha>
-          <Linha rotulo="Início de vigência">
-            {intervencao.dataInicioVigencia ?? intervencao.dataInicioVigenciaTexto ?? 'Não informado'}
-          </Linha>
-          <Linha rotulo="Término de vigência">
-            {intervencao.dataTerminoVigencia ?? intervencao.dataTerminoVigenciaTexto ?? 'Não informado'}
-          </Linha>
-          {intervencao.observacoes && <Linha rotulo="Observações do órgão">{intervencao.observacoes}</Linha>}
-          <Linha rotulo="Data da informação">{intervencao.dataInformacao}</Linha>
-          <Linha rotulo="Fonte">{intervencao.fonte}</Linha>
-        </dl>
+        <div ref={corpoRef} className="overflow-y-auto p-6 pt-4 sm:p-8 sm:pt-4">
+          <dl>
+            <Linha rotulo="Objeto">{intervencao.objeto}</Linha>
+            <Linha rotulo="Tipo">{primeiraMaiuscula(intervencao.tipo)}</Linha>
+            <Linha rotulo="Município">{municipioNome}</Linha>
+            <Linha rotulo="Rio / corpo hídrico">{intervencao.rio}</Linha>
+            <Linha rotulo="Coordenadas">
+              {intervencao.coordenadasTexto ?? 'Não informado'}
+            </Linha>
+            <Linha rotulo="Órgão responsável">{intervencao.orgaoResponsavel}</Linha>
+            <Linha rotulo="Empresa contratada">
+              {intervencao.empresaContratada ?? intervencao.empresaTexto ?? 'Não informado'}
+            </Linha>
+            <Linha rotulo="Processo">{textoOu(intervencao.processoSEI)}</Linha>
+            <Linha rotulo="Programa / fonte do recurso">{textoOu(intervencao.programa)}</Linha>
+            <Linha rotulo="Valor do contrato">
+              {intervencao.valorContrato !== null ? moeda.format(intervencao.valorContrato) : 'Não informado'}
+            </Linha>
+            <Linha rotulo="Situação">
+              <SituacaoBadge situacao={intervencao.situacao} />
+            </Linha>
+            <Linha rotulo="Prazo do contrato">
+              {intervencao.prazoTexto ??
+                (intervencao.prazoContratoMeses !== null ? `${intervencao.prazoContratoMeses} meses` : 'Não informado')}
+            </Linha>
+            <Linha rotulo="Início de vigência">
+              {intervencao.dataInicioVigencia ?? intervencao.dataInicioVigenciaTexto ?? 'Não informado'}
+            </Linha>
+            <Linha rotulo="Término de vigência">
+              {intervencao.dataTerminoVigencia ?? intervencao.dataTerminoVigenciaTexto ?? 'Não informado'}
+            </Linha>
+            {intervencao.observacoes && <Linha rotulo="Observações do órgão">{intervencao.observacoes}</Linha>}
+          </dl>
+
+          {/* A procedencia era as duas ultimas linhas da lista, com o mesmo peso
+              visual do resto e por isso invisivel. Agora fecha o detalhe como
+              bloco proprio. Fica DENTRO do corpo rolavel: fixo no rodape do
+              modal, roubaria altura util num celular de 700px. */}
+          <SeloProcedenciaCompleto intervencao={intervencao} />
+        </div>
       </div>
     </div>
   );
