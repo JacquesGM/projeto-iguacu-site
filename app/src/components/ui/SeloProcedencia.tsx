@@ -61,7 +61,7 @@ export function SeloProcedenciaCompleto({ intervencao }: { intervencao: Interven
       <p className="mt-3 text-xs text-neutral-600">
         Os órgãos executores declaram os dados dos próprios projetos em formulário padronizado; o Instituto Rio
         Metrópole confere e consolida antes de publicar, e não executa as obras.{' '}
-        <Link to="/transparencia" className="text-brand-blue-700 hover:underline">
+        <Link to="/transparencia" className="text-brand-blue-700 underline underline-offset-2">
           Como o dado é apurado
         </Link>
         .

@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 // O alvo padrão é o Firebase Hosting, na raiz do domínio. Para publicar num
@@ -18,5 +18,8 @@ export default defineConfig(({ command }) => ({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/test/setup.ts',
+    // Os testes de ponta a ponta sao do Playwright e precisam de navegador; o
+    // vitest tentava carrega-los e quebrava no `test.describe` dele.
+    exclude: [...configDefaults.exclude, 'e2e/**'],
   },
 }));

@@ -9,10 +9,31 @@ badges de situação e testes automatizados.
 
 ```bash
 npm install
-npm run dev      # servidor de desenvolvimento
-npm run test     # suíte de testes (Vitest)
-npm run build    # build de produção (tsc + vite build)
+npm run dev       # servidor de desenvolvimento
+npm run test      # suíte de testes em jsdom (Vitest)
+npm run test:e2e  # ponta a ponta, num Chromium de verdade (Playwright)
+npm run build     # build de produção (tsc + vite build)
 ```
+
+Na primeira vez, `npm run test:e2e` precisa do navegador:
+`npx playwright install chromium`. Ele sobe o `vite preview` sozinho — é o
+build de produção que fica sob teste, não o `dev`.
+
+### Duas suítes, e por quê
+
+São duas porque medem coisas diferentes, e cada uma é cega para a metade da
+outra:
+
+| | `npm run test` (Vitest, jsdom) | `npm run test:e2e` (Playwright, Chromium) |
+|---|---|---|
+| Onde roda | sem layout nem pintura | navegador de verdade |
+| Cobre | estrutura, ARIA, nomes acessíveis, ordem de títulos, dados | contraste de cor, alvo de toque, gráficos desenhados, teclado ponta a ponta |
+| Não alcança | tudo que depende de geometria ou de cor pintada | o detalhe de dado, que ali seria lento demais |
+| Quanto leva | ~15s | ~1min, incluindo o build |
+
+Verde nas duas ainda não quer dizer "portal acessível": falta leitor de tela
+de verdade (NVDA/VoiceOver) e aparelho de toque na mão. Quer dizer que não
+houve regressão no que dá para automatizar.
 
 ## Estrutura
 
