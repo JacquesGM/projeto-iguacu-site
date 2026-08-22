@@ -77,12 +77,37 @@
 }
 
 /*
- * VLibras: o widget oficial se ancora no meio da lateral direita
- * (top: 50% com translate). Em telas estreitas isso cai em cima do
- * conteúdo — cobre item do menu aberto, valor de cartão e texto de modal.
- * Abaixo de 768px ele vai para o canto inferior direito, logo acima do
- * botão "Voltar ao topo" (bottom-5, 48px de altura). Só a âncora muda;
- * o widget continua o do gov.br.
+ * VLibras: onde o widget fica.
+ *
+ * O CSS do plugin deixa `div[vw]` como `position: fixed` sem nenhum
+ * deslocamento, contando que a própria inicialização o posicione. Como o
+ * componente é renderizado no fim do layout (para não entrar na frente do
+ * "Ir para o conteúdo" na ordem de foco), a posição estática dele fica no
+ * rodapé do documento — e o botão nascia fora da tela, a 2.294px do topo numa
+ * janela de 720px. Ancorar aqui é o que garante que ele esteja alcançável, sem
+ * depender do que o plugin faz ou deixa de fazer.
+ *
+ * No meio da lateral direita, que é a convenção do gov.br.
+ */
+div[vw].enabled {
+  /* `position` e `z-index` também são nossos, e não do plugin, de propósito:
+     se o CSS do gov.br não chegar, o widget vira um bloco solto no fim da
+     página em vez de ficar onde deveria. O plugin sobrepõe os dois com o
+     z-index gigante dele quando carrega, e tudo bem. */
+  position: fixed;
+  z-index: 50;
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  left: auto;
+  transform: translateY(-50%);
+}
+
+/*
+ * Em telas estreitas o meio da lateral cai em cima do conteúdo — cobre item do
+ * menu aberto, valor de cartão e texto de modal. Abaixo de 768px vai para o
+ * canto inferior direito, logo acima do botão "Voltar ao topo" (bottom-5,
+ * 48px de altura). Só a âncora muda; o widget continua o do gov.br.
  */
 @media (max-width: 767px) {
   div[vw].enabled {
