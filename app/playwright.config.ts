@@ -30,10 +30,16 @@ export default defineConfig({
   },
 
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
+    { name: 'desktop', testIgnore: /desempenho\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
     // Um celular real: e aqui que estavam os defeitos de paisagem, de alvo de
     // toque e do menu que nao abria por inteiro.
-    { name: 'celular', use: { ...devices['Pixel 5'] } },
+    { name: 'celular', testIgnore: /desempenho\.spec\.ts/, use: { ...devices['Pixel 5'] } },
+
+    // O desempenho corre sozinho, com `--workers=1` (ver o script `test:e2e`).
+    // Nao e preciosismo: dois workers freando rede e CPU na mesma maquina
+    // disputam o processador, e o LCP medido saltou de 1,5s para 3,1s -- numero
+    // da contencao do teste, nao do portal. Byte nao sofre disso; tempo sofre.
+    { name: 'desempenho', testMatch: /desempenho\.spec\.ts/, use: { ...devices['Pixel 5'] } },
   ],
 
   webServer: {

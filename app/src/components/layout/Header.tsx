@@ -22,9 +22,17 @@ export function Header() {
     document.documentElement.style.fontSize = next ? '112.5%' : '';
   };
 
-  useEffect(() => {
+  // Fecha o menu ao trocar de rota. Ajuste durante o render, nao efeito: o
+  // efeito rodava depois da pintura, entao a rota nova aparecia por um quadro
+  // com o menu ainda aberto por cima -- e chamar setState dentro de efeito
+  // dispara render em cascata. Assim o React refaz o render antes de pintar.
+  // Cobre tambem voltar pelo botao do navegador, que um onClick no link nao
+  // pegaria.
+  const [rotaDoMenu, setRotaDoMenu] = useState(location.pathname);
+  if (rotaDoMenu !== location.pathname) {
+    setRotaDoMenu(location.pathname);
     setMenuOpen(false);
-  }, [location.pathname]);
+  }
 
   // Esc fecha o menu e devolve o foco ao botao. Sem isso, quem abriu o menu
   // pelo teclado so sai dele tabulando ate o fim dos sete itens -- e o menu
