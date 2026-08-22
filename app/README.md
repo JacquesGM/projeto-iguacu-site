@@ -7,6 +7,9 @@ badges de situação e testes automatizados.
 
 ## Como rodar
 
+Requer **Node 24** — a mesma versão do CI, e a que traz o npm 11 que gerou o
+`package-lock.json`.
+
 ```bash
 npm install
 npm run dev       # servidor de desenvolvimento
@@ -30,7 +33,7 @@ outra:
 | Onde roda | sem layout nem pintura | navegador de verdade |
 | Cobre | estrutura, ARIA, nomes acessíveis, ordem de títulos, dados | contraste de cor, alvo de toque, gráficos desenhados, teclado ponta a ponta |
 | Não alcança | tudo que depende de geometria ou de cor pintada | o detalhe de dado, que ali seria lento demais |
-| Quanto leva | ~15s | ~1min, incluindo o build |
+| Quanto leva | ~5s | ~1min, incluindo o build |
 
 Verde nas duas ainda não quer dizer "portal acessível": falta leitor de tela
 de verdade (NVDA/VoiceOver) e aparelho de toque na mão. Quer dizer que não

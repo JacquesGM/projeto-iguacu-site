@@ -15,18 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 24, a mesma versao da maquina de desenvolvimento -- e a que traz o
+      # npm 11, que gerou o package-lock. Ate 22/08/2026 aqui era Node 20, e o
+      # npm 10 dele rejeitava o lock como "fora de sincronia"; havia um
+      # `npm install -g npm@11` so para contornar isso. Casar as versoes e mais
+      # simples do que remendar.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: app/package-lock.json
-
-      # Alinha a versão do npm com a usada para gerar o package-lock.json
-      # localmente (npm 10, do Node 20 da imagem do runner, resolve
-      # dependências opcionais do esbuild de forma diferente do npm 11 e
-      # rejeita o lock como "fora de sincronia" — não é o lock que está
-      # errado, é a versão do npm).
-      - run: npm install -g npm@11
 
       - run: npm ci
 
@@ -63,11 +61,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: app/package-lock.json
-
-      - run: npm install -g npm@11
 
       - run: npm ci
 
@@ -114,12 +110,9 @@ jobs:
       - uses: actions/setup-node@v4
         if: steps.secret.outputs.existe == 'true'
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: app/package-lock.json
-
-      - run: npm install -g npm@11
-        if: steps.secret.outputs.existe == 'true'
 
       - run: npm ci
         if: steps.secret.outputs.existe == 'true'
