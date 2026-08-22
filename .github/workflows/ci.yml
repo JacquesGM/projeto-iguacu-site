@@ -30,6 +30,13 @@ jobs:
 
       - run: npm ci
 
+      # O `tsc` pega tipo errado; o lint pega o que ele nao ve -- efeito de
+      # React com dependencia faltando, setState dentro de efeito, componente
+      # criado durante o render. Foi essa classe de erro que mais custou tempo
+      # aqui.
+      - name: Lint (ESLint)
+        run: npm run lint
+
       - name: Checagem de tipos (tsc)
         run: npx tsc -b
 

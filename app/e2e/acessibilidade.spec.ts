@@ -40,6 +40,9 @@ for (const rota of ROTAS) {
   test(`${rota} passa no axe com contraste e alvo de toque`, async ({ page }) => {
     await page.goto(rota);
     await page.getByRole('heading', { level: 1 }).waitFor();
+    // Gráficos e mapa chegam por `import()` dinâmico. Sem esperar a rede
+    // sossegar, a varredura passaria por cima deles sem olhar.
+    await page.waitForLoadState('networkidle');
 
     expect(resumir((await varredura(page).analyze()).violations)).toEqual([]);
   });

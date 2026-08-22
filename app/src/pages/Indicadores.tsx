@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Banknote, Building2, Info, ListChecks, MapPin } from 'lucide-react';
 import intervencoesData from '../data/intervencoes.json';
 import municipiosData from '../data/municipios.json';
@@ -13,16 +13,22 @@ import type {
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
 import { situacaoColorHex, situacaoIcon } from '../components/ui/SituacaoBadge';
-import { SituacaoDistributionChart } from '../components/charts/SituacaoDistributionChart';
-import { MunicipioDistributionChart } from '../components/charts/MunicipioDistributionChart';
-import { OrgaoDistributionChart } from '../components/charts/OrgaoDistributionChart';
-import { ValorPorCategoriaChart } from '../components/charts/ValorPorCategoriaChart';
+import { PageLoading } from '../components/layout/PageLoading';
 import { completudeDosDados, valorPorMunicipio, valorPorSituacao } from '../lib/indicadoresDerivados';
 import { DownloadButton } from '../components/ui/DownloadButton';
 import { IndicatorDetailModal } from '../components/sections/IndicatorDetailModal';
 import { InterventionModal } from '../components/sections/InterventionModal';
 import { CORES_MUNICIPIO } from '../lib/coresMunicipio';
 import type { DownloadColumn } from '../lib/download';
+
+// Import dinamico, mesma logica do mapa em Intervencoes: o Recharts e a
+// biblioteca mais pesada do projeto e so esta pagina desenha grafico. Sem
+// isto, as outras seis rotas baixavam a biblioteca inteira para nao usa-la.
+const graficos = () => import('../components/charts/graficos');
+const SituacaoDistributionChart = lazy(() => graficos().then((m) => ({ default: m.SituacaoDistributionChart })));
+const MunicipioDistributionChart = lazy(() => graficos().then((m) => ({ default: m.MunicipioDistributionChart })));
+const OrgaoDistributionChart = lazy(() => graficos().then((m) => ({ default: m.OrgaoDistributionChart })));
+const ValorPorCategoriaChart = lazy(() => graficos().then((m) => ({ default: m.ValorPorCategoriaChart })));
 
 const intervencoes = intervencoesData as Intervencao[];
 const municipios = municipiosData as Municipio[];
@@ -220,17 +226,19 @@ export function Indicadores() {
       </p>
 
       <h2 className="mt-10 text-lg font-semibold text-neutral-900">Quantos projetos, por recorte</h2>
-      <div className="mt-4 grid gap-5 lg:grid-cols-2">
-        <Card>
-          <SituacaoDistributionChart situacoes={intervencoes.map((i) => i.situacao)} />
-        </Card>
-        <Card>
-          <MunicipioDistributionChart intervencoes={intervencoes} />
-        </Card>
-        <Card>
-          <OrgaoDistributionChart intervencoes={intervencoes} />
-        </Card>
-      </div>
+      <Suspense fallback={<PageLoading label="Carregando gráficos..." />}>
+        <div className="mt-4 grid gap-5 lg:grid-cols-2">
+          <Card>
+            <SituacaoDistributionChart situacoes={intervencoes.map((i) => i.situacao)} />
+          </Card>
+          <Card>
+            <MunicipioDistributionChart intervencoes={intervencoes} />
+          </Card>
+          <Card>
+            <OrgaoDistributionChart intervencoes={intervencoes} />
+          </Card>
+        </div>
+      </Suspense>
 
       {/* Contar projetos engana quando os valores sao tao desiguais: um
           municipio com dois contratos de R$ 5 mi e outro com um de R$ 147 mi
@@ -240,24 +248,26 @@ export function Indicadores() {
         Os mesmos projetos, pesados pelo valor do contrato em vez da quantidade. É o valor{' '}
         <strong>contratado</strong>: a fonte não informa quanto já foi executado, medido ou pago.
       </p>
-      <div className="mt-4 grid gap-5 lg:grid-cols-2">
-        <Card>
-          <ValorPorCategoriaChart
-            titulo="Valor contratado por situação"
-            dados={valorPorSituacao(intervencoes)}
-            rotuloCategoria="situação declarada"
-            larguraDoEixo={150}
-          />
-        </Card>
-        <Card>
-          <ValorPorCategoriaChart
-            titulo="Valor contratado por município"
-            dados={valorPorMunicipio(intervencoes, municipios)}
-            rotuloCategoria="município"
-            nota="O projeto atribuído a dois municípios é contado uma vez, no município principal: a fonte declara um valor único para o contrato e não diz quanto cabe a cada um."
-          />
-        </Card>
-      </div>
+      <Suspense fallback={<PageLoading label="Carregando gráficos..." />}>
+        <div className="mt-4 grid gap-5 lg:grid-cols-2">
+          <Card>
+            <ValorPorCategoriaChart
+              titulo="Valor contratado por situação"
+              dados={valorPorSituacao(intervencoes)}
+              rotuloCategoria="situação declarada"
+              larguraDoEixo={150}
+            />
+          </Card>
+          <Card>
+            <ValorPorCategoriaChart
+              titulo="Valor contratado por município"
+              dados={valorPorMunicipio(intervencoes, municipios)}
+              rotuloCategoria="município"
+              nota="O projeto atribuído a dois municípios é contado uma vez, no município principal: a fonte declara um valor único para o contrato e não diz quanto cabe a cada um."
+            />
+          </Card>
+        </div>
+      </Suspense>
 
       <h2 className="mt-10 text-lg font-semibold text-neutral-900">O que a fonte ainda não informa</h2>
       <p className="mt-1 text-sm text-neutral-600">

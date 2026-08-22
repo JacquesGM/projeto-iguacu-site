@@ -66,6 +66,40 @@ export interface FatiaDeValor {
   semValorDeclarado: number;
 }
 
+/**
+ * Fora do corpo do componente de propósito: declarado dentro, virava um tipo de
+ * componente novo a cada render e o Recharts remontava o balão em vez de
+ * atualizá-lo. O total entra por prop porque depende dos dados recebidos.
+ */
+function TooltipDeValor({
+  active,
+  payload,
+  total,
+}: {
+  active?: boolean;
+  payload?: Array<{ payload: FatiaDeValor }>;
+  total: number;
+}) {
+  if (!active || !payload?.length) return null;
+  const item = payload[0].payload;
+  const pct = total > 0 ? Math.round((item.valor / total) * 100) : 0;
+  return (
+    <div className="rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm shadow-md">
+      <p className="font-semibold text-neutral-900">{item.nome}</p>
+      <p className="text-neutral-700">
+        <strong>{moedaCheia.format(item.valor)}</strong> ({pct}% do total)
+      </p>
+      {item.semValorDeclarado > 0 && (
+        <p className="mt-1 text-xs text-neutral-500">
+          {item.semValorDeclarado === 1
+            ? '1 projeto sem valor declarado, fora desta soma'
+            : `${item.semValorDeclarado} projetos sem valor declarado, fora desta soma`}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function ValorPorCategoriaChart({
   titulo,
   dados,
@@ -92,33 +126,6 @@ export function ValorPorCategoriaChart({
   const ordenados = [...dados].sort((a, b) => b.valor - a.valor);
   const total = ordenados.reduce((soma, d) => soma + d.valor, 0);
   const semValor = ordenados.reduce((soma, d) => soma + d.semValorDeclarado, 0);
-
-  function CustomTooltip({
-    active,
-    payload,
-  }: {
-    active?: boolean;
-    payload?: Array<{ payload: FatiaDeValor }>;
-  }) {
-    if (!active || !payload?.length) return null;
-    const item = payload[0].payload;
-    const pct = total > 0 ? Math.round((item.valor / total) * 100) : 0;
-    return (
-      <div className="rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm shadow-md">
-        <p className="font-semibold text-neutral-900">{item.nome}</p>
-        <p className="text-neutral-700">
-          <strong>{moedaCheia.format(item.valor)}</strong> ({pct}% do total)
-        </p>
-        {item.semValorDeclarado > 0 && (
-          <p className="mt-1 text-xs text-neutral-500">
-            {item.semValorDeclarado === 1
-              ? '1 projeto sem valor declarado, fora desta soma'
-              : `${item.semValorDeclarado} projetos sem valor declarado, fora desta soma`}
-          </p>
-        )}
-      </div>
-    );
-  }
 
   // A tabela traz o valor CHEIO, nao o compacto da barra: quem abre "ver dados
   // em tabela" quer justamente o numero exato que "R$ 304,6 mi" esconde.
@@ -171,7 +178,7 @@ export function ValorPorCategoriaChart({
               axisLine={{ stroke: GRAFICO.eixo }}
               tickLine={false}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: GRAFICO.cursor }} />
+            <Tooltip content={<TooltipDeValor total={total} />} cursor={{ fill: GRAFICO.cursor }} />
             <Bar dataKey="valor" fill={COR_BARRA} radius={[0, 4, 4, 0]} maxBarSize={22} isAnimationActive={false}>
               <LabelList dataKey="valor" content={RotuloDeValor} />
             </Bar>

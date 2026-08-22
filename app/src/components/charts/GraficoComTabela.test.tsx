@@ -7,6 +7,7 @@ import { SituacaoDistributionChart } from './SituacaoDistributionChart';
 import { MunicipioDistributionChart } from './MunicipioDistributionChart';
 import { OrgaoDistributionChart } from './OrgaoDistributionChart';
 import { ValorPorCategoriaChart } from './ValorPorCategoriaChart';
+import * as barril from './graficos';
 
 const intervencoes = intervencoesData as Intervencao[];
 
@@ -79,6 +80,23 @@ describe('todo gráfico do portal tem alternativa em tabela', () => {
       ),
     },
   ];
+
+  const componentesCobertos = [
+    SituacaoDistributionChart,
+    MunicipioDistributionChart,
+    OrgaoDistributionChart,
+    ValorPorCategoriaChart,
+  ];
+
+  // A lista acima é escrita à mão, e lista escrita à mão envelhece: bastaria
+  // acrescentar um gráfico ao barril e esquecer de vir aqui para a garantia
+  // valer menos do que parece. Este teste amarra as duas pontas — o barril é
+  // exatamente o que a página carrega sob demanda.
+  it('cobre todos os gráficos exportados pelo barril, sem sobrar nem faltar', () => {
+    const exportados = Object.keys(barril).sort();
+    const cobertos = componentesCobertos.map((c) => c.name).sort();
+    expect(cobertos).toEqual(exportados);
+  });
 
   for (const grafico of graficos) {
     it(`${grafico.nome} tem tabela com linhas`, () => {

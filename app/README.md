@@ -10,6 +10,7 @@ badges de situação e testes automatizados.
 ```bash
 npm install
 npm run dev       # servidor de desenvolvimento
+npm run lint      # ESLint (react-hooks é a razão de ele existir)
 npm run test      # suíte de testes em jsdom (Vitest)
 npm run test:e2e  # ponta a ponta, num Chromium de verdade (Playwright)
 npm run build     # build de produção (tsc + vite build)
@@ -34,6 +35,26 @@ outra:
 Verde nas duas ainda não quer dizer "portal acessível": falta leitor de tela
 de verdade (NVDA/VoiceOver) e aparelho de toque na mão. Quer dizer que não
 houve regressão no que dá para automatizar.
+
+### Desempenho
+
+`npm run test:e2e` termina medindo as metas da §13 do escopo — **LCP ≤ 2,5 s e
+CLS ≤ 0,1** — num perfil de 4G lento com a CPU quatro vezes mais devagar, que é
+o celular modesto de quem consulta o portal, não a máquina de quem programa.
+Junto vai um **orçamento de JavaScript por rota**: é ele que reprova quando uma
+biblioteca pesada entra sem ninguém notar, porque byte não varia com a máquina
+e tempo varia.
+
+Essa parte roda com um worker só, num projeto separado do Playwright. Com dois
+workers, os dois freando rede e CPU na mesma máquina, o LCP medido saltou de
+1,5 s para 3,1 s — número da disputa entre os testes, não do portal.
+
+### Lint
+
+O `tsc` já roda em modo estrito e pega tipo errado. O ESLint entrou pelo que ele
+não pega, que é a classe de erro que mais custou tempo aqui: efeito de React com
+dependência faltando, `setState` dentro de efeito, componente criado durante o
+render. Na primeira execução acusou cinco erros reais, todos corrigidos.
 
 ## Estrutura
 
