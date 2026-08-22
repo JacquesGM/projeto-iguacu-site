@@ -168,7 +168,9 @@ export function MunicipiosMap() {
 
         <Card>
           <div className="flex items-baseline justify-between gap-2">
-            <h3 className="font-semibold text-neutral-900">Projetos no mapa</h3>
+            <h3 id="projetos-no-mapa" className="font-semibold text-neutral-900">
+              Projetos no mapa
+            </h3>
             {selecionado && (
               <button
                 type="button"
@@ -184,7 +186,9 @@ export function MunicipiosMap() {
             Escolha um projeto para enquadrá-lo no mapa, ou clique direto em um ponto.
           </p>
 
-          <ul className="mt-3 space-y-1">
+          {/* Sao oito listas nesta pagina; sem rotulo, quem navega por lista
+              ouve "lista, 8 itens" sem saber de que se trata. */}
+          <ul aria-labelledby="projetos-no-mapa" className="mt-3 space-y-1">
             {geometrias.map((g) => {
               const ativo = g.intervencao.id === selecionadoId;
               return (

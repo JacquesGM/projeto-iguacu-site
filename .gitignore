@@ -14,6 +14,11 @@ app/*.tsbuildinfo
 app/vite.config.js
 app/vite.config.d.ts
 
+# Saida dos testes de ponta a ponta (Playwright)
+app/test-results/
+app/playwright-report/
+app/blob-report/
+
 # Sistema
 .DS_Store
 Thumbs.db

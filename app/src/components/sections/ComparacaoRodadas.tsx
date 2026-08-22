@@ -76,7 +76,7 @@ export function ComparacaoRodadas({
             comparação começa em {referenciaAtual}. O histórico completo continua no{' '}
             <a
               href="https://github.com/JacquesGM/projeto-iguacu-site"
-              className="text-brand-blue-600 hover:underline"
+              className="text-brand-blue-600 underline underline-offset-2"
             >
               repositório público
             </a>

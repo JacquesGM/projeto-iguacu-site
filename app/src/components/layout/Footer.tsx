@@ -88,11 +88,11 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-8 border-t border-neutral-800 pt-6 text-xs text-neutral-500">
+        <div className="mt-8 border-t border-neutral-800 pt-6 text-xs text-neutral-300">
           <p>
-            Última atualização desta página: <strong className="text-neutral-300">{meta.ultimaAtualizacao}</strong>.{' '}
+            Última atualização desta página: <strong className="text-white">{meta.ultimaAtualizacao}</strong>.{' '}
             {rodape.avisoAtualizacao} Consulte a seção{' '}
-            <Link to="/transparencia" className="text-brand-blue-300 hover:text-brand-blue-200 hover:underline">
+            <Link to="/transparencia" className="text-brand-blue-300 underline underline-offset-2 hover:text-brand-blue-200">
               Transparência
             </Link>
             .

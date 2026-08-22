@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, TextCursorInput, X } from 'lucide-react';
 import logoIrm from '../../assets/logo-irm-branca-horizontal.png';
@@ -14,6 +14,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [largeText, setLargeText] = useState(false);
   const location = useLocation();
+  const botaoMenu = useRef<HTMLButtonElement>(null);
 
   const toggleLargeText = () => {
     const next = !largeText;
@@ -24,6 +25,20 @@ export function Header() {
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
+
+  // Esc fecha o menu e devolve o foco ao botao. Sem isso, quem abriu o menu
+  // pelo teclado so sai dele tabulando ate o fim dos sete itens -- e o menu
+  // cobre o conteudo enquanto isso.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const aoTeclar = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setMenuOpen(false);
+      botaoMenu.current?.focus();
+    };
+    document.addEventListener('keydown', aoTeclar);
+    return () => document.removeEventListener('keydown', aoTeclar);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-40 shadow-md">
@@ -80,6 +95,7 @@ export function Header() {
               <span className="hidden sm:inline">Texto maior</span>
             </button>
             <button
+              ref={botaoMenu}
               type="button"
               className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30 text-white xl:hidden"
               aria-expanded={menuOpen}

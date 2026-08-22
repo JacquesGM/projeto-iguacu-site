@@ -30,7 +30,7 @@ export function DicionarioDeCampos() {
       <p className="mt-1 text-sm text-neutral-600">
         O que cada um dos {dicionario.length} campos de um projeto significa, que tipo tem e o que quer dizer quando
         vem vazio. É a mesma descrição publicada em{' '}
-        <a href={`${import.meta.env.BASE_URL}dados.json`} className="text-brand-blue-600 hover:underline">
+        <a href={`${import.meta.env.BASE_URL}dados.json`} className="text-brand-blue-600 underline underline-offset-2">
           /dados.json
         </a>
         , gerada do mesmo arquivo — as duas não têm como divergir.
